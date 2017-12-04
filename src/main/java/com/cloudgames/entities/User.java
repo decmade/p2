@@ -1,22 +1,22 @@
 package com.cloudgames.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.UserInterface;
 
 @Entity
 @Table(name="users")
-public class User implements UserInterface {
-	@Id
-	private int id;
+public class User extends AbstractEntity implements UserInterface {
 	
 	/**
-	 * username using ACL terminology
+	 * AKA: username
 	 */
 	private String identity;	
 	
 	/**
-	 * password (encrypted)
+	 * AKA: encrypted password (encrypted)
 	 */
 	private String credential;
 	
@@ -27,20 +27,19 @@ public class User implements UserInterface {
 	
 	private String lastName;
 	private String firstName;
+	private String email;
+	private String address1;
+	private String address2;
+	private String city;
+	private String state;
+	private String zip;
+	private LocalDateTime dob;
 	
 	@ManyToOne
 	private UserStatus status;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getIdentity() {
-		return identity;
+		return this.identity;
 	}
 
 	public void setIdentity(String identity) {

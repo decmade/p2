@@ -38,7 +38,14 @@ public interface EntityWrapperInterface<T>
 	
 	/**
 	 * returns as a Map<String, Object> that contains
-	 * the key->value pairs of the object
+	 * the key->value pairs of the object.
+	 * 
+	 * this is fed to the Jackson library for creating
+	 * JSON data
+	 * 
+	 * this allows you to specify what data is encoded
+	 * in the JSON string and how when you convert an
+	 * object's properties to JSON
 	 * 
 	 * @return Map<String, Object>
 	 */

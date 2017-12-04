@@ -2,11 +2,7 @@ package com.cloudgames.entities.interfaces;
 
 import com.cloudgames.entities.UserStatus;
 
-public interface UserInterface {
-
-	public int getId();
-
-	public void setId(int id);
+public interface UserInterface extends EntityInterface {
 
 	public String getIdentity();
 
