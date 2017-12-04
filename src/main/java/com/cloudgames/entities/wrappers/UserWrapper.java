@@ -1,5 +1,6 @@
 package com.cloudgames.entities.wrappers;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -145,6 +146,143 @@ public class UserWrapper extends AbstractEntityWrapper<UserInterface> implements
 		return props;
 	}
 	
+	
+	
+	@Override
+	public String getEmail() {
+		if ( this.hasSubject() ) {
+			return this.subject.getEmail();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setEmail(String email) {
+		if ( this.hasSubject() ) {
+			this.subject.setEmail(email);
+		}
+	}
+
+	@Override
+	public String getAddress1() {
+		if ( this.hasSubject() ) {
+			return this.subject.getAddress1();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setAddress1(String address1) {
+		if ( this.hasSubject() ) {
+			this.subject.setAddress1(address1);
+		}
+		
+	}
+
+	@Override
+	public String getAddress2() {
+		if ( this.hasSubject() ) {
+			return this.subject.getAddress2();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setAddress2(String address2) {
+		if ( this.hasSubject() ) {
+			this.subject.setAddress2( address2 );
+		}
+		
+	}
+
+	@Override
+	public String getCity() {
+		if ( this.hasSubject() ) {
+			return this.subject.getCity();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setCity(String city) {
+		if ( this.hasSubject() ) {
+			this.subject.setCity(city);
+		}
+		
+	}
+
+	@Override
+	public String getState() {
+		if ( this.hasSubject() ) {
+			return this.subject.getState();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setState(String state) {
+		if ( this.hasSubject() ) {
+			this.subject.setState(state);
+		}
+		
+	}
+
+	@Override
+	public String getZip() {
+		if ( this.hasSubject() ) {
+			return this.subject.getZip();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setZip(String zip) {
+		if ( this.hasSubject() ) {
+			this.subject.setZip(zip);
+		}
+		
+	}
+
+	@Override
+	public LocalDateTime getDob() {
+		if ( this.hasSubject() ) {
+			return this.subject.getDob();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void setDob(LocalDateTime dob) {
+		if ( this.hasSubject()  ) {
+			this.subject.setDob(dob);
+		}
+		
+	}
+
+	@Override
+	public String getPhone() {
+		if ( this.hasSubject() ) {
+			return this.subject.getPhone();
+		} else {
+			return "";
+		}
+	}
+
+	@Override
+	public void setPhone(String phone) {
+		if ( this.hasSubject() ) {
+			this.subject.setPhone(phone);
+		}
+		
+	}
+
 	/**
 	 * returns true if the credential value passed
 	 * matches the one for the user injected
