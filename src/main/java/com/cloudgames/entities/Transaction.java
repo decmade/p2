@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.cloudgames.entities.interfaces.TransactionInterface;
 
 @Entity
-@Table(name="transaction")
+@Table(name="transactions")
 public class Transaction extends AbstractEntity implements TransactionInterface {
 
 	@Column(unique = false, nullable = false, precision = 15, scale = 2)
