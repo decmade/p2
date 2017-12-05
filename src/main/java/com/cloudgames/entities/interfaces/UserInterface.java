@@ -2,6 +2,7 @@ package com.cloudgames.entities.interfaces;
 
 import java.time.LocalDateTime;
 
+import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.UserStatus;
 
 public interface UserInterface extends EntityInterface {
@@ -61,4 +62,8 @@ public interface UserInterface extends EntityInterface {
 	public String getPhone();
 
 	public void setPhone(String phone);
+	
+	public UserRole getRole();
+
+	public void setRole(UserRole role);
 }

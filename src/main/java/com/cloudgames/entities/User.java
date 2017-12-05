@@ -9,7 +9,7 @@ import com.cloudgames.entities.interfaces.UserInterface;
 @Entity
 @Table(name="users")
 public class User extends AbstractEntity implements UserInterface {
-	
+		
 	/**
 	 * AKA: username
 	 */
@@ -25,20 +25,45 @@ public class User extends AbstractEntity implements UserInterface {
 	 */
 	private String secret;
 	
+	@Column(length=50)
 	private String lastName;
+	
+	@Column(length=50)
 	private String firstName;
+	
+	@Column(length=100)
 	private String email;
+	
 	private String address1;
+	
 	private String address2;
+	
+	@Column(length=50)
 	private String city;
+	
+	@Column(length=50)
 	private String state;
+	
+	@Column(length=10)
 	private String zip;
+	
 	private LocalDateTime dob;
+	
+	@Column(length=10)
 	private String phone;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status_id")
 	private UserStatus status;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="role_id")
+	private UserRole role;
 
+	
+	
+	
+	
 	public String getIdentity() {
 		return this.identity;
 	}
@@ -151,7 +176,13 @@ public class User extends AbstractEntity implements UserInterface {
 		this.phone = phone;
 	}
 	
-	
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
 	
 
 }
