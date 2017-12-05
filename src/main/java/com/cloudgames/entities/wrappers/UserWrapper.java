@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
@@ -283,6 +284,22 @@ public class UserWrapper extends AbstractEntityWrapper<UserInterface> implements
 		
 	}
 
+	@Override
+	public UserRole getRole() {
+		if ( this.hasSubject() ) {
+			return this.subject.getRole();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void setRole(UserRole role) {
+		if ( this.hasSubject() ) {
+			this.subject.setRole(role);
+		}
+	}
+	
 	/**
 	 * returns true if the credential value passed
 	 * matches the one for the user injected
@@ -312,6 +329,8 @@ public class UserWrapper extends AbstractEntityWrapper<UserInterface> implements
 		
 		return wrapper.getPropertyMap();
 	}
+
+
 
 	
 }
