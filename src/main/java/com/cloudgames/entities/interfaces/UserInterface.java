@@ -2,6 +2,7 @@ package com.cloudgames.entities.interfaces;
 
 import java.time.LocalDateTime;
 
+import com.cloudgames.entities.Account;
 import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.UserStatus;
 
@@ -66,4 +67,8 @@ public interface UserInterface extends EntityInterface {
 	public UserRole getRole();
 
 	public void setRole(UserRole role);
+	
+	public Account getAccount();
+
+	public void setAccount(Account account);
 }

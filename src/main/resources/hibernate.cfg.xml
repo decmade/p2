@@ -6,7 +6,7 @@
 		<property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
 		<property name="hibernate.dialect">com.enigmabridge.hibernate.dialect.SQLiteDialect</property>
 		
-		<property name="hibernate.connection.url">jdbc:sqlite:src/main/resources/bears.db</property>
+		<property name="hibernate.connection.url">jdbc:sqlite:src/main/resources/app.db</property>
 		<!-- 
 		<property name="hibernate.connection.username">bears</property>
 		<property name="hibernate.connection.password">p4ssw0rd</property>
@@ -14,22 +14,27 @@
 		<property name="hibernate.connection.pool_size">5</property>
 		
 		<!-- The property that must not be used -->
-		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<!-- Some hibernate configurations -->
 		<property name="show_sql">true</property>
 		<property name="hibernate.format_sql">false</property>
 		
 		<!-- Cache Configuration --> 
+		<!-- 
 		<property name="net.sf.ehcache.configurationResourceName">/ehcache.xml</property>
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 		<property name="hibernate.cache.use_second_level_cache">true</property>
 		<property name="hibernate.cache.use_query_cache">true</property>
+		-->
 		
 		<!-- Tell Hibernate how we are mapping classes -->
-		<mapping class="com.revature.entities.HoneyPot"/>
-		<mapping class="com.revature.entities.Bear"/>
-		<mapping class="com.revature.entities.Cave"/>
+		<mapping class="com.cloudgames.entities.User"/>
+		<mapping class="com.cloudgames.entities.Transaction"/>
+		<mapping class="com.cloudgames.entities.TransactionType"/>
+		<mapping class="com.cloudgames.entities.UserRole"/>
+		<mapping class="com.cloudgames.entities.UserStatus"/>
+		<mapping class="com.cloudgames.entities.Account"/>
 		<!-- <mapping resource="HoneyPot.hbm.xml"/>  -->
 		
 	</session-factory>

@@ -38,5 +38,18 @@
             <version>6.0.26</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+		<dependency>
+		    <groupId>org.xerial</groupId>
+		    <artifactId>sqlite-jdbc</artifactId>
+		    <version>3.21.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.enigmabridge</groupId>
+		  <artifactId>hibernate4-sqlite-dialect</artifactId>
+		  <version>0.1.2</version>
+		</dependency>
   </dependencies>
 </project>
