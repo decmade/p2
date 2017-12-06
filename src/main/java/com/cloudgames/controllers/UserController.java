@@ -13,10 +13,10 @@ import com.cloudgames.entities.interfaces.UserInterface;
 @RequestMapping("users")
 public class UserController {
 	
-	@GetMapping
 	public List<UserInterface> getAll() {
 		// TODO: implement
 		//stub
+		return null;
 	}
 
 }
