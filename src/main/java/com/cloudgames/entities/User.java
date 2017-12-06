@@ -52,6 +52,10 @@ public class User extends AbstractEntity implements UserInterface {
 	@Column(length=10)
 	private String phone;
 	
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="account_id")
+	private Account account;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="status_id")
 	private UserStatus status;
@@ -182,6 +186,14 @@ public class User extends AbstractEntity implements UserInterface {
 
 	public void setRole(UserRole role) {
 		this.role = role;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 
