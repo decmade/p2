@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cloudgames.entities.Account;
 import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.UserInterface;
@@ -321,6 +322,24 @@ public class UserWrapper extends AbstractEntityWrapper<UserInterface> implements
 		}
 	}
 	
+	
+	@Override
+	public Account getAccount() {
+		if ( this.hasSubject() ) {
+			return this.subject.getAccount();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void setAccount(Account account) {
+		if ( this.hasSubject() ) {
+			this.subject.setAccount(account);
+		}
+		
+	}
+
 	private Map<String, Object> getStatusPropertyMap()
 	{
 		UserStatusWrapper wrapper = new UserStatusWrapper();
