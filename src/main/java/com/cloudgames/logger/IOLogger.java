@@ -16,6 +16,7 @@ public class IOLogger extends AbstractLog4jLogger
 	 * singleton instantiation
 	 */
 	private static IOLogger instance = new IOLogger();
+	final private static String LOG_CATEGORY = "io";
 	
 	/**
 	 * provide singleton instance to clients
@@ -34,7 +35,7 @@ public class IOLogger extends AbstractLog4jLogger
 	{
 		super();
 		
-		this.logger = Logger.getLogger("io");
+		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	
 }

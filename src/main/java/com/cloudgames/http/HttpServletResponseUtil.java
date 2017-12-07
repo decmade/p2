@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cloudgames.exceptions.AbstractCustomHttpException;
-import com.cloudgames.logger.DispatchLogger;
+import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 /**
@@ -25,7 +25,7 @@ import com.cloudgames.logger.LoggerInterface;
  */
 public class HttpServletResponseUtil 
 {
-	private static LoggerInterface log = DispatchLogger.getInstance();
+	private static LoggerInterface log = ControllerLogger.getInstance();
 	
 	
 	/**

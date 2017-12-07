@@ -10,20 +10,20 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
-public class AclLogger extends AbstractLog4jLogger
+public class EntityLogger extends AbstractLog4jLogger
 {
 	/**
 	 * singleton instantiation
 	 */
-	private static AclLogger instance = new AclLogger();
-	final private static String LOG_CATEGORY = "acl";
+	private static EntityLogger instance = new EntityLogger();
+	final private static String LOG_CATEGORY = "entities";
 	
 	/**
 	 * provide singleton instance to clients
 	 * 
 	 * @return SysLog
 	 */
-	public static AclLogger getInstance()
+	public static EntityLogger getInstance()
 	{
 		return instance;
 	}
@@ -31,7 +31,7 @@ public class AclLogger extends AbstractLog4jLogger
 	/**
 	 * hidden constructor
 	 */
-	private AclLogger()
+	private EntityLogger()
 	{
 		super();
 		

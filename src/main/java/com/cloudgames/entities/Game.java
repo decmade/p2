@@ -5,8 +5,8 @@ import javax.persistence.Table;
 
 import com.cloudgames.entities.interfaces.GameInterface;
 
-@Entity
-@Table(name="Game")
+//@Entity
+//@Table(name="Game")
 
 
 public class Game extends AbstractEntity implements GameInterface {
