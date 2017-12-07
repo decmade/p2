@@ -1,0 +1,56 @@
+package com.cloudgames.repositories;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.springframework.stereotype.Repository;
+
+import com.cloudgames.entities.User;
+import com.cloudgames.entities.interfaces.UserInterface;
+
+
+@Repository("user-repository")
+public class UserRepository extends AbstractHibernateRepository<UserInterface> {
+
+	@Override
+	public UserInterface fetchById(int id) {
+		String message = String.format("retrieving user with ID[%d] from persistent storage", id);
+		
+		log.debug(message);
+		
+		return super.fetchById(id);
+	}
+
+	@Override
+	public List<UserInterface> fetchAll() {
+		String message = "retrieving all users from persistent storage";
+		
+		log.debug(message);
+		
+		return super.fetchAll();
+	}
+
+	@Override
+	public UserInterface save(UserInterface user) {
+		String message = String.format("saving user with ID[%d] to persistent storage", ((User)user).getId() );
+		
+		log.debug(message);
+				
+		return super.save(user);
+	}
+
+	@Override
+	public void delete(UserInterface user) {
+		String message = String.format("deleting user with ID[%d] from persistent storage", ((User)user).getId() );
+		
+		log.debug(message);
+		
+		super.delete(user);	
+	}
+	
+	@Override
+	protected Criteria getCriteria() {
+		return this.getSession().createCriteria(User.class);
+	}
+	
+}

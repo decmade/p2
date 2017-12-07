@@ -2,21 +2,61 @@ package com.cloudgames.controllers;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.web.bind.annotation.*;
 
+import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
+import com.cloudgames.services.interfaces.ServiceInterface;
 
 @RestController
 @RequestMapping("users")
-public class UserController {
+public class UserController extends AbstractController<UserInterface, User> {
+
+	@Autowired
+	@Qualifier("user-service")
+	private ServiceInterface<UserInterface> service;
 	
-	public List<UserInterface> getAll() {
-		// TODO: implement
-		//stub
-		return null;
+	@Override
+	@GetMapping("{id}")
+	public UserInterface get(@PathVariable int id) {
+		String message = String.format("retrieving user with ID[%d]", id);
+		
+		log.debug(message);
+		
+		return service.fetchById(id);
 	}
+
+	@Override
+	@GetMapping
+	public List<UserInterface> getAll() {
+		String message = "retrieving all users";
+		
+		log.debug(message);
+		
+		return service.fetchAll();
+	}
+
+	@Override
+	@PostMapping
+	public UserInterface save(@RequestBody User user) {
+		String message = "saving user";
+		
+		log.debug(message);
+		
+		return service.save(user);
+	}
+
+	@Override
+	@DeleteMapping
+	public void remove(@RequestBody User user) {
+		String message = String.format("removing user with ID[%d]", user.getId() );
+		
+		log.debug(message);
+		
+		service.delete(user);
+	}
+	
+	
 
 }

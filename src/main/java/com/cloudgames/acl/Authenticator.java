@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.entities.wrappers.UserWrapper;
-import com.cloudgames.dbal.EntityManager;
 import com.cloudgames.logger.AclLogger;
 import com.cloudgames.logger.LoggerInterface;
 
@@ -37,7 +36,8 @@ public class Authenticator {
 		String logMessage;
 		
 		clear(session);
-		user = EntityManager.getUserByIdentity(identity);
+		// TODO: implement authentication after building user service layer
+//		user = EntityManager.getUserByIdentity(identity);
 		userWrapper.setSubject( user );
 		
 		/*
@@ -96,7 +96,8 @@ public class Authenticator {
 			message = String.format("could not retrieve user from database with ID:[%s]", id );
 			log.debug( message );
 		} else {
-			user = EntityManager.getUser( id );
+			// TODO: implement authentication after building user service layer
+			//user = EntityManager.getUser( id );
 		}
 		
 		

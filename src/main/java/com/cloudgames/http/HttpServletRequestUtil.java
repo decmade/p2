@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.cloudgames.logger.DispatchLogger;
+import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 /**
@@ -16,7 +16,7 @@ import com.cloudgames.logger.LoggerInterface;
 */
 public class HttpServletRequestUtil
 {
-	private static LoggerInterface log = DispatchLogger.getInstance();
+	private static LoggerInterface log = ControllerLogger.getInstance();
 	
 	/**
 	 * extracts the route parameter at the end of the 

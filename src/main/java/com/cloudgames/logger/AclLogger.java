@@ -16,6 +16,7 @@ public class AclLogger extends AbstractLog4jLogger
 	 * singleton instantiation
 	 */
 	private static AclLogger instance = new AclLogger();
+	final private static String LOG_CATEGORY = "acl";
 	
 	/**
 	 * provide singleton instance to clients
@@ -34,7 +35,7 @@ public class AclLogger extends AbstractLog4jLogger
 	{
 		super();
 		
-		this.logger = Logger.getLogger("acl");
+		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	
 }
