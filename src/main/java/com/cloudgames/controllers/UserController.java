@@ -9,7 +9,7 @@ import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.services.interfaces.UserServiceInterface;
 
-@RestController
+@RestController("user-controller")
 @RequestMapping("users")
 public class UserController extends AbstractController<UserInterface, User> {
 
@@ -20,41 +20,47 @@ public class UserController extends AbstractController<UserInterface, User> {
 	@Override
 	@GetMapping("{id:[0-9]+}")
 	public UserInterface get(@PathVariable int id) {
-		String message = String.format("retrieving user with ID[%d]", id);
+		String message = String.format("retrieving User with ID[%d]", id);
 		
 		log.debug(message);
 		
-		return service.fetchById(id);
+		return this.service.fetchById(id);
 	}
 
 	@Override
 	@GetMapping
 	public List<UserInterface> getAll() {
-		String message = "retrieving all users";
+		String message = "retrieving all Users";
 		
 		log.debug(message);
 		
-		return service.fetchAll();
+		return this.service.fetchAll();
 	}
 
 	@Override
 	@PostMapping
 	public UserInterface save(@RequestBody User user) {
-		String message = "saving user";
+		String message = "";
+		
+		if ( user.getId() > 0 ) {
+			message = String.format("updating User with ID[%d]", user.getId() );
+		} else {
+			message = "adding new User";
+		}
 		
 		log.debug(message);
 		
-		return service.save(user);
+		return this.service.save(user);
 	}
 
 	@Override
 	@DeleteMapping
 	public void remove(@RequestBody User user) {
-		String message = String.format("removing user with ID[%d]", user.getId() );
+		String message = String.format("removing User with ID[%d]", user.getId() );
 		
 		log.debug(message);
 		
-		service.delete(user);
+		this.service.delete(user);
 	}
 	
 	

@@ -14,6 +14,7 @@ import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 @Repository("user-repository")
 public class UserRepository extends AbstractHibernateRepository<UserInterface> implements UserRepositoryInterface {
 
+	@Override
 	public UserInterface fetchByIdentity(String identity) {
 		String message = String.format("retrieving user with IDENTITY[%s] from persistent storage", identity);
 		Criteria criteria = this.getCriteria();
@@ -44,7 +45,13 @@ public class UserRepository extends AbstractHibernateRepository<UserInterface> i
 
 	@Override
 	public UserInterface save(UserInterface user) {
-		String message = String.format("saving user with ID[%d] to persistent storage", ((User)user).getId() );
+		String message = "";
+		
+		if ( user.getId() > 0 ) {
+			message = String.format("updating user with ID[%d] in persistent storage", ((User)user).getId() );
+		} else {
+			message = "saving new user to persistent storage";
+		}
 		
 		log.debug(message);
 				
