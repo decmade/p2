@@ -10,19 +10,21 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
-public class DbalLogger extends AbstractLog4jLogger
+public class RepositoryLogger extends AbstractLog4jLogger
 {
 	/**
 	 * singleton instantiation
 	 */
-	private static DbalLogger instance = new DbalLogger();
+	private static RepositoryLogger instance = new RepositoryLogger();
+	
+	final static private String LOG_CATEGORY = "respositories";
 	
 	/**
 	 * provide singleton instance to clients
 	 * 
 	 * @return SysLog
 	 */
-	public static DbalLogger getInstance()
+	public static RepositoryLogger getInstance()
 	{
 		return instance;
 	}
@@ -30,11 +32,11 @@ public class DbalLogger extends AbstractLog4jLogger
 	/**
 	 * hidden constructor
 	 */
-	private DbalLogger()
+	private RepositoryLogger()
 	{
 		super();
 		
-		this.logger = Logger.getLogger("dbal");
+		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	
 }

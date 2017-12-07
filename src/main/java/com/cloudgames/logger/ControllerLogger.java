@@ -10,19 +10,20 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
-public class DispatchLogger extends AbstractLog4jLogger
+public class ControllerLogger extends AbstractLog4jLogger
 {
 	/**
 	 * singleton instantiation
 	 */
-	private static DispatchLogger instance = new DispatchLogger();
+	private static ControllerLogger instance = new ControllerLogger();
+	final private static String LOG_CATEGORY = "controllers";
 	
 	/**
 	 * provide singleton instance to clients
 	 * 
 	 * @return SysLog
 	 */
-	public static DispatchLogger getInstance()
+	public static ControllerLogger getInstance()
 	{
 		return instance;
 	}
@@ -30,11 +31,11 @@ public class DispatchLogger extends AbstractLog4jLogger
 	/**
 	 * hidden constructor
 	 */
-	private DispatchLogger()
+	private ControllerLogger()
 	{
 		super();
 		
-		this.logger = Logger.getLogger("dispatch");
+		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	
 }
