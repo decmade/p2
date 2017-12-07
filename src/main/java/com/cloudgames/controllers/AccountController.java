@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudgames.entities.Account;
-import com.revature.services.AccountService;
+import com.cloudgames.entities.User;
+import com.cloudgames.services.AccountService;
 
 @Controller
 @RequestMapping("accounts")
@@ -35,7 +36,7 @@ public class AccountController {
 	
 	@PutMapping
 	public Account update(@RequestBody Account acc) {
-		return as.update(u);
+		return as.update(acc);
 	}
 	
 	@PostMapping

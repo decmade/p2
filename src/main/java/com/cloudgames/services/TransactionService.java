@@ -2,6 +2,10 @@ package com.cloudgames.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.cloudgames.entities.Account;
 import com.cloudgames.entities.Transaction;
 import com.cloudgames.entities.TransactionType;
@@ -26,18 +30,18 @@ public class TransactionService {
 	}
 	
 	public Transaction findType(@PathVariable TransactionType ttype) {
-		return tr.findByType(ttype);
+		return tr.findType(ttype);
 	}
 	
 	public Transaction findAllPending(@PathVariable int status) {
-		return tr.findPendingTransactions(status);
+		return tr.findAllPending(status);
 	}
 	
 	public Transaction findAllCompleted(@PathVariable int status) {
-		return tr.findCompletedTransactions(status);
+		return tr.findAllCompleted(status);
 	}
 	
 	public Transaction findAccount(@PathVariable Account acc) {
-		return tr.findByAccount(acc);
+		return tr.findAccount(acc);
 	}
 }
