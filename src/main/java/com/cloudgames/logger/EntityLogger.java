@@ -10,19 +10,20 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
-public class BeansLogger extends AbstractLog4jLogger
+public class EntityLogger extends AbstractLog4jLogger
 {
 	/**
 	 * singleton instantiation
 	 */
-	private static BeansLogger instance = new BeansLogger();
+	private static EntityLogger instance = new EntityLogger();
+	final private static String LOG_CATEGORY = "entities";
 	
 	/**
 	 * provide singleton instance to clients
 	 * 
 	 * @return SysLog
 	 */
-	public static BeansLogger getInstance()
+	public static EntityLogger getInstance()
 	{
 		return instance;
 	}
@@ -30,11 +31,11 @@ public class BeansLogger extends AbstractLog4jLogger
 	/**
 	 * hidden constructor
 	 */
-	private BeansLogger()
+	private EntityLogger()
 	{
 		super();
 		
-		this.logger = Logger.getLogger("beans");
+		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	
 }
