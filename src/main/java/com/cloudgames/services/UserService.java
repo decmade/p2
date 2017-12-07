@@ -9,13 +9,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.repositories.interfaces.RepositoryInterface;
+import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
+import com.cloudgames.services.interfaces.UserServiceInterface;
 
 @Service("user-service")
-public class UserService extends AbstractService<UserInterface> {
+public class UserService extends AbstractService<UserInterface> implements UserServiceInterface {
 	
 	@Autowired
 	@Qualifier("user-repository")
-	private RepositoryInterface<UserInterface> repository;
+	private UserRepositoryInterface repository;
+	
+	@Override
+	public UserInterface fetchByIdentity(String identity) {
+		String message = String.format("retrieving user with IDENTITY[%s] from repository", identity);
+		
+		log.debug(message);
+		
+		return this.repository.fetchByIdentity(identity);
+	}
 
 	@Override
 	@Transactional

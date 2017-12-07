@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.services.interfaces.ServiceInterface;
+import com.cloudgames.services.interfaces.UserServiceInterface;
 
 @RestController
 @RequestMapping("users")
@@ -15,10 +15,10 @@ public class UserController extends AbstractController<UserInterface, User> {
 
 	@Autowired
 	@Qualifier("user-service")
-	private ServiceInterface<UserInterface> service;
+	private UserServiceInterface service;
 	
 	@Override
-	@GetMapping("{id}")
+	@GetMapping("{id:[0-9]+}")
 	public UserInterface get(@PathVariable int id) {
 		String message = String.format("retrieving user with ID[%d]", id);
 		
