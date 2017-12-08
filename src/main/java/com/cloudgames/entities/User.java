@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.UserInterface;
 
+
 @Entity
 @Table(name="users")
 public class User extends AbstractEntity implements UserInterface {
@@ -64,9 +65,6 @@ public class User extends AbstractEntity implements UserInterface {
 	@JoinColumn(name="role_id")
 	private UserRole role;
 
-	
-	
-	
 	
 	public String getIdentity() {
 		return this.identity;

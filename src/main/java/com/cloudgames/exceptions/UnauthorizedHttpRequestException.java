@@ -1,18 +1,23 @@
 package com.cloudgames.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 
-import com.cloudgames.acl.Acl;
+import com.cloudgames.acl.Authenticator;
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.entities.wrappers.UserWrapper;
 import com.cloudgames.http.HttpServletRequestUtil;
 
 public class UnauthorizedHttpRequestException extends AbstractCustomHttpException
 {
 
+	@Autowired
+	@Qualifier("authenticator")
+	private Authenticator authenticator;
+	
 	/**
 	 * 
 	 */
@@ -28,19 +33,21 @@ public class UnauthorizedHttpRequestException extends AbstractCustomHttpExceptio
 	 */
 	@Override
 	public String getRequestMessage(HttpServletRequest request) {
-		UserInterface user = Acl.getAuthenticatedUser( request.getSession() );
-		UserWrapper userWrapper = new UserWrapper();
+		HttpSession session = request.getSession();
+		Authenticator auth = this.getAuthenticator();
+		UserInterface user = null;
+
 		
-		userWrapper.setSubject( user );
+		auth.setSession(session);
+		user = auth.getAuthenticatedUser();
 		
-		if ( userWrapper.hasSubject() == false ) {
+		if ( user == null ) {
 			user = new User();
-			userWrapper.setSubject( user );
-			userWrapper.setIdentity("anonymous");			
+			user.setIdentity("anonymous");			
 		}
 		
 		String message = String.format("User:[%s] does not have permission for [%s] request to [%s]",
-				userWrapper.getIdentity(),
+				user.getIdentity(),
 				request.getMethod(),
 				HttpServletRequestUtil.extractRelativeUri(request)
 		);
@@ -48,4 +55,7 @@ public class UnauthorizedHttpRequestException extends AbstractCustomHttpExceptio
 		return message;
 	}
 
+	private Authenticator getAuthenticator() {
+		return this.authenticator;
+	}
 }

@@ -1,6 +1,9 @@
 package com.cloudgames.acl.policies;
 
-import com.cloudgames.acl.Acl;
+import org.springframework.beans.factory.annotation.*;
+
+import com.cloudgames.acl.AbstractAclObject;
+import com.cloudgames.acl.Authorizer;
 import com.cloudgames.acl.Request;
 import com.cloudgames.acl.markers.FinanceManagerMarker;
 import com.cloudgames.acl.markers.SystemAdministratorMarker;
@@ -14,9 +17,11 @@ import com.cloudgames.logger.LoggerInterface;
  * @author john.w.brown.jr@gmail.com
  *
  */
-abstract public class AbstractPolicy implements PolicyInterface 
+abstract public class AbstractPolicy extends AbstractAclObject implements PolicyInterface 
 {
-	protected static LoggerInterface log = AclLogger.getInstance();		// get handle on system log instance
+	@Autowired
+	@Qualifier("authorizer")
+	protected Authorizer auth;
 	
 	/**
 	 * default allow policy of extending classes
@@ -60,7 +65,9 @@ abstract public class AbstractPolicy implements PolicyInterface
 	 */
 	protected boolean isFinanceManager(UserInterface user)
 	{
-		return Acl.authorize(user, "any", FinanceManagerMarker.getInstance() );
+		Request request = new Request(user, "any", FinanceManagerMarker.getInstance() );
+		
+		return auth.authorize(request);
 	}
 	
 	/** 
@@ -101,7 +108,9 @@ abstract public class AbstractPolicy implements PolicyInterface
 	 */
 	protected boolean isSystemAdministrator(UserInterface user)
 	{
-		return Acl.authorize(user, "any", SystemAdministratorMarker.getInstance() );
+		Request request = new Request(user, "any", SystemAdministratorMarker.getInstance() );
+		
+		return this.auth.authorize(request);
 	}
 	
 	/** 

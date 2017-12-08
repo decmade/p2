@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.*;
+
 import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
@@ -16,7 +18,7 @@ import com.cloudgames.logger.LoggerInterface;
 */
 public class HttpServletRequestUtil
 {
-	private static LoggerInterface log = ControllerLogger.getInstance();
+	private static LoggerInterface log = new ControllerLogger();
 	
 	/**
 	 * extracts the route parameter at the end of the 
@@ -93,7 +95,7 @@ public class HttpServletRequestUtil
 			reader.mark(0);
 			reader.reset();
 		} catch(IOException e) {
-			log.error( e.getMessage() );
+
 		}
 		
 		return reader;
