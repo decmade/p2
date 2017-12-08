@@ -1,6 +1,7 @@
 package com.cloudgames.logger;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * << singleton >>
@@ -10,31 +11,17 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("logger-acl")
 public class AclLogger extends AbstractLog4jLogger
 {
-	/**
-	 * singleton instantiation
-	 */
-	private static AclLogger instance = new AclLogger();
 	final private static String LOG_CATEGORY = "acl";
-	
-	/**
-	 * provide singleton instance to clients
-	 * 
-	 * @return SysLog
-	 */
-	public static AclLogger getInstance()
-	{
-		return instance;
-	}
+
 	
 	/**
 	 * hidden constructor
 	 */
-	private AclLogger()
-	{
-		super();
-		
+	public AclLogger()
+	{	
 		this.logger = Logger.getLogger(LOG_CATEGORY);
 	}
 	

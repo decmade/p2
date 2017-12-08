@@ -1,6 +1,7 @@
 package com.cloudgames.logger;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * << singleton >>
@@ -10,28 +11,12 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("logger-io")
 public class IOLogger extends AbstractLog4jLogger
 {
-	/**
-	 * singleton instantiation
-	 */
-	private static IOLogger instance = new IOLogger();
 	final private static String LOG_CATEGORY = "io";
 	
-	/**
-	 * provide singleton instance to clients
-	 * 
-	 * @return SysLog
-	 */
-	public static IOLogger getInstance()
-	{
-		return instance;
-	}
-	
-	/**
-	 * hidden constructor
-	 */
-	private IOLogger()
+	public IOLogger()
 	{
 		super();
 		

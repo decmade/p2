@@ -2,10 +2,12 @@ package com.cloudgames.acl;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Service;
+
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.entities.wrappers.UserWrapper;
-import com.cloudgames.logger.AclLogger;
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.io.Encryption;
+import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 
 /**
  * << utility >>
@@ -16,35 +18,44 @@ import com.cloudgames.logger.LoggerInterface;
  * @author john.w.brown.jr@gmail.com
  *
  */
-public class Authenticator {
-	private static LoggerInterface log = AclLogger.getInstance();		// get handle for LoggerInterface
+@Service("authenticator")
+public class Authenticator extends AbstractAclObject {
 	public static final String USER_SESSION_KEY = "user";				// key used to reference the user stored in the Session
+	
+	@Autowired
+	@Qualifier("user-respository")
+	private UserRepositoryInterface userRepository;
+	
+	@Autowired
+	@Qualifier("encryption")
+	private Encryption encryption;
+	
+	private HttpSession session;
+	
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
 		
 	/**
 	 * authenticate a user with the passed identity and password
 	 * 
-	 * @param HttpSession session
 	 * @param String identity
 	 * @param String password
 	 * 
 	 * @return boolean
 	 */
-	public static boolean authenticate(HttpSession session, String identity, String password)
+	public boolean authenticate(String identity, String password)
 	{
-		UserInterface user = null;
-		UserWrapper userWrapper = new UserWrapper();
+		UserInterface user = this.userRepository.fetchByIdentity(identity);
 		String logMessage;
 		
-		clear(session);
-		// TODO: implement authentication after building user service layer
-//		user = EntityManager.getUserByIdentity(identity);
-		userWrapper.setSubject( user );
+		this.clear();
 		
 		/*
 		 * if there is no user found with that identity
 		 * then the authentication fails
 		 */
-		if ( userWrapper.hasSubject() == false ) {
+		if ( user == null ) {
 			logMessage = String.format("LOGIN FAILED:: user with identity [%s] was not found", identity);
 			log.info( logMessage );
 			return false;
@@ -55,14 +66,14 @@ public class Authenticator {
 		 * in the database then it is valid
 		 */
 
-		if ( userWrapper.checkCredential( password ) ) {
-			logMessage = String.format("LOGIN SUCCESSFULL:: user %s logged in successfully", userWrapper.getIdentity() );
+		if ( this.checkCredentials(user, password) ) {
+			logMessage = String.format("LOGIN SUCCESSFULL:: user %s logged in successfully", user.getIdentity() );
 			log.info( logMessage );
 			
 			/*
 			 * store user in session
 			 */
-			session.setAttribute(USER_SESSION_KEY, String.valueOf( userWrapper.getId() ) );
+			session.setAttribute(USER_SESSION_KEY, String.valueOf( user.getId() ) );
 
 			return true;
 		} 
@@ -70,7 +81,7 @@ public class Authenticator {
 		/*
 		 * default policy
 		 */
-		logMessage = String.format("LOGIN FAILED:: login attempt for user %s failed with bad credentials", userWrapper.getIdentity() );
+		logMessage = String.format("LOGIN FAILED:: login attempt for user %s failed with bad credentials", user.getIdentity() );
 		log.info( logMessage );
 		return false;
 	}
@@ -83,21 +94,30 @@ public class Authenticator {
 	 * 
 	 * @return User|null
 	 */
-	public static UserInterface getAuthenticatedUser(HttpSession session)
+	public UserInterface getAuthenticatedUser()
 	{
-		String id = (String)session.getAttribute( USER_SESSION_KEY);
+		int id = 0;
+		String idString = String.valueOf( this.session.getAttribute( USER_SESSION_KEY) );
 		UserInterface user = null;
 		String message = "";
 		
-		message = String.format("attempting to retrieve authenticated user from session with ID:[%s]", id );
+		message = String.format("attempting to retrieve authenticated user from session with ID:[%d]", id );
 		log.debug(message);
 		
-		if ( id == null || id.isEmpty() || id.equals("0") ) {
-			message = String.format("could not retrieve user from database with ID:[%s]", id );
-			log.debug( message );
-		} else {
-			// TODO: implement authentication after building user service layer
-			//user = EntityManager.getUser( id );
+		try {
+			id = Integer.parseInt(idString);
+			
+			if ( id == 0) {
+				message = String.format("could not retrieve user  with ID:[%d]", id );
+				log.debug( message );
+			} else {
+				user = this.userRepository.fetchById(id);
+				message = String.format("retrieved user with ID:[%d]", id);
+				log.debug(message);
+			}
+			
+		} catch(Exception e) {
+			log.error(e.getMessage() );
 		}
 		
 		
@@ -109,14 +129,30 @@ public class Authenticator {
 	 * 
 	 * @param HttpSession session
 	 */
-	public static void clear(HttpSession session)
+	public void clear()
 	{
 		String message = "";
 		
-		message = String.format( "LOGOUT: user with ID:[%s] logged out of authenticated session", session.getAttribute(USER_SESSION_KEY) );
+		message = String.format( "LOGOUT: user with ID:[%s] logged out of authenticated session", this.session.getAttribute(USER_SESSION_KEY) );
 		log.info( message );
-		session.setAttribute(USER_SESSION_KEY, "");
+		this.session.setAttribute(USER_SESSION_KEY, "");
 		
+	}
+	
+	/**
+	 * return true if the user's encrypted password/credential matches
+	 * the encrypted version of the attempt
+	 * 
+	 * @param UserInterface user
+	 * @param String unencryptedAttempt
+	 * 
+	 * @return boolean
+	 */
+	private boolean checkCredentials(UserInterface user, String unencryptedAttempt ) {
+		String secret = user.getSecret();
+		String attempt = this.encryption.encrypt(unencryptedAttempt, secret);
+		
+		return attempt.equals( user.getCredential() );
 	}
 
 }

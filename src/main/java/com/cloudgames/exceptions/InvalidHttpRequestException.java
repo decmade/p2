@@ -2,6 +2,8 @@ package com.cloudgames.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+
 public class InvalidHttpRequestException extends AbstractCustomHttpException
 {
 	/**
@@ -9,9 +11,9 @@ public class InvalidHttpRequestException extends AbstractCustomHttpException
 	 */
 	private static final long serialVersionUID = -2334157433203438334L;
 
-	public InvalidHttpRequestException(int statusCode) 
+	public InvalidHttpRequestException() 
 	{
-		super(statusCode);		
+		super(HttpStatus.BAD_REQUEST);		
 	}
 
 	/**

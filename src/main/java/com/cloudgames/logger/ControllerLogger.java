@@ -1,6 +1,7 @@
 package com.cloudgames.logger;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * << singleton >>
@@ -10,28 +11,16 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("logger-controller")
 public class ControllerLogger extends AbstractLog4jLogger
 {
-	/**
-	 * singleton instantiation
-	 */
-	private static ControllerLogger instance = new ControllerLogger();
 	final private static String LOG_CATEGORY = "controllers";
 	
-	/**
-	 * provide singleton instance to clients
-	 * 
-	 * @return SysLog
-	 */
-	public static ControllerLogger getInstance()
-	{
-		return instance;
-	}
 	
 	/**
 	 * hidden constructor
 	 */
-	private ControllerLogger()
+	public ControllerLogger()
 	{
 		super();
 		

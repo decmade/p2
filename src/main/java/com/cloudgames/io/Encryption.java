@@ -7,14 +7,21 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.cloudgames.logger.IOLogger;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Component;
+
 import com.cloudgames.logger.LoggerInterface;
 
+@Component("encryption")
 public class Encryption {
-	private static LoggerInterface log = IOLogger.getInstance();
-	private static String ALGORITHM = "AES";
 	
-	public static String generateKey() {
+	@Autowired
+	@Qualifier("logger-io")
+	private LoggerInterface log;
+	
+	private String ALGORITHM = "AES";
+	
+	public String generateKey() {
 		SecretKey key = null;
 		log.debug("generating secrety key");
 		
@@ -31,7 +38,7 @@ public class Encryption {
 		
 	}
 	
-	public static String encrypt(String value, String keyString) {
+	public String encrypt(String value, String keyString) {
 		Cipher cipher = getCipher();
 		byte[] keyBytes = decodeStringToBytes( keyString );
 		SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, ALGORITHM);
@@ -48,15 +55,15 @@ public class Encryption {
 		
 	}
 	
-	private static byte[] decodeStringToBytes(String input ) {
+	private byte[] decodeStringToBytes(String input ) {
 		return Base64.getDecoder().decode(input);
 	}
 	
-	private static String encodeBytesToString(byte[] input) {
+	private String encodeBytesToString(byte[] input) {
 		return Base64.getEncoder().encodeToString( input );
 	}
 	
-	private static Cipher getCipher() {
+	private Cipher getCipher() {
 		Cipher cipher = null;
 		
 		try {

@@ -3,9 +3,9 @@ package com.cloudgames.acl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.cloudgames.acl.policies.*;
-import com.cloudgames.logger.AclLogger;
-import com.cloudgames.logger.LoggerInterface;
 
 /**
  * << singleton >>
@@ -17,30 +17,15 @@ import com.cloudgames.logger.LoggerInterface;
  * @author john.w.brown.jr@gmail.com
  */
 
-public class Authorizer {
-	private static LoggerInterface log = AclLogger.getInstance();
-	private static Authorizer instance = new Authorizer();
-	
-	/**
-	 * returns singleton instance
-	 * 
-	 * @return Authorizer
-	 */
-	public static Authorizer getInstance()
-	{
-		return instance;
-	}
+@Service("authorizer")
+public class Authorizer extends AbstractAclObject {
 	
 	private List<PolicyInterface> policies;			// collection of policies to consider
 	
-	private Authorizer()
-	{
-		/*
-		 * initialize ACL policies
-		 */
+	public Authorizer() {
 		this.initializePolicies();
 	}
-	
+
 	/**
 	 * add a policy to the collection of used policies
 	 * 

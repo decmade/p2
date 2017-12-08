@@ -5,18 +5,27 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.cloudgames.logger.IOLogger;
 import com.cloudgames.logger.LoggerInterface;
 
-
+@Component("json")
 public class Json 
 {
-	private static LoggerInterface log = IOLogger.getInstance();
-	private static ObjectMapper mapper = new ObjectMapper();
-	private static ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
+	@Autowired
+	@Qualifier("logger-io")
+	private LoggerInterface log;
+	private ObjectMapper mapper;
+	private ObjectWriter writer;
+	
+	public Json() {
+		this.mapper = new ObjectMapper();
+		this.writer = mapper.writer().withDefaultPrettyPrinter();
+	}
 	
 	/**
 	 * encodes an Object into
@@ -26,7 +35,7 @@ public class Json
 	 * 
 	 * @return String (JSON formatted)
 	 */
-	public static String encode(Object data) 
+	public String encode(Object data) 
 	{
 		/*
 		 * needs jackson databind package from Maven
@@ -57,7 +66,7 @@ public class Json
 	 * 
 	 * @return Map<String, String>
 	 */
-	public static Map<String, String> decode(String json)
+	public Map<String, String> decode(String json)
 	throws IOException
 	{
 		Map<String, String> properties = new HashMap<>();
