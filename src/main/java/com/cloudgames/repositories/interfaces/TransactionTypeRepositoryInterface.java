@@ -1,5 +1,7 @@
-package com.cloudgames.repositories;
+package com.cloudgames.repositories.interfaces;
 
-public interface TransactionTypeRepo {
+import com.cloudgames.entities.interfaces.TransactionTypeInterface;
+
+public interface TransactionTypeRepositoryInterface extends RepositoryInterface<TransactionTypeInterface> {
 
 }

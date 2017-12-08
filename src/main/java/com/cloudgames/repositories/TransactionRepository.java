@@ -3,75 +3,47 @@ package com.cloudgames.repositories;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.Account;
 import com.cloudgames.entities.Transaction;
-import com.cloudgames.entities.TransactionType;
+import com.cloudgames.entities.interfaces.TransactionInterface;
+import com.cloudgames.repositories.interfaces.TransactionRepositoryInterface;
 
-public class TransactionRepoHibernate implements TransactionRepo {
+public class TransactionRepository extends AbstractHibernateRepository<TransactionInterface> implements TransactionRepositoryInterface {
 
-	@Autowired
-	private SessionFactory sf;
+	@Override
+	public TransactionInterface fetchByAccount(Account acc) {
+		Criteria criteria = this.getCriteria();
+		
+		log.debug("retrieving user with account ID: " + acc.getId() + " from persistent storage");
+		criteria.add(Restrictions.eq("accountID", acc.getId()) );
+		
+		return (TransactionInterface)criteria.uniqueResult();
+	}
 	
 	@Override
-	@Transactional
-	public Transaction save(Transaction t) {
-		sf.getCurrentSession().save(t);
-		return t;
+	public List<TransactionInterface> fetchAll() {
+		log.debug("retrieving all transactions from persistent storage");
+		
+		return super.fetchAll();
 	}
 
+	
 	@Override
-	@Transactional
-	public Transaction update(Transaction t) {
-		sf.getCurrentSession().update(t);
-		return t;
+	public TransactionInterface fetchById(int id) {
+		String message = String.format("retrieving user with ID[%d] from persistent storage", id);
+		
+		log.debug(message);
+		
+		return super.fetchById(id);
+	}
+	
+	@Override
+	protected Criteria getCriteria() {
+		return this.getSession().createCriteria(Transaction.class);
 	}
 
-	@Override
-	@Transactional
-	public List<Transaction> findAll() {
-		return sf.getCurrentSession().createCriteria(Transaction.class).list();
-	}
-
-	@Override
-	@Transactional
-	public Transaction findType(TransactionType ttype) {
-		Session session = sf.getCurrentSession();
-		Criteria cr = session.createCriteria(Transaction.class);
-		cr.add(Restrictions.eq("type", ttype));
-		return (Transaction) cr.uniqueResult();
-	}
-
-	@Override
-	@Transactional
-	public Transaction findAllPending(int status) {
-		Session session = sf.getCurrentSession();
-		Criteria cr = session.createCriteria(Transaction.class);
-		cr.add(Restrictions.eq("Pending", status));
-		return (Transaction) cr.uniqueResult();
-	}
-
-	@Override
-	@Transactional
-	public Transaction findAllCompleted(int status) {
-		Session session = sf.getCurrentSession();
-		Criteria cr = session.createCriteria(Transaction.class);
-		cr.add(Restrictions.eq("Completed", status));
-		return (Transaction) cr.uniqueResult();
-	}
-
-	@Override
-	@Transactional
-	public Transaction findAccount(Account acc) {
-		Session session = sf.getCurrentSession();
-		Criteria cr = session.createCriteria(Transaction.class);
-		cr.add(Restrictions.eq("account", acc));
-		return (Transaction) cr.uniqueResult();
-	}
+	
 
 }

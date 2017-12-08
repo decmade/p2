@@ -12,8 +12,6 @@ import com.cloudgames.repositories.interfaces.UserStatusRepositoryInterface;
 @Repository("userstatus-repository")
 public class UserStatusRepository extends AbstractHibernateRepository<UserStatusInterface> implements UserStatusRepositoryInterface {
 
-
-
 	@Override
 	public UserStatusInterface fetchById(int id) {
 		String message = String.format("retrieving UserStatus with ID[%d] from persistent storage", id);
