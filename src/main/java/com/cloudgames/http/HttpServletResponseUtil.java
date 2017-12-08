@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.cloudgames.exceptions.AbstractCustomHttpException;
-import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 /**
@@ -26,9 +26,12 @@ import com.cloudgames.logger.LoggerInterface;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("utility-http-response")
 public class HttpServletResponseUtil 
 {
-	private static LoggerInterface log = new ControllerLogger();
+	@Autowired
+	@Qualifier("logger-controller")
+	private LoggerInterface log;
 	
 
 	/**
@@ -37,7 +40,7 @@ public class HttpServletResponseUtil
 	 * @param HttpServletResponse response
 	 * @param String message
 	 */
-	public static void writeTo(HttpServletResponse response, String data)
+	public void writeTo(HttpServletResponse response, String data)
 	{
 		PrintWriter writer = null;
 		
@@ -63,7 +66,7 @@ public class HttpServletResponseUtil
 	 * @param ServletContext context
 	 * 
 	 */
-	public static void sendFile(HttpServletResponse response, File file) {
+	public void sendFile(HttpServletResponse response, File file) {
 		OutputStream out = null;
 		InputStream in = null;
 		BufferedOutputStream bufferedOut = null;
@@ -103,7 +106,7 @@ public class HttpServletResponseUtil
 	 * 
 	 * @param AbstractCustomHttpException exception
 	 */
-	public static void handleCustomException(HttpServletRequest request, HttpServletResponse response, AbstractCustomHttpException exception)
+	public void handleCustomException(HttpServletRequest request, HttpServletResponse response, AbstractCustomHttpException exception)
 	{
 		String message = exception.getRequestMessage(request);
 		

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.repositories.interfaces.RepositoryInterface;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 import com.cloudgames.services.interfaces.UserServiceInterface;
 

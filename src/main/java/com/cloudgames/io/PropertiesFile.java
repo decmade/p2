@@ -7,7 +7,6 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
-import com.cloudgames.logger.IOLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 /**

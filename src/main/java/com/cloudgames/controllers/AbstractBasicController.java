@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cloudgames.exceptions.AbstractCustomHttpException;
-import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 public class AbstractBasicController {

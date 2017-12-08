@@ -4,8 +4,6 @@ import java.util.List;
 
 
 import com.cloudgames.controllers.interfaces.ControllerInterface;
-import com.cloudgames.logger.ControllerLogger;
-import com.cloudgames.logger.LoggerInterface;
 
 abstract public class AbstractController<T,K> extends AbstractBasicController implements ControllerInterface<T,K> {
 	

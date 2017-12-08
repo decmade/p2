@@ -8,7 +8,6 @@ import com.cloudgames.acl.Request;
 import com.cloudgames.acl.markers.FinanceManagerMarker;
 import com.cloudgames.acl.markers.SystemAdministratorMarker;
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.logger.AclLogger;
 import com.cloudgames.logger.LoggerInterface;
 
 /**
@@ -22,6 +21,10 @@ abstract public class AbstractPolicy extends AbstractAclObject implements Policy
 	@Autowired
 	@Qualifier("authorizer")
 	protected Authorizer auth;
+	
+	@Autowired
+	@Qualifier("logger-acl")
+	protected LoggerInterface log;
 	
 	/**
 	 * default allow policy of extending classes
