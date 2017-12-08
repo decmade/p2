@@ -1,17 +1,50 @@
 package com.cloudgames.entities.interfaces;
 
+import java.time.LocalDateTime;
+
+import com.cloudgames.entities.Sport;
+import com.cloudgames.entities.Team;
+
 public interface GameInterface {
-	
-	public String getScore();
 
-	public void setScore(String score);
+	int getNumber();
 
-	public String getSport();
+	void setNumber(int number);
 
-	public void setSport(String sport);
+	int getAttendance();
 
-	public String getTeams();
+	void setAttendance(int attendance);
 
-	public void setTeams(String Teams);
+	String getWeather();
+
+	void setWeather(String weather);
+
+	String getStatus();
+
+	void setStatus(String status);
+
+	LocalDateTime getScheduled();
+
+	void setScheduled(LocalDateTime scheduled);
+
+	Sport getSport();
+
+	void setSport(Sport sport);
+
+	Team getHomeTeam();
+
+	void setHomeTeam(Team homeTeam);
+
+	Team getAwayTeam();
+
+	void setAwayTeam(Team awayTeam);
+
+	int getHomeScore();
+
+	void setHomeScore(int homeScore);
+
+	int getAwayScore();
+
+	void setAwayScore(int awayScore);
 
 }

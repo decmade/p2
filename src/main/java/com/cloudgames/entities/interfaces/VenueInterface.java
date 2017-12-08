@@ -32,10 +32,5 @@ public interface VenueInterface extends EntityInterface {
 
 	String getRoofType();
 
-	void setRoofType(String roofType);
-
-	String getSportRadarId();
-
-	void setSportRadarId(String sportRadarId);
-	
+	void setRoofType(String roofType);	
 }
