@@ -1,6 +1,7 @@
 package com.cloudgames.logger;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * << singleton >>
@@ -10,27 +11,10 @@ import org.apache.log4j.Logger;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("logger-sys")
 public class SysLogger extends AbstractLog4jLogger
 {
-	/**
-	 * singleton instantiation
-	 */
-	private static SysLogger instance = new SysLogger();
-	
-	/**
-	 * provide singleton instance to clients
-	 * 
-	 * @return SysLog
-	 */
-	public static SysLogger getInstance()
-	{
-		return instance;
-	}
-	
-	/**
-	 * hidden constructor
-	 */
-	private SysLogger()
+	public SysLogger()
 	{
 		super();
 		

@@ -26,6 +26,10 @@ public class Authenticator extends AbstractAclObject {
 	@Qualifier("user-respository")
 	private UserRepositoryInterface userRepository;
 	
+	@Autowired
+	@Qualifier("encryption")
+	private Encryption encryption;
+	
 	private HttpSession session;
 	
 	public void setSession(HttpSession session) {
@@ -146,7 +150,7 @@ public class Authenticator extends AbstractAclObject {
 	 */
 	private boolean checkCredentials(UserInterface user, String unencryptedAttempt ) {
 		String secret = user.getSecret();
-		String attempt = Encryption.encrypt(unencryptedAttempt, secret);
+		String attempt = this.encryption.encrypt(unencryptedAttempt, secret);
 		
 		return attempt.equals( user.getCredential() );
 	}

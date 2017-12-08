@@ -2,12 +2,16 @@ package com.cloudgames.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.*;
+
 import com.cloudgames.logger.LoggerInterface;
-import com.cloudgames.logger.ServiceLogger;
 import com.cloudgames.services.interfaces.ServiceInterface;
 
 abstract public class AbstractService<T> implements ServiceInterface<T> {
-	protected static LoggerInterface log = ServiceLogger.getInstance();
+	
+	@Autowired
+	@Qualifier("logger-service")
+	protected LoggerInterface log;
 	
 	@Override
 	abstract public T fetchById(int id);
