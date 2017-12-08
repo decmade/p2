@@ -12,6 +12,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import com.cloudgames.exceptions.AbstractCustomHttpException;
 import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
@@ -25,9 +28,9 @@ import com.cloudgames.logger.LoggerInterface;
  */
 public class HttpServletResponseUtil 
 {
-	private static LoggerInterface log = ControllerLogger.getInstance();
+	private static LoggerInterface log = new ControllerLogger();
 	
-	
+
 	/**
 	 * appends data to a response object
 	 * 

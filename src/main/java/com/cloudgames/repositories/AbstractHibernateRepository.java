@@ -41,7 +41,7 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public T save(T entity) {
-		this.getSession().persist(entity);
+		this.getSession().merge(entity);
 		return entity;
 	}
 

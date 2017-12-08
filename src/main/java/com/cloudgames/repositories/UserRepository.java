@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
+import com.cloudgames.io.Encryption;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 
 
@@ -46,11 +47,35 @@ public class UserRepository extends AbstractHibernateRepository<UserInterface> i
 	@Override
 	public UserInterface save(UserInterface user) {
 		String message = "";
+		int id = user.getId();
 		
-		if ( user.getId() > 0 ) {
-			message = String.format("updating user with ID[%d] in persistent storage", ((User)user).getId() );
+		if ( id > 0 ) {
+			message = String.format("updating user with ID[%d] in persistent storage", id );
+			UserInterface previous = this.fetchById(id);
+			String previousCredential = previous.getCredential();
+			String currentCredential = user.getCredential();
+			String secret = previous.getSecret();
+			
+			/*
+			 * if the user has updated their password, then encrypt the
+			 * value that is passed before saving to persistent storage
+			 * using the secret key they had prior, and enforce that the secret
+			 * key does not change
+			 */
+			if ( previousCredential.equals(currentCredential) == false ) {
+				user.setCredential( Encryption.encrypt(currentCredential, secret) );
+				user.setSecret(secret);
+			}
 		} else {
 			message = "saving new user to persistent storage";
+			
+			/*
+			 * only trust secret keys we generate
+			 * and encrypt the credential with it
+			 */
+			user.setSecret( Encryption.generateKey() );
+			user.setCredential( Encryption.encrypt( user.getCredential(), user.getSecret() ) );
+			
 		}
 		
 		log.debug(message);

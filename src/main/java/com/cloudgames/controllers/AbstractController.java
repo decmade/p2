@@ -2,12 +2,13 @@ package com.cloudgames.controllers;
 
 import java.util.List;
 
+
 import com.cloudgames.controllers.interfaces.ControllerInterface;
 import com.cloudgames.logger.ControllerLogger;
 import com.cloudgames.logger.LoggerInterface;
 
-abstract public class AbstractController<T,K> implements ControllerInterface<T,K> {
-	protected static LoggerInterface log = ControllerLogger.getInstance();
+abstract public class AbstractController<T,K> extends AbstractBasicController implements ControllerInterface<T,K> {
+	
 	
 	@Override
 	abstract public T get(int id);
@@ -20,6 +21,8 @@ abstract public class AbstractController<T,K> implements ControllerInterface<T,K
 	
 	@Override
 	abstract public void remove(K entity);
+	
+
 	
 
 }
