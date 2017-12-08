@@ -2,6 +2,8 @@ package com.cloudgames.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+
 import com.cloudgames.acl.Acl;
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.UserInterface;
@@ -16,9 +18,9 @@ public class UnauthorizedHttpRequestException extends AbstractCustomHttpExceptio
 	 */
 	private static final long serialVersionUID = -2647774923845886771L;
 
-	public UnauthorizedHttpRequestException(int statusCode) 
+	public UnauthorizedHttpRequestException() 
 	{
-		super(statusCode);		
+		super( HttpStatus.UNAUTHORIZED );		
 	}
 
 	/**

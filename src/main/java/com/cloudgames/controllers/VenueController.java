@@ -29,19 +29,35 @@ public class VenueController extends AbstractController<VenueInterface, Venue> {
 
 	@Override
 	public List<VenueInterface> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String message = "retrieving all Venues";
+		
+		log.debug(message);
+		
+		return this.service.fetchAll();
 	}
 
 	@Override
-	public VenueInterface save(Venue entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public VenueInterface save(Venue venue) {
+		String message = "";
+		
+		if ( venue.getId() > 0 ) {
+			message = String.format("saving Venue with ID[%d]", venue.getId() );
+		} else {
+			message = "adding venue";
+		}
+		
+		log.debug(message);
+		
+		return this.service.save(venue);
 	}
 
 	@Override
-	public void remove(Venue entity) {
-		// TODO Auto-generated method stub
+	public void remove(Venue venue) {
+		String message = String.format("removing Venue with ID[%d]", venue.getId() );
+		
+		log.debug(message);
+		
+		this.service.delete(venue);
 		
 	}
 
