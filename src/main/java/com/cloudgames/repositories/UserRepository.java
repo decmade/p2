@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Repository;
 
 import com.cloudgames.entities.User;
@@ -15,6 +16,10 @@ import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 @Repository("user-repository")
 public class UserRepository extends AbstractHibernateRepository<UserInterface> implements UserRepositoryInterface {
 
+	@Autowired
+	@Qualifier("encryption")
+	private Encryption encryption;
+	
 	@Override
 	public UserInterface fetchByIdentity(String identity) {
 		String message = String.format("retrieving user with IDENTITY[%s] from persistent storage", identity);
@@ -63,7 +68,7 @@ public class UserRepository extends AbstractHibernateRepository<UserInterface> i
 			 * key does not change
 			 */
 			if ( previousCredential.equals(currentCredential) == false ) {
-				user.setCredential( Encryption.encrypt(currentCredential, secret) );
+				user.setCredential( this.encryption.encrypt(currentCredential, secret) );
 				user.setSecret(secret);
 			}
 		} else {
@@ -73,8 +78,8 @@ public class UserRepository extends AbstractHibernateRepository<UserInterface> i
 			 * only trust secret keys we generate
 			 * and encrypt the credential with it
 			 */
-			user.setSecret( Encryption.generateKey() );
-			user.setCredential( Encryption.encrypt( user.getCredential(), user.getSecret() ) );
+			user.setSecret( this.encryption.generateKey() );
+			user.setCredential( this.encryption.encrypt( user.getCredential(), user.getSecret() ) );
 			
 		}
 		

@@ -1,7 +1,7 @@
 package com.cloudgames.logger;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * << singleton >>
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author john.w.brown.jr@gmail.com
  *
  */
-@Service("logger-controller")
+@Component("logger-controller")
 public class ControllerLogger extends AbstractLog4jLogger
 {
 	final private static String LOG_CATEGORY = "controllers";

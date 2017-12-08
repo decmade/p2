@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Component;
+
 import com.cloudgames.logger.IOLogger;
 import com.cloudgames.logger.LoggerInterface;
 
@@ -14,9 +17,12 @@ import com.cloudgames.logger.LoggerInterface;
  * @author john.w.brown.jr@gmail.com
  *
  */
+@Component("properties-file")
 public class PropertiesFile 
 {
-	private static LoggerInterface log = IOLogger.getInstance();
+	@Autowired
+	@Qualifier("logger-io")
+	private LoggerInterface log;
 	
 	/**
 	 * load the data in a properties file and
@@ -27,7 +33,7 @@ public class PropertiesFile
 	 * 
 	 * @return Properties
 	 */
-	public static Properties load(String fileName)
+	public Properties load(String fileName)
 	{
 		Properties props = new Properties();
 		InputStream reader = null;

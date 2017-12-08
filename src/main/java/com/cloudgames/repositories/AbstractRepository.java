@@ -2,13 +2,16 @@ package com.cloudgames.repositories;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.*;
+
 import com.cloudgames.logger.LoggerInterface;
-import com.cloudgames.logger.RepositoryLogger;
 import com.cloudgames.repositories.interfaces.RepositoryInterface;
 
 abstract public class AbstractRepository<T> implements RepositoryInterface<T> {
 	
-	protected static LoggerInterface log = RepositoryLogger.getInstance();
+	@Autowired
+	@Qualifier("logger-repository")
+	protected LoggerInterface log;
 	
 	
 	@Override
