@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,12 +17,14 @@ public class Transaction extends AbstractEntity implements TransactionInterface 
 	@Column(unique = false, nullable = false, precision = 15, scale = 2)
 	private double amount;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="account_id")
 	private Account acc;
 	@Column
 	private static final int STATUS_PENDING = 1;
 	@Column
 	private static final int STATUS_COMPLETED = 2;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="transactionType_id")
 	private TransactionType transactionType;
 	
 	public Transaction() {
