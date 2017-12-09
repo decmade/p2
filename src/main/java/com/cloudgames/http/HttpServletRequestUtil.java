@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Component;
 
-import com.cloudgames.logger.ControllerLogger;
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.logger.interfaces.LoggerInterface;
 
 /**
 * utility class for performing common tasks
@@ -16,9 +16,12 @@ import com.cloudgames.logger.LoggerInterface;
 * @author john.w.brown.jr@gmail.com
 *
 */
+@Component("utility-http-request")
 public class HttpServletRequestUtil
 {
-	private static LoggerInterface log = new ControllerLogger();
+	@Autowired
+	@Qualifier("logger-controller")
+	private LoggerInterface log;
 	
 	/**
 	 * extracts the route parameter at the end of the 
@@ -28,7 +31,7 @@ public class HttpServletRequestUtil
 	 * 
 	 * @return String
 	 */
-	public static String getRouteParameter(HttpServletRequest request)
+	public String getRouteParameter(HttpServletRequest request)
 	{
 		String uri = extractRelativeUri( request );
 		String[] parts = uri.split("/");
@@ -52,7 +55,7 @@ public class HttpServletRequestUtil
 	 * 
 	 * @return String
 	 */
-	public static String getRequestBody(HttpServletRequest request)
+	public String getRequestBody(HttpServletRequest request)
 	{
 		String output = null;
 		BufferedReader reader = null;	
@@ -71,7 +74,7 @@ public class HttpServletRequestUtil
 	 * 
 	 * @return String
 	 */
-	public static String extractRelativeUri(HttpServletRequest request)
+	public String extractRelativeUri(HttpServletRequest request)
 	{
 		return request.getRequestURI()
 			.substring( request.getContextPath().length() )
@@ -86,7 +89,7 @@ public class HttpServletRequestUtil
 	 * 
 	 * @return BufferedReader
 	 */
-	private static BufferedReader getHttpRequestBodyReader(HttpServletRequest request)
+	private BufferedReader getHttpRequestBodyReader(HttpServletRequest request)
 	{
 		BufferedReader reader = null;
 		
@@ -95,7 +98,7 @@ public class HttpServletRequestUtil
 			reader.mark(0);
 			reader.reset();
 		} catch(IOException e) {
-
+			this.log.error(e.getMessage());
 		}
 		
 		return reader;

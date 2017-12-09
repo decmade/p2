@@ -7,7 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.*;
+
+import com.cloudgames.entities.interfaces.EntityInterface;
 
 abstract public class AbstractHibernateRepository<T> extends AbstractRepository<T> {
 	@Autowired
@@ -21,7 +22,6 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public T fetchById(int id) {
 		Criteria criteria = this.getCriteria();
 		
@@ -32,23 +32,31 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public List<T> fetchAll() {
 		Criteria criteria = this.getCriteria();
 		return criteria.list();
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public T save(T entity) {
-		this.getSession().merge(entity);
+	public T save(T entity) {		
+		Session session = this.getSession();
+		int id = ((EntityInterface)entity).getId();
+		
+		if ( id > 0 ) {
+			this.log.debug("detected existing entity");
+			session.merge(entity);
+		} else {
+			this.log.debug("detected transient entity");
+			session.persist(entity);
+			session.flush();
+		}
+
 		return entity;
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(T entity) {
-		this.getSession().delete(entity);	
+		this.getSession().delete(entity);;
 	}
 
 	
@@ -58,7 +66,23 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	 * @return Session
 	 */
 	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
+		Session session = null;
+		
+		try {
+			this.log.debug("attempting to attain an existing Hibernate session");
+			
+			session = this.sessionFactory.getCurrentSession();
+			
+			this.log.debug("successfully attained existing Hibernate session");
+			
+		} catch(Exception e) {
+			this.log.debug("no existing Hibernate session found");
+			this.log.debug("opening new Hibernate session");
+			
+			session = this.sessionFactory.openSession();
+		}
+		
+		return session;
 	}
 
 }

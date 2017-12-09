@@ -9,7 +9,7 @@ import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.interfaces.UserRoleInterface;
 import com.cloudgames.services.interfaces.UserRoleServiceInterface;
 
-@RestController
+@RestController("userrole-controller")
 @RequestMapping("userroles")
 public class UserRoleController extends AbstractController<UserRoleInterface, UserRole> {
 
@@ -28,6 +28,7 @@ public class UserRoleController extends AbstractController<UserRoleInterface, Us
 	}
 
 	@Override
+	@GetMapping
 	public List<UserRoleInterface> getAll() {
 		String message = "retrieving all UserRoles";
 		
@@ -37,7 +38,8 @@ public class UserRoleController extends AbstractController<UserRoleInterface, Us
 	}
 
 	@Override
-	public UserRoleInterface save(UserRole role) {
+	@PostMapping
+	public UserRoleInterface save(@RequestBody UserRole role) {
 		String message = "";
 		
 		if ( role.getId() > 0 ) {
@@ -52,7 +54,8 @@ public class UserRoleController extends AbstractController<UserRoleInterface, Us
 	}
 
 	@Override
-	public void remove(UserRole role) {
+	@DeleteMapping
+	public void remove(@RequestBody UserRole role) {
 		String message = String.format("removing UserRole with ID[%d]", role.getId() );
 		
 		log.debug(message);

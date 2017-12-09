@@ -3,60 +3,60 @@ package com.cloudgames.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.cloudgames.entities.Account;
 import com.cloudgames.entities.Transaction;
-import com.cloudgames.entities.TransactionType;
-import com.cloudgames.services.TransactionService;
+import com.cloudgames.entities.interfaces.TransactionInterface;
+import com.cloudgames.services.interfaces.TransactionServiceInterface;
 
-@Controller
-@RequestMapping("accounts")
-public class TransactionController {
+@RestController("transaction-controller")
+@RequestMapping("transactions")
+public class TransactionController extends AbstractController<TransactionInterface, Transaction> {
 
 	@Autowired
-	private TransactionService ts;
-	
-	@GetMapping
-	@ResponseBody
-	public List<Transaction> getAllTransactions() {
-		return ts.findAll();
-	}
-	
-	@GetMapping("{status}")
-	public Transaction findPending(@PathVariable int status) {
-		return ts.findAllPending(status);
-	}
-	
-	@GetMapping("{status}")
-	public Transaction findCompleted(@PathVariable int status) {
-		return ts.findAllCompleted(status);
-	}
-	
-	@GetMapping("{ttype}")
-	public Transaction findByType(@PathVariable TransactionType ttype) {
-		return ts.findType(ttype);
-	}
-	
-	@GetMapping("{status}")
-	public Transaction findByAccount(@PathVariable Account acc) {
-		return ts.findAccount(acc);
-	}
-	
-	@PutMapping
-	public Transaction update(@RequestBody Transaction t) {
-		return ts.update(t);
-	}
-	
+	@Qualifier("transaction-service")
+	private TransactionServiceInterface service;
+
+	@Override
 	@PostMapping
-	public Transaction save(@RequestBody Transaction t) {
-		return ts.save(t);
+	public TransactionInterface save(@RequestBody Transaction trans) {
+		if ( trans.getId() > 0 ) {
+			log.debug("updating transaction with ID: " + trans.getId() );
+		} else {
+			log.debug("adding new transaction");
+		}
+		
+		return this.service.save(trans);
+	}
+
+	@Override
+	@GetMapping("{id:[0-9]+}")
+	public TransactionInterface get(@PathVariable int id) {
+		log.debug("retrieving Transaction with ID: " + id);
+		
+		return this.service.fetchById(id);
+	}
+
+	@Override
+	@GetMapping
+	public List<TransactionInterface> getAll() {
+		log.debug("retrieving all transactions");
+		
+		return this.service.fetchAll();
+	}
+
+	@Override
+	@DeleteMapping
+	public void remove(@RequestBody Transaction trans) {
+		log.debug("removing transaction with ID: " + trans.getId());
+		
+		this.service.delete(trans);
 	}
 }

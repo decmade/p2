@@ -5,3 +5,6 @@
 .settings/*
 /target/
 /bin/
+pom.xml
+/src/main/webapp/WEB-INF/beans.xml
+/stash

@@ -12,13 +12,11 @@ import com.cloudgames.repositories.interfaces.UserStatusRepositoryInterface;
 @Repository("userstatus-repository")
 public class UserStatusRepository extends AbstractHibernateRepository<UserStatusInterface> implements UserStatusRepositoryInterface {
 
-
-
 	@Override
 	public UserStatusInterface fetchById(int id) {
 		String message = String.format("retrieving UserStatus with ID[%d] from persistent storage", id);
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchById(id);
 	}
@@ -27,7 +25,7 @@ public class UserStatusRepository extends AbstractHibernateRepository<UserStatus
 	public List<UserStatusInterface> fetchAll() {
 		String message = "retrieving all UserStatuses from persistent storage";
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchAll();
 	}
@@ -42,7 +40,7 @@ public class UserStatusRepository extends AbstractHibernateRepository<UserStatus
 			message = "added new UserStatus to persistent storage";
 		}
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.save(status);
 	}
@@ -51,7 +49,7 @@ public class UserStatusRepository extends AbstractHibernateRepository<UserStatus
 	public void delete(UserStatusInterface status) {
 		String message = String.format("deleting UserStatus with ID[%d]", status.getId() );
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		super.delete(status);
 	}

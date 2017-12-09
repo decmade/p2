@@ -17,7 +17,7 @@ public class UserRoleRespository extends AbstractHibernateRepository<UserRoleInt
 	public UserRoleInterface fetchById(int id) {
 		String message = String.format("retrieving UserRole with ID[%d] from persistent storage", id);
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchById(id);
 	}
@@ -26,7 +26,7 @@ public class UserRoleRespository extends AbstractHibernateRepository<UserRoleInt
 	public List<UserRoleInterface> fetchAll() {
 		String message = "retrieving all UserRole objects from persistent storage";
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchAll();
 	}
@@ -41,7 +41,7 @@ public class UserRoleRespository extends AbstractHibernateRepository<UserRoleInt
 			message = "saving new user to persistent storage";
 		}
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.save(role);
 	}
@@ -50,7 +50,7 @@ public class UserRoleRespository extends AbstractHibernateRepository<UserRoleInt
 	public void delete(UserRoleInterface role) {
 		String message = String.format("deleting UserRole with ID[%d] from persistent storage", ((UserRole)role).getId() );
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		super.delete(role);
 	}

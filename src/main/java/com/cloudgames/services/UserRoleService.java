@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.UserRoleInterface;
 import com.cloudgames.repositories.interfaces.UserRoleRepositoryInterface;
@@ -35,6 +37,7 @@ public class UserRoleService extends AbstractService<UserRoleInterface> implemen
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public UserRoleInterface save(UserRoleInterface role) {
 		String message = "";
 		
@@ -50,6 +53,7 @@ public class UserRoleService extends AbstractService<UserRoleInterface> implemen
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(UserRoleInterface role) {
 		String message = String.format("deleting UserRole with ID[%d] from repository", role.getId() );
 		

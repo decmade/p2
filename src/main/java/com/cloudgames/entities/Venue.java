@@ -6,11 +6,7 @@ import com.cloudgames.entities.interfaces.VenueInterface;
 
 @Entity
 @Table(name = "venues")
-public class Venue extends AbstractEntity implements VenueInterface {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class Venue extends AbstractSportsRadarEntity implements VenueInterface {
 	
 	@Column(length = 50)
 	private String name;
@@ -34,23 +30,8 @@ public class Venue extends AbstractEntity implements VenueInterface {
 	
 	@Column(length = 50)
 	private String roofType;
-	
-	@Column(length = 50, unique = true)
-	private String sportRadarId;
 
 	
-	
-	
-	@Override
-	public int getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	@Override
 	public String getName() {
 		return name;
@@ -129,18 +110,6 @@ public class Venue extends AbstractEntity implements VenueInterface {
 	@Override
 	public void setRoofType(String roofType) {
 		this.roofType = roofType;
-	}
-
-	@Override
-	public String getSportRadarId() {
-		return sportRadarId;
-	}
-
-	@Override
-	public void setSportRadarId(String sportRadarId) {
-		this.sportRadarId = sportRadarId;
-	}
-	
-	
+	}	
 	
 }
