@@ -56,7 +56,7 @@ public class AccountRepository extends AbstractHibernateRepository<AccountInterf
 
 	@Override
  	public void delete(AccountInterface acc) {
- 		log.debug("deleting user with ID: " +  ((User)user).getId() + " from persistent storage");
+ 		log.debug("deleting account with ID: " +  ((Account)acc).getId() + " from persistent storage");
  		
  		super.delete(acc);	
  	}
