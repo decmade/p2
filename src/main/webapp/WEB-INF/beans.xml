@@ -34,7 +34,7 @@
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DatabasePool" />
 		<property name="packagesToScan" value="com.cloudgames.entities" />
 		<property name="hibernateProperties">
