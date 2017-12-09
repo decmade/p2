@@ -2,7 +2,7 @@ package com.cloudgames.entities.interfaces;
 
 import com.cloudgames.entities.Venue;
 
-public interface TeamInterface {
+public interface TeamInterface extends SportsRadarEntityInterface {
 
 	String getName();
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.cloudgames.entities.Sport;
 import com.cloudgames.entities.Team;
 
-public interface GameInterface {
+public interface GameInterface extends SportsRadarEntityInterface {
 
 	int getNumber();
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -43,6 +44,7 @@ public class AccountService extends AbstractService<AccountInterface> implements
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public AccountInterface save(AccountInterface acc) {
 		log.debug("saving account wth ID: " + acc.getId() + " to repository");
 		this.repository.save(acc);
@@ -51,6 +53,7 @@ public class AccountService extends AbstractService<AccountInterface> implements
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(AccountInterface acc) {
 		log.debug("removing accout with ID: " + acc.getId() + " from repository");
 		this.repository.delete(acc);	

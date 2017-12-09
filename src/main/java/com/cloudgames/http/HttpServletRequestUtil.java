@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.logger.interfaces.LoggerInterface;
 
 /**
 * utility class for performing common tasks
@@ -21,7 +21,7 @@ public class HttpServletRequestUtil
 {
 	@Autowired
 	@Qualifier("logger-controller")
-	private static LoggerInterface log;
+	private LoggerInterface log;
 	
 	/**
 	 * extracts the route parameter at the end of the 
@@ -98,7 +98,7 @@ public class HttpServletRequestUtil
 			reader.mark(0);
 			reader.reset();
 		} catch(IOException e) {
-
+			this.log.error(e.getMessage());
 		}
 		
 		return reader;

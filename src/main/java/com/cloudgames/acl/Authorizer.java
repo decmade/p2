@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cloudgames.acl.interfaces.AuthorizerInterface;
+import com.cloudgames.acl.interfaces.PolicyInterface;
 import com.cloudgames.acl.policies.*;
 
 /**
@@ -18,7 +20,7 @@ import com.cloudgames.acl.policies.*;
  */
 
 @Service("authorizer")
-public class Authorizer extends AbstractAclObject {
+public class Authorizer extends AbstractAclObject implements AuthorizerInterface {
 	
 	private List<PolicyInterface> policies;			// collection of policies to consider
 	
@@ -33,6 +35,7 @@ public class Authorizer extends AbstractAclObject {
 	 * 
 	 * @return self
 	 */
+	@Override
 	public Authorizer addPolicy(PolicyInterface policy)
 	{
 		this.policies.add( policy );
@@ -47,6 +50,7 @@ public class Authorizer extends AbstractAclObject {
 	 * 
 	 * @return boolean
 	 */
+	@Override
 	public boolean authorize(Request request)
 	{
 		String logMessage;

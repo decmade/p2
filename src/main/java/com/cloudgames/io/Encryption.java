@@ -7,52 +7,47 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.io.interfaces.EncryptionInterface;
+
 
 @Component("encryption")
-public class Encryption {
+public class Encryption extends AbstractIoObject implements EncryptionInterface {
 	
-	@Autowired
-	@Qualifier("logger-io")
-	private LoggerInterface log;
+	final static private String ALGORITHM = "AES";
 	
-	private String ALGORITHM = "AES";
-	
+	@Override
 	public String generateKey() {
 		SecretKey key = null;
-		log.debug("generating secrety key");
+		this.log.debug("generating secrety key");
 		
 		try {
 			key = KeyGenerator.getInstance(ALGORITHM).generateKey();
-			log.debug("secret key generated successfully");
+			this.log.debug("secret key generated successfully");
 			
-			return encodeBytesToString( key.getEncoded() );
+			return this.encodeBytesToString( key.getEncoded() );
 		} catch(Exception e) {
-			log.error(e.getMessage() );
+			this.log.error(e.getMessage() );
 			return "<error>";
 		}
 		
 		
 	}
 	
+	@Override
 	public String encrypt(String value, String keyString) {
-		Cipher cipher = getCipher();
-		byte[] keyBytes = decodeStringToBytes( keyString );
+		Cipher cipher = this.getCipher();
+		byte[] keyBytes = this.decodeStringToBytes( keyString );
 		SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, ALGORITHM);
 		
 		try {
 			cipher.init(Cipher.ENCRYPT_MODE, key);
-			return encodeBytesToString( cipher.doFinal( value.getBytes() ) );
+			return this.encodeBytesToString( cipher.doFinal( value.getBytes() ) );
 		} catch (Exception e) {
-			log.error( e.getMessage() );
+			this.log.error(	e.toString() );
 			return "<error>";
-		}
-		
-		
-		
+		}		
 	}
 	
 	private byte[] decodeStringToBytes(String input ) {
@@ -68,11 +63,11 @@ public class Encryption {
 		
 		try {
 			cipher = Cipher.getInstance( ALGORITHM );
-			return cipher;
 		} catch(Exception e) {
-			log.error( e.getMessage() );
-			return null;
+			this.log.error( e.getMessage() );
 		}
+		
+		return cipher;
 
 	}
 }

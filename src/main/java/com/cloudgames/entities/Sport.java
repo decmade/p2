@@ -2,11 +2,11 @@ package com.cloudgames.entities;
 
 import javax.persistence.*;
 
-import com.cloudgames.entities.interfaces.ScoreInterface;
+import com.cloudgames.entities.interfaces.SportInterface;
 
 
 @Entity
 @Table(name = "sports")
-public class Sport extends AbstractDefinitionEntity implements ScoreInterface {
+public class Sport extends AbstractDefinitionEntity implements SportInterface {
 
 }

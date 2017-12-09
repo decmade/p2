@@ -5,6 +5,8 @@ import javax.xml.ws.http.HTTPException;
 
 import org.springframework.http.HttpStatus;
 
+import com.cloudgames.exceptions.interfaces.CustomHttpExceptionInterface;
+
 abstract public class AbstractCustomHttpException extends HTTPException implements CustomHttpExceptionInterface
 {
 	protected HttpStatus status;

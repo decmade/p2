@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
+import com.cloudgames.acl.interfaces.AuthenticatorInterface;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
@@ -19,11 +20,11 @@ import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
  *
  */
 @Service("authenticator")
-public class Authenticator extends AbstractAclObject {
+public class Authenticator extends AbstractAclObject implements AuthenticatorInterface {
 	public static final String USER_SESSION_KEY = "user";				// key used to reference the user stored in the Session
 	
 	@Autowired
-	@Qualifier("user-respository")
+	@Qualifier("user-repository")
 	private UserRepositoryInterface userRepository;
 	
 	@Autowired
@@ -32,6 +33,7 @@ public class Authenticator extends AbstractAclObject {
 	
 	private HttpSession session;
 	
+	@Override
 	public void setSession(HttpSession session) {
 		this.session = session;
 	}
@@ -44,6 +46,7 @@ public class Authenticator extends AbstractAclObject {
 	 * 
 	 * @return boolean
 	 */
+	@Override
 	public boolean authenticate(String identity, String password)
 	{
 		UserInterface user = this.userRepository.fetchByIdentity(identity);
@@ -94,6 +97,7 @@ public class Authenticator extends AbstractAclObject {
 	 * 
 	 * @return User|null
 	 */
+	@Override
 	public UserInterface getAuthenticatedUser()
 	{
 		int id = 0;
@@ -129,6 +133,7 @@ public class Authenticator extends AbstractAclObject {
 	 * 
 	 * @param HttpSession session
 	 */
+	@Override
 	public void clear()
 	{
 		String message = "";

@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.cloudgames.exceptions.AbstractCustomHttpException;
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.logger.interfaces.LoggerInterface;
 
 /**
  * utility class for performing common tasks
@@ -53,7 +53,7 @@ public class HttpServletResponseUtil
 			writer.close();
 			
 		} catch(Exception e) {
-			log.error( e.getMessage() );
+			this.log.error( e.getMessage() );
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class HttpServletResponseUtil
 			
 		
 		} catch(IOException e) {
-			log.error( e.getMessage() );
+			this.log.error( e.getMessage() );
 		}
 	}
 	
