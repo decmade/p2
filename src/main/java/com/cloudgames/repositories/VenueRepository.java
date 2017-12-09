@@ -18,7 +18,7 @@ public class VenueRepository extends AbstractHibernateRepository<VenueInterface>
 	public VenueInterface fetchById(int id) {
 		String message = String.format("retrieving Venue with ID[%d] from persistent storage", id);
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchById(id);
 	}
@@ -27,7 +27,7 @@ public class VenueRepository extends AbstractHibernateRepository<VenueInterface>
 	public List<VenueInterface> fetchAll() {
 		String message = "retrieving all Venues from persistent storage";
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.fetchAll();
 	}
@@ -42,7 +42,7 @@ public class VenueRepository extends AbstractHibernateRepository<VenueInterface>
 			message = "adding new Venue to persistent storage";
 		}
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return super.save(venue);
 	}
@@ -51,7 +51,7 @@ public class VenueRepository extends AbstractHibernateRepository<VenueInterface>
 	public void delete(VenueInterface venue) {
 		String message = String.format("deleting Venue with ID[%d]", venue.getId());
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		super.delete(venue);
 	}

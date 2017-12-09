@@ -6,7 +6,7 @@ import com.cloudgames.entities.interfaces.TeamInterface;
 
 @Entity
 @Table(name = "teams")
-public class Team extends AbstractSportsRadarEntity implements TeamInterface{
+public class Team extends AbstractSportsRadarEntity implements TeamInterface {
 
 	@Column(length = 50)
 	private String name;

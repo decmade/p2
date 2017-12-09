@@ -3,6 +3,8 @@ package com.cloudgames.logger;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import com.cloudgames.logger.interfaces.LoggerInterface;
+
 /**
  * template for creating a Log4j logger instance
  * 

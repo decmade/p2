@@ -9,7 +9,7 @@ import com.cloudgames.entities.Venue;
 import com.cloudgames.entities.interfaces.VenueInterface;
 import com.cloudgames.services.interfaces.VenueServiceInterface;
 
-@RestController
+@RestController("venue-controller")
 @RequestMapping("venues")
 public class VenueController extends AbstractController<VenueInterface, Venue> {
 	
@@ -28,6 +28,7 @@ public class VenueController extends AbstractController<VenueInterface, Venue> {
 	}
 
 	@Override
+	@GetMapping
 	public List<VenueInterface> getAll() {
 		String message = "retrieving all Venues";
 		
@@ -37,7 +38,8 @@ public class VenueController extends AbstractController<VenueInterface, Venue> {
 	}
 
 	@Override
-	public VenueInterface save(Venue venue) {
+	@PostMapping
+	public VenueInterface save(@RequestBody Venue venue) {
 		String message = "";
 		
 		if ( venue.getId() > 0 ) {
@@ -52,7 +54,8 @@ public class VenueController extends AbstractController<VenueInterface, Venue> {
 	}
 
 	@Override
-	public void remove(Venue venue) {
+	@DeleteMapping
+	public void remove(@RequestBody Venue venue) {
 		String message = String.format("removing Venue with ID[%d]", venue.getId() );
 		
 		log.debug(message);

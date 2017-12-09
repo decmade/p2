@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.TransactionTypeInterface;
 import com.cloudgames.repositories.interfaces.TransactionTypeRepositoryInterface;
@@ -32,6 +34,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public TransactionTypeInterface save(TransactionTypeInterface type) {
 		if ( type.getId() > 0 ) {
 			log.debug("updating UserStatus with ID: " + type.getId() + " in repository");
@@ -43,6 +46,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(TransactionTypeInterface type) {
 		log.debug("deleting UserStatus with ID: " + type.getId() + " from repository" );
 		

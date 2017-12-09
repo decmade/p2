@@ -10,7 +10,7 @@ import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.UserStatusInterface;
 import com.cloudgames.services.interfaces.UserStatusServiceInterface;
 
-@RestController
+@RestController("userstatus-controller")
 @RequestMapping("userstatus")
 public class UserStatusController extends AbstractController<UserStatusInterface, UserStatus> {
 
@@ -29,6 +29,7 @@ public class UserStatusController extends AbstractController<UserStatusInterface
 	}
 
 	@Override
+	@GetMapping
 	public List<UserStatusInterface> getAll() {
 		String message = "retrieving all UserStatuses";
 		
@@ -38,7 +39,8 @@ public class UserStatusController extends AbstractController<UserStatusInterface
 	}
 
 	@Override
-	public UserStatusInterface save(UserStatus status) {
+	@PostMapping
+	public UserStatusInterface save(@RequestBody UserStatus status) {
 		String message = "";
 		
 		if ( status.getId() > 0 ) {
@@ -53,7 +55,8 @@ public class UserStatusController extends AbstractController<UserStatusInterface
 	}
 
 	@Override
-	public void remove(UserStatus status) {
+	@DeleteMapping
+	public void remove(@RequestBody UserStatus status) {
 		String message = String.format("removing UserStatus with ID[%d]", status.getId() );
 		
 		log.debug(message);

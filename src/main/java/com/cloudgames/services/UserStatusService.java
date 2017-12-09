@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.UserStatusInterface;
 import com.cloudgames.repositories.interfaces.UserStatusRepositoryInterface;
@@ -35,6 +37,7 @@ public class UserStatusService extends AbstractService<UserStatusInterface> impl
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public UserStatusInterface save(UserStatusInterface status) {
 		String message = "";
 		
@@ -50,6 +53,7 @@ public class UserStatusService extends AbstractService<UserStatusInterface> impl
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(UserStatusInterface status) {
 		String message = String.format("deleting UserStatus with ID[%d] from repository", status.getId() );
 		
