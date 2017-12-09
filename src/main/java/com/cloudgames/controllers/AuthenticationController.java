@@ -6,17 +6,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.cloudgames.acl.Authenticator;
+import com.cloudgames.acl.interfaces.AuthenticatorInterface;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.exceptions.InvalidCredentialsException;
 
-@RestController
+@RestController("authentication-controller")
 @RequestMapping("auth")
 public class AuthenticationController extends AbstractBasicController {
 
 	@Autowired
 	@Qualifier("authenticator")
-	private Authenticator authenticator;
+	private AuthenticatorInterface authenticator;
 	
 	
 	/**
@@ -29,7 +29,7 @@ public class AuthenticationController extends AbstractBasicController {
 	@GetMapping
 	public UserInterface getAuthenticatedUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		Authenticator auth = this.getAuthenticator();
+		AuthenticatorInterface auth = this.getAuthenticator();
 		
 		auth.setSession(session);
 		
@@ -47,9 +47,9 @@ public class AuthenticationController extends AbstractBasicController {
 	 * @return ResponseEntity
 	 */
 	@PostMapping("{identity, credential}")
-	public UserInterface login(HttpServletRequest request, String identity, String credential) {
+	public UserInterface login(HttpServletRequest request, @PathVariable String identity, @PathVariable String credential) {
 		HttpSession session = request.getSession();
-		Authenticator auth = this.getAuthenticator();
+		AuthenticatorInterface auth = this.getAuthenticator();
 		
 		auth.setSession(session);
 		
@@ -68,14 +68,14 @@ public class AuthenticationController extends AbstractBasicController {
 	@DeleteMapping
 	public void logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		Authenticator auth = this.getAuthenticator();
+		AuthenticatorInterface auth = this.getAuthenticator();
 		
 		auth.setSession(session);
 		auth.clear();
 	}
 	
 	
-	private Authenticator getAuthenticator() {
+	private AuthenticatorInterface getAuthenticator() {
 		return this.authenticator;
 	}
 

@@ -1,4 +1,4 @@
-package com.cloudgames.logger;
+package com.cloudgames.logger.interfaces;
 
 public interface LoggerInterface 
 {

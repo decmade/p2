@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.interfaces.VenueInterface;
 import com.cloudgames.repositories.interfaces.VenueRepositoryInterface;
@@ -34,6 +36,7 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public VenueInterface save(VenueInterface venue) {
 		String message = "";
 		
@@ -49,6 +52,7 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(VenueInterface venue) {
 		String message = String.format("deleting Venue with ID[%d] in repository",  venue.getId() );
 		

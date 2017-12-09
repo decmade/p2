@@ -8,10 +8,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
+import com.cloudgames.logger.interfaces.LoggerInterface;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.cloudgames.logger.LoggerInterface;
 
 @Component("json")
 public class Json 

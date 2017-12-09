@@ -1,6 +1,6 @@
 package com.cloudgames.entities.interfaces;
 
-public interface VenueInterface extends EntityInterface {
+public interface VenueInterface extends SportsRadarEntityInterface {
 
 	String getName();
 
@@ -32,10 +32,5 @@ public interface VenueInterface extends EntityInterface {
 
 	String getRoofType();
 
-	void setRoofType(String roofType);
-
-	String getSportRadarId();
-
-	void setSportRadarId(String sportRadarId);
-	
+	void setRoofType(String roofType);	
 }

@@ -18,6 +18,10 @@ public class UnauthorizedHttpRequestException extends AbstractCustomHttpExceptio
 	@Qualifier("authenticator")
 	private Authenticator authenticator;
 	
+	@Autowired
+	@Qualifier("utility-http-request")
+	private HttpServletRequestUtil requestUtil;
+	
 	/**
 	 * 
 	 */
@@ -49,7 +53,7 @@ public class UnauthorizedHttpRequestException extends AbstractCustomHttpExceptio
 		String message = String.format("User:[%s] does not have permission for [%s] request to [%s]",
 				user.getIdentity(),
 				request.getMethod(),
-				HttpServletRequestUtil.extractRelativeUri(request)
+				this.requestUtil.extractRelativeUri(request)
 		);
 		
 		return message;

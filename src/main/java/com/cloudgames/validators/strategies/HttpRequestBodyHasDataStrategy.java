@@ -2,6 +2,9 @@ package com.cloudgames.validators.strategies;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
+@Component("strategy-validator-httprequet-bodyhasdata")
 public class HttpRequestBodyHasDataStrategy implements ValidatorStrategyInterface
 {
 

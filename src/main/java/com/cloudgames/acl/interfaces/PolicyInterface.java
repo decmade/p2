@@ -1,4 +1,4 @@
-package com.cloudgames.acl.policies;
+package com.cloudgames.acl.interfaces;
 
 import com.cloudgames.acl.Request;
 

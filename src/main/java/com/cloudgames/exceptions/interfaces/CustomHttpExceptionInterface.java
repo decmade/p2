@@ -1,4 +1,4 @@
-package com.cloudgames.exceptions;
+package com.cloudgames.exceptions.interfaces;
 
 import javax.servlet.http.HttpServletRequest;
 

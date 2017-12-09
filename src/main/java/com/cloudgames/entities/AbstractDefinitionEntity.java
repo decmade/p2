@@ -18,7 +18,7 @@ import com.cloudgames.entities.interfaces.DefinitionEntityInterface;
 @MappedSuperclass
 public class AbstractDefinitionEntity extends AbstractEntity implements DefinitionEntityInterface {
 	
-	@Column(length=100)
+	@Column(length = 100, unique = true)
 	private String description;
 
 	public String getDescription() {

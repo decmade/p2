@@ -2,7 +2,7 @@ package com.cloudgames.acl;
 
 import org.springframework.beans.factory.annotation.*;
 
-import com.cloudgames.logger.LoggerInterface;
+import com.cloudgames.logger.interfaces.LoggerInterface;
 
 public class AbstractAclObject {
 	
