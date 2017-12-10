@@ -16,8 +16,6 @@ public class AccountRepository extends AbstractHibernateRepository<AccountInterf
 
 	@Override
 	public AccountInterface fetchById(int id) {
-		Criteria criteria = this.getCriteria();
-		
 		log.debug("retrieving account with ID from persistent stoarge: " + id);
 		
 		return super.fetchById(id);
