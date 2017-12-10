@@ -20,7 +20,7 @@ public class GameController extends AbstractController<GameInterface, Game> {
 	private GameServiceInterface service;
 
 	@Override
-	@GetMapping("{id:[0-9]+")
+	@GetMapping("{id:[0-9]+}")
 	public GameInterface get(@PathVariable int id) {
 		String message = String.format("retrieving Game with ID[%d]",  id);
 		

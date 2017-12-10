@@ -2,15 +2,12 @@ package com.cloudgames.io;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
 import com.cloudgames.logger.interfaces.LoggerInterface;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;

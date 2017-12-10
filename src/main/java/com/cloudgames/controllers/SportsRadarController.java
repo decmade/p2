@@ -1,24 +1,15 @@
 package com.cloudgames.controllers;
 
 import java.io.File;
-import java.net.URL;
 import java.nio.file.Files;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import com.cloudgames.entities.*;
-import com.cloudgames.entities.interfaces.*;
 import com.cloudgames.io.Json;
 import com.cloudgames.io.SportsRadarImportProcessor;
-import com.cloudgames.services.interfaces.*;
+import com.cloudgames.models.sr.SRScheduleResponse;
 
 @RestController
 @RequestMapping("update")

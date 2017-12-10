@@ -1,4 +1,4 @@
-package com.cloudgames.entities;
+package com.cloudgames.models.sr;
 
 public class SRSchedulePeriod {
 	public String period_type;

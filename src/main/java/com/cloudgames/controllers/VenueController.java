@@ -19,7 +19,7 @@ public class VenueController extends AbstractController<VenueInterface, Venue> {
 
 	@Override
 	@GetMapping("{id:[0-9]+}")
-	public VenueInterface get(@RequestBody int id) {
+	public VenueInterface get(@PathVariable int id) {
 		String message = String.format("retreiving Venue with ID[%d]",  id);
 		
 		log.debug(message);

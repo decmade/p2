@@ -1,4 +1,4 @@
-package com.cloudgames.entities;
+package com.cloudgames.models.sr;
 
 import java.util.List;
 

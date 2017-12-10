@@ -1,4 +1,4 @@
-package com.cloudgames.entities;
+package com.cloudgames.models.sr;
 
 public class SRScheduleTeam {
 	public String id;

@@ -10,6 +10,7 @@ abstract public class AbstractSportsRadarRepository<T> extends AbstractHibernate
 	@Override
 	abstract protected Criteria getCriteria();
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public T fetchBySportsRadarId(String id) {
 		Criteria criteria = this.getCriteria();

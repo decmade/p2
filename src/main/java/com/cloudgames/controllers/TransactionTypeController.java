@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +42,7 @@ public class TransactionTypeController extends AbstractController<TransactionTyp
 
 	@Override
 	@PostMapping
-	public TransactionTypeInterface save(TransactionType type) {
+	public TransactionTypeInterface save(@RequestBody TransactionType type) {
 		if ( type.getId() > 0 ) {
 			log.debug("updating TransactionType with ID: " + type.getId() );
 		} else {
@@ -53,7 +54,7 @@ public class TransactionTypeController extends AbstractController<TransactionTyp
 
 	@Override
 	@DeleteMapping
-	public void remove(TransactionType type) {		
+	public void remove(@RequestBody TransactionType type) {		
 		log.debug("removing TransactionType with ID: " + type.getId() );
 		
 		this.service.delete(type);		
