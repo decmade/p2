@@ -39,11 +39,18 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 	@Transactional(propagation = Propagation.REQUIRED)
 	public VenueInterface save(VenueInterface venue) {
 		String message = "";
+		String srId = venue.getSportsRadarId();
+		VenueInterface previous = this.repository.fetchBySportsRadarId(srId);
 		
 		if ( venue.getId() > 0 ) {
 			message = String.format("updating Venue with ID[%d] in respository", venue.getId() );
 		} else {
-			message = "adding new Venue to repository";
+			if ( previous == null ) {
+				message = "adding new Venue to repository";
+			} else {
+				message = String.format("updating Venue with SportsRadarID[%s]", srId);
+				venue.setId( previous.getId() );
+			}
 		}
 		
 		log.debug(message);

@@ -18,7 +18,7 @@ public class UserRoleController extends AbstractController<UserRoleInterface, Us
 	UserRoleServiceInterface service;
 	
 	@Override
-	@GetMapping("{id:[0-9]+")
+	@GetMapping("{id:[0-9]+}")
 	public UserRoleInterface get(@PathVariable int id) {
 		String message = String.format("retrieving UserRole with ID[%d]", id);
 		

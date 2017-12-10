@@ -10,9 +10,16 @@ import com.cloudgames.entities.interfaces.GameInterface;
 import com.cloudgames.repositories.interfaces.GameRepositoryInterface;
 
 @Repository("game-repository")
-public class GameRepository extends AbstractHibernateRepository<GameInterface> implements GameRepositoryInterface {
+public class GameRepository extends AbstractSportsRadarRepository<GameInterface> implements GameRepositoryInterface {
 
-
+	@Override
+	public GameInterface fetchBySportsRadarId(String id) {
+		String message = String.format("retrieving Game from persistent storage with SportRadar ID[%s]", id);
+	
+		this.log.debug(message);
+	
+		return super.fetchBySportsRadarId(id);		
+	}
 
 	@Override
 	public GameInterface fetchById(int id) {

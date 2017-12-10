@@ -16,6 +16,8 @@ public class SportRepository extends AbstractHibernateRepository<SportInterface>
 	protected Criteria getCriteria() {
 		return this.getSession().createCriteria(Sport.class);
 	}
+	
+	
 
 	@Override
 	public SportInterface fetchById(int id) {

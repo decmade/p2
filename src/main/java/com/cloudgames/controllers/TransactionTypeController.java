@@ -4,20 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudgames.entities.TransactionType;
-import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.TransactionTypeInterface;
-import com.cloudgames.entities.interfaces.UserStatusInterface;
 import com.cloudgames.services.interfaces.TransactionTypeServiceInterface;
-import com.cloudgames.services.interfaces.UserStatusServiceInterface;
 
-@RestController
-@RequestMapping("transaction-type")
+@RestController("transactiontype-controller")
+@RequestMapping("transactiontype")
 public class TransactionTypeController extends AbstractController<TransactionTypeInterface, TransactionType> {
 
 	@Autowired
@@ -33,6 +32,7 @@ public class TransactionTypeController extends AbstractController<TransactionTyp
 	}
 
 	@Override
+	@GetMapping
 	public List<TransactionTypeInterface> getAll() {
 		log.debug("retrieving all TransactionTypes");
 		
@@ -40,6 +40,7 @@ public class TransactionTypeController extends AbstractController<TransactionTyp
 	}
 
 	@Override
+	@PostMapping
 	public TransactionTypeInterface save(TransactionType type) {
 		if ( type.getId() > 0 ) {
 			log.debug("updating TransactionType with ID: " + type.getId() );
@@ -51,6 +52,7 @@ public class TransactionTypeController extends AbstractController<TransactionTyp
 	}
 
 	@Override
+	@DeleteMapping
 	public void remove(TransactionType type) {		
 		log.debug("removing TransactionType with ID: " + type.getId() );
 		

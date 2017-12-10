@@ -40,12 +40,20 @@ public class TeamService extends AbstractService<TeamInterface> implements TeamS
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TeamInterface save(TeamInterface team) {
 		String message = "";
+		String srId = team.getSportsRadarId();
+		TeamInterface previous = this.repository.fetchBySportsRadarId(srId);
 		int id = team.getId();
 		
 		if ( id > 0 ) {
 			message = String.format("updating Team with ID[%d] in respository", id);
 		} else {
-			message = "adding new Team to repository";
+			if ( previous == null ) {
+				message = "adding new Team to repository";
+			} else {
+				message = String.format("updating Team with SportsRadarID[%s] in respository", srId);
+				team.setId( previous.getId() );
+			}
+			
 		}
 		
 		this.log.debug(message);

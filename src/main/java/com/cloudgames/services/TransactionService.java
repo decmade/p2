@@ -7,17 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.cloudgames.entities.Account;
-import com.cloudgames.entities.Transaction;
-import com.cloudgames.entities.TransactionType;
-import com.cloudgames.entities.User;
-import com.cloudgames.entities.interfaces.AccountInterface;
 import com.cloudgames.entities.interfaces.TransactionInterface;
-import com.cloudgames.repositories.interfaces.AccountRepositoryInterface;
 import com.cloudgames.repositories.interfaces.TransactionRepositoryInterface;
-import com.cloudgames.services.interfaces.AccountServiceInterface;
 import com.cloudgames.services.interfaces.TransactionServiceInterface;
 
 @Service("transaction-service")

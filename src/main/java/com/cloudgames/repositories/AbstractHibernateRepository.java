@@ -56,7 +56,7 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 
 	@Override
 	public void delete(T entity) {
-		this.getSession().delete(entity);;
+		this.getSession().delete(entity);
 	}
 
 	
@@ -84,5 +84,5 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 		
 		return session;
 	}
-
+	
 }

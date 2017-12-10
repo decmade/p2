@@ -23,7 +23,7 @@ public class Team extends AbstractSportsRadarEntity implements TeamInterface {
 	@Column(length = 50)
 	private String state;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "venue_id")
 	private Venue venue;
 
