@@ -12,11 +12,22 @@ import com.cloudgames.repositories.interfaces.TeamRepositoryInterface;
 import com.cloudgames.services.interfaces.TeamServiceInterface;
 
 @Service("team-service")
-public class TeamService extends AbstractService<TeamInterface> implements TeamServiceInterface {
+public class TeamService extends AbstractSportsRadarEntityService<TeamInterface> implements TeamServiceInterface {
 
 	@Autowired
 	@Qualifier("team-repository")
 	private TeamRepositoryInterface repository;
+
+	
+	
+	@Override
+	public TeamInterface fetchBySportsRadarId(String id) {
+		String message = String.format("retrieving Team with SportsRadarID[%s] from repository", id);
+		
+		this.log.debug(message);
+		
+		return this.repository.fetchBySportsRadarId(id);
+	}
 
 	@Override
 	public TeamInterface fetchById(int id) {
