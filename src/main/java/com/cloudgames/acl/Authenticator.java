@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
 import com.cloudgames.acl.interfaces.AuthenticatorInterface;
+import com.cloudgames.acl.models.Credentials;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
@@ -47,9 +48,9 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 	 * @return boolean
 	 */
 	@Override
-	public boolean authenticate(String identity, String password)
+	public boolean authenticate(Credentials credentials)
 	{
-		UserInterface user = this.userRepository.fetchByIdentity(identity);
+		UserInterface user = this.userRepository.fetchByIdentity(credentials.identity);
 		String logMessage;
 		
 		this.clear();
@@ -59,7 +60,7 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 		 * then the authentication fails
 		 */
 		if ( user == null ) {
-			logMessage = String.format("LOGIN FAILED:: user with identity [%s] was not found", identity);
+			logMessage = String.format("LOGIN FAILED:: user with identity [%s] was not found", credentials.identity);
 			log.info( logMessage );
 			return false;
 		}
@@ -69,7 +70,7 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 		 * in the database then it is valid
 		 */
 
-		if ( this.checkCredentials(user, password) ) {
+		if ( this.checkCredentials(user, credentials.password) ) {
 			logMessage = String.format("LOGIN SUCCESSFULL:: user %s logged in successfully", user.getIdentity() );
 			log.info( logMessage );
 			

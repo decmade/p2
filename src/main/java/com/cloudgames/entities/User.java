@@ -16,6 +16,7 @@ public class User extends AbstractEntity implements UserInterface {
 	/**
 	 * AKA: username
 	 */
+	@Column(unique = true)
 	private String identity;	
 	
 	/**

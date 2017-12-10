@@ -1,4 +1,4 @@
-package com.cloudgames.acl;
+package com.cloudgames.acl.models;
 
 import com.cloudgames.entities.interfaces.UserInterface;
 
