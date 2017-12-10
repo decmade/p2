@@ -1,13 +1,12 @@
-package com.cloudgames.entities;
+package com.cloudgames.models.sr;
 
 import java.util.List;
 
-public class SRScheduleResponse {
+public class SRScheduleWeek {
 	public String id;
-	public int year;
-	public String type;
-	public String name;
-	public List<SRScheduleWeek> weeks;
+	public int sequence;
+	public String title;
+	public List<SRScheduleGame> games;	
 }
 /*
 "id": "3cf0e8ec-048d-4872-a706-b248c198831c",

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.cloudgames.acl.interfaces.AuthenticatorInterface;
+import com.cloudgames.acl.models.Credentials;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.exceptions.InvalidCredentialsException;
 
@@ -46,14 +47,14 @@ public class AuthenticationController extends AbstractBasicController {
 	 * 
 	 * @return ResponseEntity
 	 */
-	@PostMapping("{identity, credential}")
-	public UserInterface login(HttpServletRequest request, @PathVariable String identity, @PathVariable String credential) {
+	@PostMapping
+	public UserInterface login(HttpServletRequest request, @RequestBody Credentials credentials) {
 		HttpSession session = request.getSession();
 		AuthenticatorInterface auth = this.getAuthenticator();
 		
 		auth.setSession(session);
 		
-		if ( auth.authenticate(identity, credential) ) {
+		if ( auth.authenticate(credentials) ) {
 			return auth.getAuthenticatedUser();
 		} else {
 			throw new InvalidCredentialsException();

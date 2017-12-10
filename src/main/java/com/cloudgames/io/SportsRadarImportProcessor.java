@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudgames.entities.Game;
-import com.cloudgames.entities.SRScheduleResponse;
-import com.cloudgames.entities.SRScheduleTeam;
-import com.cloudgames.entities.SRScheduleVenue;
 import com.cloudgames.entities.Sport;
 import com.cloudgames.entities.Team;
 import com.cloudgames.entities.Venue;
 
 import com.cloudgames.entities.interfaces.*;
+import com.cloudgames.models.sr.SRScheduleResponse;
+import com.cloudgames.models.sr.SRScheduleTeam;
+import com.cloudgames.models.sr.SRScheduleVenue;
 import com.cloudgames.services.interfaces.*;
 
 @Component("sports-radar-processor")

@@ -1,22 +1,24 @@
-package com.cloudgames.entities;
+package com.cloudgames.models.sr;
 
-public class SRScheduleGame {
+import java.util.List;
 
+public class SRScheduleResponse {
 	public String id;
-	public String status;
-	public String reference;
-	public int number;
-	public String scheduled;
-	public int attendance;
-	public int utc_offset;
-	public String entry_mode;
-	public String weather;
-	public SRScheduleVenue venue;
-	public SRScheduleTeam home;
-	public SRScheduleTeam away;
-	public SRScheduleScoring scoring;
+	public int year;
+	public String type;
+	public String name;
+	public List<SRScheduleWeek> weeks;
 }
 /*
+"id": "3cf0e8ec-048d-4872-a706-b248c198831c",
+"year": 2017,
+"type": "REG",
+"name": "REG",
+"weeks": [
+    {
+        "id": "ba9ff0d2-7221-4cd1-ba9f-80a0b10ad659",
+        "sequence": 1,
+        "title": "1",
         "games": [
             {
                 "id": "057ded67-c019-4047-8d2d-2e71cbb771b9",
