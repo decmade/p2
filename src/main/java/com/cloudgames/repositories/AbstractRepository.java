@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 
-import com.cloudgames.entities.interfaces.EntityInterface;
 import com.cloudgames.logger.interfaces.LoggerInterface;
 import com.cloudgames.repositories.interfaces.RepositoryInterface;
 

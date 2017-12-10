@@ -32,18 +32,22 @@ public class Account extends AbstractEntity implements AccountInterface {
 		this.owner = owner;
 	}
 
+	@Override
 	public double getBalance() {
 		return balance;
 	}
 
+	@Override
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
+	@Override
 	public User getOwner() {
 		return owner;
 	}
 
+	@Override
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}

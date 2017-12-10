@@ -21,10 +21,12 @@ public class AbstractDefinitionEntity extends AbstractEntity implements Definiti
 	@Column(length = 100, unique = true)
 	private String description;
 
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}

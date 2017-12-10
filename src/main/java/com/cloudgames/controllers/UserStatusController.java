@@ -19,7 +19,7 @@ public class UserStatusController extends AbstractController<UserStatusInterface
 	private UserStatusServiceInterface service;
 	
 	@Override
-	@GetMapping("{id:[0-9]+")
+	@GetMapping("{id:[0-9]+}")
 	public UserStatusInterface get(@PathVariable int id) {
 		String message = String.format("retreiving UserStatus with ID[%d]",  id);
 		

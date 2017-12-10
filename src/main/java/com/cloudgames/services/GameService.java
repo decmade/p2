@@ -40,12 +40,20 @@ public class GameService extends AbstractService<GameInterface> implements GameS
 	@Transactional(propagation = Propagation.REQUIRED)
 	public GameInterface save(GameInterface game) {
 		String message = "";
+		String srId = game.getSportsRadarId();
+		GameInterface previous = this.repository.fetchBySportsRadarId( srId );
 		int id = game.getId();
 		
 		if ( id > 0 ) {
 			message = String.format("updating Game with ID[%d] in repository", id);
 		} else {
-			message = "adding new Game to repository";
+			if ( previous == null ) {
+				message = "adding new Game to repository";
+			} else {
+				message = String.format("updating Game with SportRadarID[%s]", srId );
+				game.setId( previous.getId() );
+			}
+			
 		}
 		
 		this.log.debug(message);

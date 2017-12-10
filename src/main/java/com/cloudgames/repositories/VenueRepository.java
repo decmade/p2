@@ -10,9 +10,18 @@ import com.cloudgames.entities.interfaces.VenueInterface;
 import com.cloudgames.repositories.interfaces.VenueRepositoryInterface;
 
 @Repository("venue-repository")
-public class VenueRepository extends AbstractHibernateRepository<VenueInterface> implements VenueRepositoryInterface {
+public class VenueRepository extends AbstractSportsRadarRepository<VenueInterface> implements VenueRepositoryInterface {
 
 
+
+	@Override
+	public VenueInterface fetchBySportsRadarId(String id) {
+		String message = String.format("retriving Venue with SportsRadarID[%s]", id);
+		
+		this.log.debug(message);
+		
+		return super.fetchBySportsRadarId(id);
+	}
 
 	@Override
 	public VenueInterface fetchById(int id) {
