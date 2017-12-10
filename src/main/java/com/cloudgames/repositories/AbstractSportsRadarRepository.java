@@ -14,7 +14,7 @@ abstract public class AbstractSportsRadarRepository<T> extends AbstractHibernate
 	public T fetchBySportsRadarId(String id) {
 		Criteria criteria = this.getCriteria();
 		
-		criteria.add( Restrictions.eq("sportRadarId", id) );
+		criteria.add( Restrictions.eq("sportsRadarId", id) );
 		
 		return (T)criteria.uniqueResult();		
 	}

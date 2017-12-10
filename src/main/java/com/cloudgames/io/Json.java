@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
 import com.cloudgames.logger.interfaces.LoggerInterface;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -65,16 +67,23 @@ public class Json
 	 * @param String json
 	 * 
 	 * @return Map<String, String>
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
 	 */
-	public Map<String, String> decode(String json)
-	throws IOException
-	{
-		Map<String, String> properties = new HashMap<>();
-		
-		TypeReference< HashMap<String,String> > typeRef = new TypeReference< HashMap<String,String> >(){};
-		properties = mapper.readValue( json, typeRef );
-		
-		return properties;
+//	public Map<String, String> decode(String json)
+//	throws IOException
+//	{
+//		Map<String, String> properties = new HashMap<>();
+//		
+//		TypeReference< HashMap<String,String> > typeRef = new TypeReference< HashMap<String,String> >(){};
+//		properties = mapper.readValue( json, typeRef );
+//		
+//		return properties;
+//	}
+	
+	public Object decode(String json) throws JsonParseException, JsonMappingException, IOException {
+		return this.mapper.readValue(json, Object.class);
 	}
 
 }
