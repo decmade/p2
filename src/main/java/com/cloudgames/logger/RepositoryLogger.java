@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component("logger-repository")
 public class RepositoryLogger extends AbstractLog4jLogger
 {	
-	final static private String LOG_CATEGORY = "respositories";
+	final static private String LOG_CATEGORY = "repositories";
 
 	public RepositoryLogger()
 	{

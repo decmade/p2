@@ -12,17 +12,28 @@ import com.cloudgames.repositories.interfaces.VenueRepositoryInterface;
 import com.cloudgames.services.interfaces.VenueServiceInterface;
 
 @Service("venue-service")
-public class VenueService extends AbstractService<VenueInterface> implements VenueServiceInterface {
+public class VenueService extends AbstractSportsRadarEntityService<VenueInterface> implements VenueServiceInterface {
 
 	@Autowired
 	@Qualifier("venue-repository")
 	private VenueRepositoryInterface repository;
 	
+	
+	
+	@Override
+	public VenueInterface fetchBySportsRadarId(String id) {
+		String message = String.format("retrieving Venue with SportsRadarID[%s] from repository", id);
+		
+		this.log.debug(message);
+		
+		return this.repository.fetchBySportsRadarId(id);
+	}
+
 	@Override
 	public VenueInterface fetchById(int id) {
 		String message = String.format("retrieving Venue with ID[%d] from repository", id);
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return this.repository.fetchById(id);
 	}
@@ -31,7 +42,7 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 	public List<VenueInterface> fetchAll() {
 		String message = "retrieving all Venues from respository";
 		
-		log.debug(message);
+		this.log.debug(message);
 		return this.repository.fetchAll();
 	}
 
@@ -53,7 +64,7 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 			}
 		}
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		return this.repository.save(venue);
 	}
@@ -63,7 +74,7 @@ public class VenueService extends AbstractService<VenueInterface> implements Ven
 	public void delete(VenueInterface venue) {
 		String message = String.format("deleting Venue with ID[%d] in repository",  venue.getId() );
 		
-		log.debug(message);
+		this.log.debug(message);
 		
 		this.repository.delete(venue);		
 	}
