@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudgames.entities.TransactionType;
-import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.TransactionTypeInterface;
-import com.cloudgames.entities.interfaces.UserStatusInterface;
 import com.cloudgames.services.interfaces.TransactionTypeServiceInterface;
-import com.cloudgames.services.interfaces.UserStatusServiceInterface;
 
 @RestController("transactiontype-controller")
 @RequestMapping("transactiontype")

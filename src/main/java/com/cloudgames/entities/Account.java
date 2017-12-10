@@ -23,14 +23,15 @@ public class Account extends AbstractEntity implements AccountInterface {
 		this.balance = balance;
 	}
 
+	@Override
 	public double getBalance() {
 		return balance;
 	}
 
+	@Override
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
 }
 	
 	

@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.cloudgames.entities.Account;
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.AccountInterface;
 import com.cloudgames.repositories.interfaces.AccountRepositoryInterface;

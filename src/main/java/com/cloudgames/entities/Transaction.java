@@ -38,21 +38,27 @@ public class Transaction extends AbstractEntity implements TransactionInterface 
 		this.acc = acc;
 		this.transactionType = transactionType;
 	}
+	@Override
 	public double getAmount() {
 		return amount;
 	}
+	@Override
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+	@Override
 	public Account getAcc() {
 		return acc;
 	}
+	@Override
 	public void setAcc(Account acc) {
 		this.acc = acc;
 	}
+	@Override
 	public TransactionType getTransactionType() {
 		return transactionType;
 	}
+	@Override
 	public void setTransactionType(TransactionType transactionType) {
 		this.transactionType = transactionType;
 	}

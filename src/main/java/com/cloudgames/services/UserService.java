@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cloudgames.entities.UserRole;
+import com.cloudgames.entities.UserStatus;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
+import com.cloudgames.services.interfaces.UserRoleServiceInterface;
 import com.cloudgames.services.interfaces.UserServiceInterface;
+import com.cloudgames.services.interfaces.UserStatusServiceInterface;
 
 @Service("user-service")
 public class UserService extends AbstractService<UserInterface> implements UserServiceInterface {
@@ -23,6 +27,14 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 	@Autowired
 	@Qualifier("encryption")
 	private Encryption encryption;
+	
+	@Autowired
+	@Qualifier("userstatus-service")
+	private UserStatusServiceInterface userStatusService;
+	
+	@Autowired
+	@Qualifier("userrole-service")
+	private UserRoleServiceInterface userRoleService;
 	
 	@Override
 	public UserInterface fetchByIdentity(String identity) {
@@ -66,25 +78,45 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 			String secret = previous.getSecret();
 			
 			/*
-			 * if the user has updated their password, then encrypt the
-			 * value that is passed before saving to persistent storage
-			 * using the secret key they had prior, and enforce that the secret
-			 * key does not change
+			 * if user has provided a value for the credential field
 			 */
-			if (previousCredential.equals(currentCredential) == false ) {
-				user.setCredential( this.encryption.encrypt(currentCredential, secret) );
-				user.setSecret(secret);
+			if ( user.getCredential() != null ) {
+			
+				/*
+				 * if the user has updated their password, then encrypt the
+				 * value that is passed before saving to persistent storage
+				 * using the secret key they had prior, and enforce that the secret
+				 * key does not change
+				 */
+				if (previousCredential == null || previousCredential.equals(currentCredential) == false ) {
+					if ( secret == null ) {
+						secret = this.encryption.generateKey();
+					}
+					user.setCredential( this.encryption.encrypt(currentCredential, secret) );
+					user.setSecret(secret);
+				}
 			}
 		} else {
-			message = "saving new User to the repository";
+			message = "saving new User to the repository";			
 			
 			/*
-			 * only trust secret keys we generate
-			 * and encrypt the credential with it
+			 * set default status
 			 */
-			user.setSecret( this.encryption.generateKey() );
+			if ( user.getStatus() == null ) {
+				user.setStatus( (UserStatus)userStatusService.fetchById(1) );
+			}
+			
+			if ( user.getRole() == null ) {
+				user.setRole((UserRole)userRoleService.fetchById(1));
+			}
 			
 			if ( user.getCredential() != null && user.getCredential().isEmpty() == false ) {
+				/*
+				 * only trust secret keys we generate
+				 * and encrypt the credential with it
+				 */
+				user.setSecret( this.encryption.generateKey() );
+				
 				user.setCredential( this.encryption.encrypt( user.getCredential(), user.getSecret() ) );
 			}
 		}

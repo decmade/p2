@@ -17,17 +17,21 @@ public class Game extends AbstractSportsRadarEntity implements GameInterface {
 	private String status;
 	private LocalDateTime scheduled;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="sport_id")
 	private Sport sport;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "home_team_id")
 	private Team homeTeam;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "away_team_id")
 	private Team awayTeam;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "venue_id")
+	private Venue venue;
 	
 	private int homeScore;
 	
@@ -132,6 +136,16 @@ public class Game extends AbstractSportsRadarEntity implements GameInterface {
 	@Override
 	public void setAwayScore(int awayScore) {
 		this.awayScore = awayScore;
+	}
+
+	@Override
+	public Venue getVenue() {
+		return venue;
+	}
+
+	@Override
+	public void setVenue(Venue venue) {
+		this.venue = venue;
 	}
 
 	

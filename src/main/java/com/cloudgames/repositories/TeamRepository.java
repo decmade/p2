@@ -10,7 +10,17 @@ import com.cloudgames.entities.interfaces.TeamInterface;
 import com.cloudgames.repositories.interfaces.TeamRepositoryInterface;
 
 @Repository("team-repository")
-public class TeamRepository extends AbstractHibernateRepository<TeamInterface> implements TeamRepositoryInterface {
+public class TeamRepository extends AbstractSportsRadarRepository<TeamInterface> implements TeamRepositoryInterface {
+
+	
+	@Override
+	public TeamInterface fetchBySportsRadarId(String id) {
+		String message = String.format("retrieving Team from persistent storage with SportRadar ID[%s]", id);
+		
+		this.log.debug(message);
+	
+		return super.fetchBySportsRadarId(id);
+	}
 
 	@Override
 	public TeamInterface fetchById(int id) {

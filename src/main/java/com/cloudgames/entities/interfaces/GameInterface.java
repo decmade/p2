@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.cloudgames.entities.Sport;
 import com.cloudgames.entities.Team;
+import com.cloudgames.entities.Venue;
 
 public interface GameInterface extends SportsRadarEntityInterface {
 
@@ -46,5 +47,9 @@ public interface GameInterface extends SportsRadarEntityInterface {
 	int getAwayScore();
 
 	void setAwayScore(int awayScore);
+
+	Venue getVenue();
+
+	void setVenue(Venue venue);
 
 }
