@@ -18,7 +18,7 @@ public class TeamController extends AbstractController<TeamInterface, Team> {
 	private TeamServiceInterface service;
 
 	@Override
-	@GetMapping("{id:[0-9]+")
+	@GetMapping("{id:[0-9]+}")
 	public TeamInterface get(@PathVariable int id) {
 		String message = String.format("retrieving Team with ID[%d]", id);
 		
