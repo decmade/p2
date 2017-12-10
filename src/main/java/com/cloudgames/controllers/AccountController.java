@@ -47,7 +47,7 @@ public class AccountController extends AbstractController<AccountInterface, Acco
 
 	@Override
 	@PostMapping
-	public AccountInterface save(Account acc) {
+	public AccountInterface save(@RequestBody Account acc) {
 		if (acc.getId() > 0) {
 			log.debug("updating Account with ID: " + acc.getId());
 		} else {
@@ -59,7 +59,7 @@ public class AccountController extends AbstractController<AccountInterface, Acco
 
 	@Override
 	@DeleteMapping
-	public void remove(Account acc) {
+	public void remove(@RequestBody Account acc) {
 		log.debug("removing account with ID: " + acc.getId());
 		
 		this.service.delete(acc);

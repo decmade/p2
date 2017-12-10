@@ -28,7 +28,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 
 	@Override
 	public List<TransactionTypeInterface> fetchAll() {		
-		log.debug("retrieving all UserStatuses from repository");
+		log.debug("retrieving all TransactionType from repository");
 		
 		return this.repository.fetchAll();
 	}
@@ -37,7 +37,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TransactionTypeInterface save(TransactionTypeInterface type) {
 		if ( type.getId() > 0 ) {
-			log.debug("updating UserStatus with ID: " + type.getId() + " in repository");
+			log.debug("updating TransactionType with ID: " + type.getId() + " in repository");
 		} else {
 			log.debug("adding new TransactionType to repository");
 		}
@@ -48,7 +48,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(TransactionTypeInterface type) {
-		log.debug("deleting UserStatus with ID: " + type.getId() + " from repository" );
+		log.debug("deleting TransactionType with ID: " + type.getId() + " from repository" );
 		
 		this.repository.delete(type);
 	}
