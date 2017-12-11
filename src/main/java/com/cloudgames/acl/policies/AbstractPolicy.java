@@ -1,15 +1,12 @@
 package com.cloudgames.acl.policies;
 
-import org.springframework.beans.factory.annotation.*;
-
 import com.cloudgames.acl.AbstractAclObject;
-import com.cloudgames.acl.Authorizer;
+import com.cloudgames.acl.interfaces.AuthorizerInterface;
 import com.cloudgames.acl.interfaces.PolicyInterface;
 import com.cloudgames.acl.markers.FinanceManagerMarker;
 import com.cloudgames.acl.markers.SystemAdministratorMarker;
 import com.cloudgames.acl.models.Request;
 import com.cloudgames.entities.interfaces.UserInterface;
-import com.cloudgames.logger.interfaces.LoggerInterface;
 
 /**
  * template for all ACL policy objects
@@ -19,13 +16,12 @@ import com.cloudgames.logger.interfaces.LoggerInterface;
  */
 abstract public class AbstractPolicy extends AbstractAclObject implements PolicyInterface 
 {
-	@Autowired
-	@Qualifier("authorizer")
-	protected Authorizer auth;
+	protected AuthorizerInterface authorizer;
 	
-	@Autowired
-	@Qualifier("logger-acl")
-	protected LoggerInterface log;
+	@Override
+	public void setAuthorizer(AuthorizerInterface authorizer) {
+		this.authorizer = authorizer;
+	}
 	
 	/**
 	 * default allow policy of extending classes
@@ -37,7 +33,7 @@ abstract public class AbstractPolicy extends AbstractAclObject implements Policy
 	@Override
 	public boolean allow(Request request)
 	{
-		log.trace("default ACL allow policy used");
+		log.debug("default ACL allow policy used");
 		return false;
 	}
 	
@@ -51,7 +47,7 @@ abstract public class AbstractPolicy extends AbstractAclObject implements Policy
 	@Override
 	public boolean deny(Request request)
 	{
-		log.trace( String.format("default ACL DENY policy used for %s access TO %s FOR %s",
+		log.debug( String.format("default ACL DENY policy used for %s access TO %s FOR %s",
 			request.verb,
 			request.resource,
 			request.user.getIdentity()
@@ -71,7 +67,7 @@ abstract public class AbstractPolicy extends AbstractAclObject implements Policy
 	{
 		Request request = new Request(user, "any", FinanceManagerMarker.getInstance() );
 		
-		return auth.authorize(request);
+		return authorizer.authorize(request);
 	}
 	
 	/** 
@@ -114,7 +110,7 @@ abstract public class AbstractPolicy extends AbstractAclObject implements Policy
 	{
 		Request request = new Request(user, "any", SystemAdministratorMarker.getInstance() );
 		
-		return this.auth.authorize(request);
+		return this.authorizer.authorize(request);
 	}
 	
 	/** 

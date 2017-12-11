@@ -29,4 +29,6 @@ public interface PolicyInterface {
 	 * @return boolean
 	 */
 	public boolean deny(Request request);
+
+	void setAuthorizer(AuthorizerInterface authorizer);
 }
