@@ -1,3 +1,6 @@
+import { UserStatus } from './UserStatus';
+import { UserRole } from './UserRole';
+
 export class User {
     id: Number;
     identity: String;

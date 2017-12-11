@@ -1,3 +1,7 @@
+import { Sport } from './Sport';
+import { Team } from './Team';
+import { Venue } from './Venue';
+
 export class Game {
     id: Number;
     number: Number;
