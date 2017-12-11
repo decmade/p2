@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #101928;
+    color: rgb(220, 220, 220);
+}
+
+p {
+    text-align: justify;
+}
+
+button:hover {
+    cursor: pointer;
+}
