@@ -39,6 +39,8 @@ public class Authorizer extends AbstractAclObject implements AuthorizerInterface
 	public Authorizer addPolicy(PolicyInterface policy)
 	{
 		this.policies.add( policy );
+		policy.setAuthorizer(this);
+		
 		return this;
 	}
 	
