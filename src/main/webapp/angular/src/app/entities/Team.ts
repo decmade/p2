@@ -1,3 +1,5 @@
+import { Venue } from './Venue';
+
 export class Team {
     id: Number;
     name: String;
