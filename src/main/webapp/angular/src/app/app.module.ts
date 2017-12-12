@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// PIPES
+import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
+
 // SERVICES
 import { AuthenticationService } from './services/authentication.service';
 
@@ -25,7 +28,7 @@ import { TransactionTypeComponent } from './transactions/transactiontype/transac
 @NgModule({
   declarations: [
     // pipes
-
+    UserDisplayNamePipe,
 
     // components
     AppComponent,

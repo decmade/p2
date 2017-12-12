@@ -30,7 +30,7 @@
             class="btn btn-outline-dark dropdown-toggle" 
             data-toggle="dropdown">
             <span class="fa fa-user-o mr-2"></span>
-            {{ getUserDisplayName(user) }}
+            {{ user | displayName }}
         </button>
         <div class="dropdown-menu">
             <a href="#" class="dropdown-item" (click)="onLogout()">Sign Out</a>
