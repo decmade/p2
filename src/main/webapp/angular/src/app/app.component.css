@@ -1,0 +1,8 @@
+.content-row {
+    min-height: 60.0em;
+}
+
+.side-nav {
+    background-color: rgb(16, 25, 40);
+    border-right: 1px solid rgb(0, 0, 0);
+}
