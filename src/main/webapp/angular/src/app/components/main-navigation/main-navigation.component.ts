@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 // import { navigationRoutes } from '../../app-routing.module';
 
 // entities
-import { User } from '../../entities/user';
+import { User } from '../../entities/User';
 
 
 @Component({

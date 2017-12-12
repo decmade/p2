@@ -1,8 +1,6 @@
-<ul class="nav flex-column">
-  <li class="nav-item" *ngFor="let route of getRoutes()">
-    <img [src]="route.data.icon" class="float-left">
-    <a class="nav-link" [routerLink]="route.path" routerLinkActive="active" >
-        {{ route.data.title }}
-    </a>
-  </li>
-</ul>
+<div class="nav flex-column">
+  <a class="nav-item pl-4" [routerLink]="route.path" routerLinkActive="active" *ngFor="let route of getRoutes()">
+    <img [src]="route.data.icon" class="m-2">
+    {{ route.data.title }}
+  </a>
+</div>
