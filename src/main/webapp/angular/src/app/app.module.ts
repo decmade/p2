@@ -12,24 +12,40 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { FootballComponent } from './components/football/football.component';
+<<<<<<< HEAD
 
 import { AccountComponent } from './components/accounts/accounts.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TransactionTypeComponent } from './components/transactions/transactiontype/transactiontype.component';
+=======
+import { AccountComponent } from './accounts/accounts.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
+
+>>>>>>> origin/master
 
 
 @NgModule({
   declarations: [
+<<<<<<< HEAD
+=======
+    // pipes
+
+
+>>>>>>> origin/master
     // components
     AppComponent,
     MainNavigationComponent,
     HomePageComponent,
     SideNavigationComponent,
     FootballComponent,
+<<<<<<< HEAD
 
     // pipes
 
     AppComponent,
+=======
+>>>>>>> origin/master
     AccountComponent,
     TransactionsComponent,
     TransactionTypeComponent
