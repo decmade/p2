@@ -1,13 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Routes, Router } from '@angular/router';
-import { LoginForm } from '../../entities/login-form';
+import { LoginForm } from '../../entities/LoginForm';
 import { AppRoutingModule } from '../../app-routing.module';
+
+import { Subscription } from 'rxjs/Subscription';
 
 // visual imports
 import * as $ from 'jquery';
 
 // routes
 // import { navigationRoutes } from '../../app-routing.module';
+
+// services
+import { AuthenticationService } from '../../services/authentication.service';
 
 // entities
 import { User } from '../../entities/User';
@@ -24,11 +29,16 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
   private form: LoginForm;
   private user: User;
 
-  constructor(router: Router) {
+  private currentUserSubscription: Subscription;
+  private authService: AuthenticationService;
+
+  constructor(router: Router, authService: AuthenticationService) {
       this.router = router;
+      this.authService = authService;
 
       this.form = new LoginForm();
       this.form.elementId = 'login-form';
+      this.user = null;
   }
 
   /*
@@ -63,15 +73,22 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
         element.find('.btn-dark').removeClass('btn-dark').addClass('btn-outline-dark');
     }
 
+    public getUserDisplayName(user: User): string {
+      return [
+        user.firstName,
+        user.lastName,
+      ].join(' ');
+    }
+
 
     private login(): void {
-        // if ( this.validateLoginForm(this.form) ) {
-        //     this.loginService.login(this.form.identity, this.form.credential);
-        // }
+        if ( this.validateLoginForm(this.form) ) {
+            this.authService.login(this.form);
+        }
     }
 
     private logout(): void {
-        // this.loginService.logout();
+        this.authService.logout();
     }
 
     private resetForm(): void {
@@ -83,7 +100,7 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
             return false;
         }
 
-        if ( form.credential.length === 0 ) {
+        if ( form.password.length === 0 ) {
             return false;
         }
 
@@ -91,12 +108,12 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // this.loginSubscription = this.loginService.getCurrentUser()
-        //     .subscribe( (user) => this.user = user );
+        this.currentUserSubscription = this.authService.getCurrentUser()
+            .subscribe( (user) => this.user = user );
     }
 
     ngOnDestroy(): void {
-        // this.loginSubscription.unsubscribe();
+        this.currentUserSubscription.unsubscribe();
     }
 
 }

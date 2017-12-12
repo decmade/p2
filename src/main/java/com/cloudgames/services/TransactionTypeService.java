@@ -20,6 +20,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	private TransactionTypeRepositoryInterface repository;
 	
 	@Override
+	@Transactional
 	public TransactionTypeInterface fetchById(int id) {
 		log.debug("retrieving TransactionType with ID: " + id);
 		
@@ -27,6 +28,7 @@ public class TransactionTypeService extends AbstractService<TransactionTypeInter
 	}
 
 	@Override
+	@Transactional
 	public List<TransactionTypeInterface> fetchAll() {		
 		log.debug("retrieving all TransactionType from repository");
 		

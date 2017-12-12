@@ -20,6 +20,7 @@ public class AccountService extends AbstractService<AccountInterface> implements
 	private AccountRepositoryInterface repository;
 
 	@Override
+	@Transactional
 	public AccountInterface fetchByOwner(User u) {
 		log.debug("retrieving account with owner: " + u.getIdentity() + " from repository");
 		return this.repository.fetchByOwner(u);
@@ -34,6 +35,7 @@ public class AccountService extends AbstractService<AccountInterface> implements
 	}
 
 	@Override
+	@Transactional
 	public List<AccountInterface> fetchAll() {
 		log.debug("retrieving all accounts from repository");
 		

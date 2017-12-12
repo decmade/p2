@@ -21,6 +21,7 @@ public class TeamService extends AbstractSportsRadarEntityService<TeamInterface>
 	
 	
 	@Override
+	@Transactional
 	public TeamInterface fetchBySportsRadarId(String id) {
 		String message = String.format("retrieving Team with SportsRadarID[%s] from repository", id);
 		
@@ -30,6 +31,7 @@ public class TeamService extends AbstractSportsRadarEntityService<TeamInterface>
 	}
 
 	@Override
+	@Transactional
 	public TeamInterface fetchById(int id) {
 		String message = String.format("retrieving Team with ID[%d] from repository", id);
 		
@@ -39,6 +41,7 @@ public class TeamService extends AbstractSportsRadarEntityService<TeamInterface>
 	}
 
 	@Override
+	@Transactional
 	public List<TeamInterface> fetchAll() {
 		String message = "retrieving all Teams from respository";
 		

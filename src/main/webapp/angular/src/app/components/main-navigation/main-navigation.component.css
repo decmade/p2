@@ -3,14 +3,14 @@
     border-bottom:2px solid rgb(0, 0, 0);
 }
 
-a, a:visited, a.navbar-brand {
+a.nav-link, a.nav-link:visited, a.navbar-brand {
     color: rgb(200, 200, 200);
     outline: none;
     font-weight: bold;
     border-bottom:3px solid rgba(255, 255, 255, 0);
 }
 
-a.active, a.nav-link:hover {
+a.nav-link.active, a.nav-link:hover {
     color: rgb(255, 255, 255);
     border-bottom: 3px solid rgb(255, 255, 255);
 }

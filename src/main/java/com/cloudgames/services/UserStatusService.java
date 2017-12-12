@@ -19,6 +19,7 @@ public class UserStatusService extends AbstractService<UserStatusInterface> impl
 	private UserStatusRepositoryInterface repository;
 	
 	@Override
+	@Transactional
 	public UserStatusInterface fetchById(int id) {
 		String message = String.format("retrieving UserStatus with ID[%d] from repository", id);
 		
@@ -28,6 +29,7 @@ public class UserStatusService extends AbstractService<UserStatusInterface> impl
 	}
 
 	@Override
+	@Transactional
 	public List<UserStatusInterface> fetchAll() {
 		String message = "retrieving all UserStatuses from repository";
 		

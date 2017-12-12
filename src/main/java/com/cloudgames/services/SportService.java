@@ -19,6 +19,7 @@ public class SportService extends AbstractService<SportInterface> implements Spo
 	private SportRepositoryInterface repository;
 
 	@Override
+	@Transactional
 	public SportInterface fetchById(int id) {
 		String message = String.format("retrieving Sport with ID[%d] from respository", id);
 		
@@ -28,6 +29,7 @@ public class SportService extends AbstractService<SportInterface> implements Spo
 	}
 
 	@Override
+	@Transactional
 	public List<SportInterface> fetchAll() {
 		String message = "retrieving all Sports from repository";
 		
