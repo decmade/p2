@@ -8,6 +8,8 @@ import { Subscription } from 'rxjs/Subscription';
 // visual imports
 import * as $ from 'jquery';
 
+
+
 // routes
 // import { navigationRoutes } from '../../app-routing.module';
 
@@ -72,14 +74,6 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
         element.find('.fa-user').removeClass('fa-user').addClass('fa-user-o');
         element.find('.btn-dark').removeClass('btn-dark').addClass('btn-outline-dark');
     }
-
-    public getUserDisplayName(user: User): string {
-      return [
-        user.firstName,
-        user.lastName,
-      ].join(' ');
-    }
-
 
     private login(): void {
         if ( this.validateLoginForm(this.form) ) {
