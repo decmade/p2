@@ -10,6 +10,7 @@ import com.cloudgames.acl.models.Credentials;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
 import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
+import com.cloudgames.services.interfaces.UserServiceInterface;
 
 /**
  * << utility >>
@@ -25,8 +26,8 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 	public static final String USER_SESSION_KEY = "user";				// key used to reference the user stored in the Session
 	
 	@Autowired
-	@Qualifier("user-repository")
-	private UserRepositoryInterface userRepository;
+	@Qualifier("user-service")
+	private UserServiceInterface userService;
 	
 	@Autowired
 	@Qualifier("encryption")
@@ -50,7 +51,7 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 	@Override
 	public boolean authenticate(Credentials credentials)
 	{
-		UserInterface user = this.userRepository.fetchByIdentity(credentials.identity);
+		UserInterface user = this.userService.fetchByIdentity(credentials.identity);
 		String logMessage;
 		
 		this.clear();
@@ -102,23 +103,26 @@ public class Authenticator extends AbstractAclObject implements AuthenticatorInt
 	public UserInterface getAuthenticatedUser()
 	{
 		int id = 0;
-		String idString = String.valueOf( this.session.getAttribute( USER_SESSION_KEY) );
+		String idString = (String)this.session.getAttribute( USER_SESSION_KEY);
 		UserInterface user = null;
 		String message = "";
 		
-		message = String.format("attempting to retrieve authenticated user from session with ID:[%d]", id );
+		message = String.format("attempting to retrieve authenticated user from session with ID:[%s]", idString );
 		log.debug(message);
 		
 		try {
-			id = Integer.parseInt(idString);
 			
-			if ( id == 0) {
+			if ( idString.isEmpty() ) {
 				message = String.format("could not retrieve user  with ID:[%d]", id );
 				log.debug( message );
 			} else {
-				user = this.userRepository.fetchById(id);
-				message = String.format("retrieved user with ID:[%d]", id);
-				log.debug(message);
+				id = Integer.parseInt( idString );
+				user = this.userService.fetchById(id);
+				
+				if ( id > 0 ) {
+					message = String.format("retrieved user with ID:[%d]", id);
+					log.debug(message);
+				}
 			}
 			
 		} catch(Exception e) {

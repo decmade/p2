@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+// SERVICES
+import { AuthenticationService } from './services/authentication.service';
 
 
 // ROUTING
@@ -42,9 +46,10 @@ import { TransactionTypeComponent } from './components/transactions/transactiont
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
-
+    AuthenticationService,
   ],
   bootstrap: [AppComponent]
 })

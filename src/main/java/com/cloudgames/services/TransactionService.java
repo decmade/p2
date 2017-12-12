@@ -20,12 +20,14 @@ public class TransactionService extends AbstractService<TransactionInterface> im
 	private TransactionRepositoryInterface repository;
 	
 	@Override
+	@Transactional
 	public TransactionInterface fetchByAccount(Account acc) {
 		log.debug("retrieving transaction with account ID: " + acc.getId() + " from repository");
 		return this.repository.fetchByAccount(acc);
 	}
 	
 	@Override
+	@Transactional
 	public TransactionInterface fetchById(int id) {
 		log.debug("retrieving transaction with ID: " + id + " from repository");
 		
@@ -33,6 +35,7 @@ public class TransactionService extends AbstractService<TransactionInterface> im
 	}
 
 	@Override
+	@Transactional
 	public List<TransactionInterface> fetchAll() {
 		log.debug("retrieving all transactions from repository");
 		

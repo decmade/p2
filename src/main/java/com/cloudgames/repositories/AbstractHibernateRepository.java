@@ -24,7 +24,7 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	@Override
 	public T fetchById(int id) {
 		Criteria criteria = this.getCriteria();
-		
+	
 		criteria.add(Restrictions.eq("id", id));
 		
 		return (T)criteria.uniqueResult();
@@ -34,6 +34,7 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	@SuppressWarnings("unchecked")
 	public List<T> fetchAll() {
 		Criteria criteria = this.getCriteria();
+		
 		return criteria.list();
 	}
 
@@ -66,21 +67,26 @@ abstract public class AbstractHibernateRepository<T> extends AbstractRepository<
 	 * @return Session
 	 */
 	protected Session getSession() {
-		Session session = null;
-		
-		try {
-			this.log.debug("attempting to attain an existing Hibernate session");
+			Session session = null;
 			
-			session = this.sessionFactory.getCurrentSession();
-			
-			this.log.debug("successfully attained existing Hibernate session");
-			
-		} catch(Exception e) {
-			this.log.debug("no existing Hibernate session found");
-			this.log.debug("opening new Hibernate session");
-			
-			session = this.sessionFactory.openSession();
-		}
+			try {
+				this.log.debug("attempting to attain an existing Hibernate session");
+				
+				session = this.sessionFactory.getCurrentSession();
+				
+				this.log.debug("successfully attained existing Hibernate session");
+				
+			} catch(Exception e) {
+//				this.log.debug("no existing Hibernate session found");
+//				this.log.debug("opening new Hibernate session");
+//				
+//				session = this.sessionFactory.openSession();
+				/*
+				 * should never be opening new sessions. this created
+				 * a resource leak
+				 */
+				this.log.error( e.getMessage() );
+			}
 		
 		return session;
 	}

@@ -21,6 +21,7 @@ public class VenueService extends AbstractSportsRadarEntityService<VenueInterfac
 	
 	
 	@Override
+	@Transactional
 	public VenueInterface fetchBySportsRadarId(String id) {
 		String message = String.format("retrieving Venue with SportsRadarID[%s] from repository", id);
 		
@@ -30,6 +31,7 @@ public class VenueService extends AbstractSportsRadarEntityService<VenueInterfac
 	}
 
 	@Override
+	@Transactional
 	public VenueInterface fetchById(int id) {
 		String message = String.format("retrieving Venue with ID[%d] from repository", id);
 		
@@ -39,6 +41,7 @@ public class VenueService extends AbstractSportsRadarEntityService<VenueInterfac
 	}
 
 	@Override
+	@Transactional
 	public List<VenueInterface> fetchAll() {
 		String message = "retrieving all Venues from respository";
 		
