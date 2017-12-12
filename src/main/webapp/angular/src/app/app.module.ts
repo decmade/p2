@@ -8,22 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 
 // VIEW COMPONENTS
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { FootballComponent } from './components/football/football.component';
 
-=======
-import { AccountComponent } from './accounts/accounts.component';
-import { TransactionsComponent } from './transactions/transactions.component';
-import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
->>>>>>> master
+import { AccountComponent } from './components/accounts/accounts.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { TransactionTypeComponent } from './components/transactions/transactiontype/transactiontype.component';
 
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
     // components
     AppComponent,
     MainNavigationComponent,
@@ -33,12 +29,10 @@ import { TransactionTypeComponent } from './transactions/transactiontype/transac
 
     // pipes
 
-=======
     AppComponent,
     AccountComponent,
     TransactionsComponent,
     TransactionTypeComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,

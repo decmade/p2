@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../entities/Account';
+import { Account } from '../../entities/Account';
 
 @Component({
   selector: 'app-accounts',
