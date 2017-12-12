@@ -24,11 +24,14 @@ public class AccountRepository extends AbstractHibernateRepository<AccountInterf
 	@Override
 	public AccountInterface fetchByOwner(User u) {
 		Criteria criteria = this.getCriteria();
+		AccountInterface account = null;
  		
  		log.debug("retrieving account with owner: " + u.getIdentity());
  		criteria.add(Restrictions.eq("owner", u.getIdentity()) );
  		
- 		return (AccountInterface)criteria.uniqueResult();
+ 		account = (AccountInterface)criteria.uniqueResult();
+ 		
+ 		return account;
 	}
 	
 	@Override

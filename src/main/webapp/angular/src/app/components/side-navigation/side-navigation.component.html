@@ -1,4 +1,4 @@
-<div class="nav flex-column">
+<div class="nav flex-column side-nav">
   <a class="nav-item pl-4" [routerLink]="route.path" routerLinkActive="active" *ngFor="let route of getRoutes()">
     <img [src]="route.data.icon" class="m-2">
     {{ route.data.title }}

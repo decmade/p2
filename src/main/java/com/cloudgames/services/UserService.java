@@ -37,6 +37,7 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 	private UserRoleServiceInterface userRoleService;
 	
 	@Override
+	@Transactional
 	public UserInterface fetchByIdentity(String identity) {
 		String message = String.format("retrieving user with IDENTITY[%s] from repository", identity);
 		
@@ -46,6 +47,7 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 	}
 
 	@Override
+	@Transactional
 	public UserInterface fetchById(int id) {
 		String message = String.format("retrieving user with ID[%d] from repository", id);
 		
@@ -55,6 +57,7 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 	}
 
 	@Override
+	@Transactional
 	public List<UserInterface> fetchAll() {
 		String message = "retrieving all users from repository";
 		

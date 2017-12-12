@@ -19,6 +19,7 @@ public class GameService extends AbstractService<GameInterface> implements GameS
 	private GameRepositoryInterface repository;
 
 	@Override
+	@Transactional
 	public GameInterface fetchById(int id) {
 		String message = String.format("retrieving Game with ID[%d] from repository", id);
 		
@@ -28,6 +29,7 @@ public class GameService extends AbstractService<GameInterface> implements GameS
 	}
 
 	@Override
+	@Transactional
 	public List<GameInterface> fetchAll() {
 		String message = "retrieving all Games from repository";
 		

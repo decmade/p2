@@ -19,6 +19,7 @@ public class UserRoleService extends AbstractService<UserRoleInterface> implemen
 	protected UserRoleRepositoryInterface repository;
 	
 	@Override
+	@Transactional
 	public UserRoleInterface fetchById(int id) {
 		String message = String.format("retrieving UserRole with ID[%d] from repository", id);
 		
@@ -28,6 +29,7 @@ public class UserRoleService extends AbstractService<UserRoleInterface> implemen
 	}
 
 	@Override
+	@Transactional
 	public List<UserRoleInterface> fetchAll() {
 		String message = "retrieving all UserRole objects from repository";
 				
