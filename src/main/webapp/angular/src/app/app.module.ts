@@ -42,7 +42,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
   declarations: [
     // pipes
     UserDisplayNamePipe,
-    TelephonePipe
+    TelephonePipe,
 
     // components
     AppComponent,
@@ -60,7 +60,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
     HockeyComponent,
     GolfComponent,
     BasketballComponent,
-    TennisComponent
+    TennisComponent,
   ],
   imports: [
     BrowserModule,
