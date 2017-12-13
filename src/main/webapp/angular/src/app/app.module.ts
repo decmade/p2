@@ -36,6 +36,7 @@ import { HockeyComponent } from './components/hockey/hockey.component';
 import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent} from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
+import { FutureComponent } from './components/future/future.component';
 
 
 
@@ -64,6 +65,8 @@ import { TennisComponent } from './components/tennis/tennis.component';
     GolfComponent,
     BasketballComponent,
     TennisComponent,
+    FutureComponent
+    
   ],
   imports: [
     BrowserModule,
