@@ -66,7 +66,7 @@ public class SportsRadarImportProcessor extends AbstractIoObject {
 					game.setSportsRadarId(srGame.id);	
 					game.setSport( (Sport)sport);
 					game.setAttendance( srGame.attendance);
-					game.setScheduled( LocalDateTime.parse(srGame.scheduled, DateTimeFormatter.ISO_DATE_TIME) );
+					game.setScheduled( srGame.scheduled );
 					game.setNumber(srGame.number);		
 					game.setStatus(srGame.status);
 					

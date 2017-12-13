@@ -3,16 +3,21 @@ import { Team } from './Team';
 import { Venue } from './Venue';
 
 export class Game {
-    id: Number;
-    number: Number;
-    attendance: Number;
-    weather: String;
-    status: String;
+    id: number;
+    number: number;
+    attendance: number;
+    weather: string;
+    status: string;
     scheduled: Date;
     sport: Sport;
     homeTeam: Team;
     awayTeam: Team;
     venue: Venue;
-    homeScore: Number;
-    awayScore: Number;
+    homeScore: number;
+    homeSpread: number;
+    homeMoneyLine: number;
+    awayScore: number;
+    awaySpread: number;
+    awayMoneyLine: number;
+    total;
 }

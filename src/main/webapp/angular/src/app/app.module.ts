@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // PIPES
 import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
-import { UserCityStatePipe } from './pipes/user-city-state.pipe';
+import { CityStatePipe } from './pipes/city-state.pipe';
 import { TelephonePipe } from './pipes/telephone.pipe';
 
 // SERVICES
@@ -14,6 +14,8 @@ import { UserService } from './services/user.service';
 import { ZipCodeService } from './services/zip-code.service';
 import { ApiService } from './services/api.service';
 import { AlertService } from './services/alert.service';
+import { GameService } from './services/game.service';
+import { GoogleMapService} from './services/google-map.service';
 
 
 // ROUTING
@@ -58,7 +60,7 @@ import { FutureComponent } from './components/future/future.component';
     TransactionsComponent,
     TransactionTypeComponent,
     UserDetailComponent,
-    UserCityStatePipe,
+    CityStatePipe,
     BaseballComponent,
     SoccerComponent,
     HockeyComponent,
@@ -80,6 +82,8 @@ import { FutureComponent } from './components/future/future.component';
     ZipCodeService,
     ApiService,
     AlertService,
+    GameService,
+    GoogleMapService,
   ],
   bootstrap: [AppComponent]
 })
