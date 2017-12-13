@@ -14,12 +14,9 @@ import { UserService } from './services/user.service';
 import { ZipCodeService } from './services/zip-code.service';
 import { ApiService } from './services/api.service';
 import { AlertService } from './services/alert.service';
-<<<<<<< HEAD
 import { AccountService } from './services/account.service';
-=======
 import { GameService } from './services/game.service';
 import { GoogleMapService} from './services/google-map.service';
->>>>>>> origin/master
 
 
 // ROUTING
