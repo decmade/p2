@@ -13,6 +13,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { ZipCodeService } from './services/zip-code.service';
 import { ApiService } from './services/api.service';
+import { AlertService } from './services/alert.service';
 
 
 // ROUTING
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // VIEW COMPONENTS
 import { AppComponent } from './app.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
@@ -46,6 +48,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
 
     // components
     AppComponent,
+    AlertsComponent,
     MainNavigationComponent,
     HomePageComponent,
     SideNavigationComponent,
@@ -73,6 +76,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
     UserService,
     ZipCodeService,
     ApiService,
+    AlertService,
   ],
   bootstrap: [AppComponent]
 })
