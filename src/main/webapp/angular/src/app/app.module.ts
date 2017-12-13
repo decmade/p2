@@ -5,9 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 // PIPES
 import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
+import { UserCityStatePipe } from './pipes/user-city-state.pipe';
+import { TelephonePipe } from './pipes/telephone.pipe';
 
 // SERVICES
 import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+import { ZipCodeService } from './services/zip-code.service';
+import { ApiService } from './services/api.service';
 
 
 // ROUTING
@@ -22,6 +27,9 @@ import { FootballComponent } from './components/football/football.component';
 import { AccountComponent } from './accounts/accounts.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+
+
 
 
 
@@ -38,7 +46,10 @@ import { TransactionTypeComponent } from './transactions/transactiontype/transac
     FootballComponent,
     AccountComponent,
     TransactionsComponent,
-    TransactionTypeComponent
+    TransactionTypeComponent,
+    UserDetailComponent,
+    UserCityStatePipe,
+    TelephonePipe
   ],
   imports: [
     BrowserModule,
@@ -48,6 +59,9 @@ import { TransactionTypeComponent } from './transactions/transactiontype/transac
   ],
   providers: [
     AuthenticationService,
+    UserService,
+    ZipCodeService,
+    ApiService,
   ],
   bootstrap: [AppComponent]
 })
