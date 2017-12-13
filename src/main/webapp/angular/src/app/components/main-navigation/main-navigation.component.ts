@@ -16,9 +16,12 @@ import * as $ from 'jquery';
 // services
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
+import { AccountService } from '../../services/account.service';
 
 // entities
 import { User } from '../../entities/User';
+import { Account } from '../../entities/Account';
+
 
 
 @Component({
@@ -31,18 +34,21 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
   private router: Router;
   private form: LoginForm;
   private user: User;
+  private userAcc: Account;
 
   private currentUserSubscription: Subscription;
 
   // consumed services
   private authService: AuthenticationService;
   private userService: UserService;
+  private accService: AccountService;
 
-  constructor(router: Router, authService: AuthenticationService, userService: UserService) {
+  constructor(router: Router, authService: AuthenticationService, userService: UserService, accService: AccountService) {
       this.router = router;
 
       this.authService = authService;
       this.userService = userService;
+      this.accService = accService;
 
       this.form = new LoginForm();
       this.form.elementId = 'login-form';
@@ -85,6 +91,12 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
       this.userService.selectNewUser();
 
     }
+
+    public viewAccountBalance(): Number {
+        this.accService.viewBalance(this.user);
+        this.userAcc = this.user.account;
+        return this.userAcc.balance;
+      }
 
     private login(): void {
         if ( this.validateLoginForm(this.form) ) {

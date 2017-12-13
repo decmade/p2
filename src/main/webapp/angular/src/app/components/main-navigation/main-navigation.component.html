@@ -7,9 +7,7 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#main-navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <app-accounts></app-accounts>
-
+    
     <div class="navbar-collapse collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto bd-navbar-nav">
             <li class="nav-item" *ngFor="let route of getRoutes()">
@@ -21,8 +19,8 @@
             <ng-container *ngIf="user?.identity; then badge; else login"></ng-container>
         </span>
     </div>
-</nav>
 
+</nav>
 
 
 <!-- (if user exists) BUTTON FOR AUTHENTICATED USER -->
@@ -35,7 +33,7 @@
             {{ user | displayName }}
         </button>
         <div class="dropdown-menu">
-            <a href="/account" class="dropdown-item" (click)="onViewAccount()">View Account</a>
+            <div align="center">Account Balance: {{ user.account.balance | currency }}</div>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item" (click)="onLogout()">Sign Out</a>
         </div>

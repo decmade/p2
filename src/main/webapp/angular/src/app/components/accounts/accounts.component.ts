@@ -20,6 +20,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   currentUserSubscription: Subscription;
   user: User;
+  userAcc: Account;
   private authService: AuthenticationService;
   private accService: AccountService;
 
@@ -31,8 +32,10 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authService.getCurrentUser().subscribe( (user) => this.user = user );
   }
 
-  viewAccountBalance() {
+  viewAccountBalance(): Number {
     this.accService.viewBalance(this.user);
+    this.userAcc = this.user.account;
+    return this.userAcc.balance;
   }
 
 ngOnDestroy(): void {

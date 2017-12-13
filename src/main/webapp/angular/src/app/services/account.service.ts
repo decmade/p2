@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 // rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+// service
+import { ApiService } from './api.service';
 // entites
 import { Account } from '../entities/Account';
 import { User } from '../entities/User';
@@ -13,13 +15,12 @@ export class AccountService {
 
     private http: HttpClient;
     private currentAccountSubject: BehaviorSubject<Account>;
-    private serviceUrl: string;
+    private apiService: ApiService;
     private acc: Account;
 
     constructor(httpClient: HttpClient) {
         this.http = httpClient;
 
-        this.serviceUrl = 'acc';
         this.currentAccountSubject = new BehaviorSubject(null);
     }
 
@@ -28,17 +29,11 @@ export class AccountService {
     }
 
     public viewBalance(user: User) {
-        const url = this.getUrl();
+        const url = 'http://localhost:8080/bet/accounts/' + user.account.id;
 
-        this.http.get<Account>(url + '1').subscribe( (account) => {
+        this.http.get<Account>(url).subscribe( (account) => {
             this.currentAccountSubject.next(account);
         });
-    }
-    private getUrl(): string {
-        return [
-            'http://localhost:8080/bet',
-            this.serviceUrl
-        ].join('/');
     }
 
 }
