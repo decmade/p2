@@ -77,9 +77,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   public onCancel(): void {
     const modal = this.modalElement.nativeElement;
+    const form = this.userForm.nativeElement;
 
     this.userService.selectNewUser();
-
+    $(form).removeClass('was-validated');
     $(modal).modal('hide');
   }
 
@@ -96,7 +97,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
       }
   }
-
 
   private validateForm(): boolean {
       const form = this.userForm.nativeElement;
