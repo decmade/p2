@@ -41,9 +41,9 @@
 <!-- (else) LOGIN FORM WHEN NO AUTHENTICATED USER -->
 <ng-template #login>
     <form id="login-form" class="form-inline">
-        <button type="button" class="btn btn-success m-1">Open Account</button>
+        <button type="button" class="btn btn-success m-1" (click)="onRegister()">Open Account</button>
         <div class="my-1 ml-1 mr-2"><span class="fa fa-user-o fa-lg text-dark"></span></div>
-        <input type="text" id="identity" placeholder="username" class="form-control m-1" name="identity" [(ngModel)]="form.identity" (focus)="onLoginFormFocus()" (blur)="onLoginFormBlur()"/>
+        <input type="text" id="identity" placeholder="user@email.com" class="form-control m-1" name="identity" [(ngModel)]="form.identity" (focus)="onLoginFormFocus()" (blur)="onLoginFormBlur()"/>
         <input type="password" id="password" placeholder="password" class="form-control m-1" name="password" [(ngModel)]="form.password" (focus)="onLoginFormFocus()" (blur)="onLoginFormBlur()"/>
         <button type="button" class="btn btn-outline-dark m-1" (click)="onLogin()">Login</button>
     </form>

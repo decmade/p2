@@ -15,6 +15,7 @@ import * as $ from 'jquery';
 
 // services
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 
 // entities
 import { User } from '../../entities/User';
@@ -32,11 +33,16 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
   private user: User;
 
   private currentUserSubscription: Subscription;
-  private authService: AuthenticationService;
 
-  constructor(router: Router, authService: AuthenticationService) {
+  // consumed services
+  private authService: AuthenticationService;
+  private userService: UserService;
+
+  constructor(router: Router, authService: AuthenticationService, userService: UserService) {
       this.router = router;
+
       this.authService = authService;
+      this.userService = userService;
 
       this.form = new LoginForm();
       this.form.elementId = 'login-form';
@@ -73,6 +79,11 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
 
         element.find('.fa-user').removeClass('fa-user').addClass('fa-user-o');
         element.find('.btn-dark').removeClass('btn-dark').addClass('btn-outline-dark');
+    }
+
+    public onRegister(): void {
+      this.userService.selectNewUser();
+
     }
 
     private login(): void {

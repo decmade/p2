@@ -5,9 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 // PIPES
 import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
+import { UserCityStatePipe } from './pipes/user-city-state.pipe';
+import { TelephonePipe } from './pipes/telephone.pipe';
 
 // SERVICES
 import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+import { ZipCodeService } from './services/zip-code.service';
+import { ApiService } from './services/api.service';
 
 
 // ROUTING
@@ -23,6 +28,7 @@ import { BaseballComponent } from './components/baseball/baseball.component';
 import { AccountComponent } from './accounts/accounts.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { SoccerComponent } from './components/soccer/soccer.component';
 import { HockeyComponent } from './components/hockey/hockey.component';
 import { GolfComponent } from './components/golf/golf.component';
@@ -36,6 +42,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
   declarations: [
     // pipes
     UserDisplayNamePipe,
+    TelephonePipe,
 
     // components
     AppComponent,
@@ -46,12 +53,14 @@ import { TennisComponent } from './components/tennis/tennis.component';
     AccountComponent,
     TransactionsComponent,
     TransactionTypeComponent,
+    UserDetailComponent,
+    UserCityStatePipe,
     BaseballComponent,
     SoccerComponent,
     HockeyComponent,
     GolfComponent,
     BasketballComponent,
-    TennisComponent
+    TennisComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +70,9 @@ import { TennisComponent } from './components/tennis/tennis.component';
   ],
   providers: [
     AuthenticationService,
+    UserService,
+    ZipCodeService,
+    ApiService,
   ],
   bootstrap: [AppComponent]
 })
