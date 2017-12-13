@@ -29,8 +29,10 @@
 
 	
 	<bean id="DatabasePool" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="org.sqlite.JDBC" />
-		<property name="url" value="jdbc:sqlite:data/app.db" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://revature-cluster-1.cluster-cue7hrs2nuxl.us-east-1.rds.amazonaws.com:3306/bet" />
+		<property name="username" value="sa" />
+		<property name="password" value="hibernate5" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -39,11 +41,12 @@
 		<property name="packagesToScan" value="com.cloudgames.entities" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">com.enigmabridge.hibernate.dialect.SQLiteDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.pool_size">5</prop>
 			</props>
 		</property>
 	</bean>

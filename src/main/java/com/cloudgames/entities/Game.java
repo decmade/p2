@@ -1,10 +1,9 @@
 package com.cloudgames.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.GameInterface;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="games")
@@ -15,7 +14,13 @@ public class Game extends AbstractSportsRadarEntity implements GameInterface {
 	private String weather;
 	@Column(length = 15)
 	private String status;
-	private LocalDateTime scheduled;
+	
+	private String scheduled;
+	private int homeSpread;
+	private int awaySpread;
+	private double total;
+	private int homeMoneyLine;
+	private int awayMoneyLine;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="sport_id")
@@ -79,12 +84,12 @@ public class Game extends AbstractSportsRadarEntity implements GameInterface {
 	}
 
 	@Override
-	public LocalDateTime getScheduled() {
+	public String getScheduled() {
 		return scheduled;
 	}
 
 	@Override
-	public void setScheduled(LocalDateTime scheduled) {
+	public void setScheduled(String scheduled) {
 		this.scheduled = scheduled;
 	}
 
@@ -147,6 +152,58 @@ public class Game extends AbstractSportsRadarEntity implements GameInterface {
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
+
+	@Override
+	public int getHomeSpread() {
+		return homeSpread;
+	}
+
+	@Override
+	public void setHomeSpread(int homeSpread) {
+		this.homeSpread = homeSpread;
+	}
+
+	@Override
+	public int getAwaySpread() {
+		return awaySpread;
+	}
+
+	@Override
+	public void setAwaySpread(int awaySpread) {
+		this.awaySpread = awaySpread;
+	}
+
+	@Override
+	public double getTotal() {
+		return total;
+	}
+
+	@Override
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	@Override
+	public int getHomeMoneyLine() {
+		return homeMoneyLine;
+	}
+
+	@Override
+	public void setHomeMoneyLine(int homeMoneyLine) {
+		this.homeMoneyLine = homeMoneyLine;
+	}
+
+	@Override
+	public int getAwayMoneyLine() {
+		return awayMoneyLine;
+	}
+
+	@Override
+	public void setAwayMoneyLine(int awayMoneyLine) {
+		this.awayMoneyLine = awayMoneyLine;
+	}
+	
+	
 
 	
 }

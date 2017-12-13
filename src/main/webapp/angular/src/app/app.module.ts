@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // PIPES
 import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
-import { UserCityStatePipe } from './pipes/user-city-state.pipe';
+import { CityStatePipe } from './pipes/city-state.pipe';
 import { TelephonePipe } from './pipes/telephone.pipe';
 
 // SERVICES
@@ -13,6 +13,9 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { ZipCodeService } from './services/zip-code.service';
 import { ApiService } from './services/api.service';
+import { AlertService } from './services/alert.service';
+import { GameService } from './services/game.service';
+import { GoogleMapService} from './services/google-map.service';
 
 
 // ROUTING
@@ -20,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // VIEW COMPONENTS
 import { AppComponent } from './app.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
@@ -46,6 +50,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
 
     // components
     AppComponent,
+    AlertsComponent,
     MainNavigationComponent,
     HomePageComponent,
     SideNavigationComponent,
@@ -54,7 +59,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
     TransactionsComponent,
     TransactionTypeComponent,
     UserDetailComponent,
-    UserCityStatePipe,
+    CityStatePipe,
     BaseballComponent,
     SoccerComponent,
     HockeyComponent,
@@ -73,6 +78,9 @@ import { TennisComponent } from './components/tennis/tennis.component';
     UserService,
     ZipCodeService,
     ApiService,
+    AlertService,
+    GameService,
+    GoogleMapService,
   ],
   bootstrap: [AppComponent]
 })
