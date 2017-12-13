@@ -84,11 +84,8 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
     public onRegister(): void {
       this.userService.selectNewUser();
 
-<<<<<<< HEAD
-=======
     }
 
->>>>>>> master
     private login(): void {
         if ( this.validateLoginForm(this.form) ) {
             this.authService.login(this.form);

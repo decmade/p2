@@ -2,22 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-//import { RouteGuard } from './guards/route.guard';
+// import { RouteGuard } from './guards/route.guard';
 
 // components ( for routes )
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FootballComponent } from './components/football/football.component';
-<<<<<<< HEAD
-import { AccountComponent } from './components/accounts/accounts.component';
-// import { HttpModule } from '@angular/http/src/http_module';
-=======
+// import { AccountComponent } from './components/accounts/accounts.component';
 import { BaseballComponent } from './components/baseball/baseball.component';
 import { SoccerComponent } from './components/soccer/soccer.component';
 import { HockeyComponent } from './components/hockey/hockey.component';
 import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent } from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
->>>>>>> master
 
 export const navigationRoutes: Routes = [
     // TOP NAV
@@ -29,14 +25,14 @@ export const navigationRoutes: Routes = [
             title: 'Home',
         },
     },
-    {
-        path: 'account',
-        component: AccountComponent,
-        data: {
-            type: 'top',
-            title: 'Account',
-        },
-    },
+    // {
+    //     path: 'account',
+    //     component: AccountComponent,
+    //     data: {
+    //         type: 'top',
+    //         title: 'Account',
+    //     },
+    // },
 
     // SIDE NAV
     {

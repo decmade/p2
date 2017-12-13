@@ -23,11 +23,16 @@ export class AccountComponent implements OnInit, OnDestroy {
   private authService: AuthenticationService;
   private accService: AccountService;
 
-  constructor(authService: AuthenticationService) {
+  constructor(authService: AuthenticationService, accService: AccountService) {
     this.authService = authService;
+    this.accService = accService;
   }
   ngOnInit(): void {
     this.currentUserSubscription = this.authService.getCurrentUser().subscribe( (user) => this.user = user );
+  }
+
+  viewAccountBalance() {
+    this.accService.viewBalance(this.user);
   }
 
 ngOnDestroy(): void {

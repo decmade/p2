@@ -27,7 +27,7 @@ export class AccountService {
         return this.currentAccountSubject.asObservable();
     }
 
-    public viewBalance() {
+    public viewBalance(user: User) {
         const url = this.getUrl();
 
         this.http.get<Account>(url + '1').subscribe( (account) => {
