@@ -50,7 +50,7 @@ public class SportsRadarController extends AbstractBasicController {
 	@GetMapping("football")
 	public SRScheduleResponse updateFootballSchedule() {
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:8080/bet/update/test";
+		String url = "http://api.sportradar.us/nfl-ot2/games/2017/REG/schedule.json?api_key=ac7eft6p9k3cs8a5ss9b63we";
 		SRScheduleResponse response = restTemplate.getForObject(url, SRScheduleResponse.class);
 		try {
 			this.srProcessor.process(response);

@@ -1,11 +1,11 @@
 import { Venue } from './Venue';
 
 export class Team {
-    id: Number;
-    name: String;
-    market: String;
-    alias: String;
-    city: String;
-    state: String;
+    id: number;
+    name: string;
+    market: string;
+    alias: string;
+    city: string;
+    state: string;
     venue: Venue;
 }

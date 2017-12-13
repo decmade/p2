@@ -1,6 +1,5 @@
 package com.cloudgames.entities.interfaces;
 
-import java.time.LocalDateTime;
 
 import com.cloudgames.entities.Sport;
 import com.cloudgames.entities.Team;
@@ -24,9 +23,9 @@ public interface GameInterface extends SportsRadarEntityInterface {
 
 	void setStatus(String status);
 
-	LocalDateTime getScheduled();
+	String getScheduled();
 
-	void setScheduled(LocalDateTime scheduled);
+	void setScheduled(String scheduled);
 
 	Sport getSport();
 
@@ -51,5 +50,25 @@ public interface GameInterface extends SportsRadarEntityInterface {
 	Venue getVenue();
 
 	void setVenue(Venue venue);
+
+	int getHomeSpread();
+
+	void setHomeSpread(int homeSpread);
+
+	int getAwaySpread();
+
+	void setAwaySpread(int awaySpread);
+
+	double getTotal();
+
+	void setTotal(double total);
+
+	int getHomeMoneyLine();
+
+	void setHomeMoneyLine(int homeMoneyLine);
+
+	int getAwayMoneyLine();
+
+	void setAwayMoneyLine(int awayMoneyLine);
 
 }

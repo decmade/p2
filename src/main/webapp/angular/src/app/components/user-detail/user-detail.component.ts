@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { FormsModule } from '@angular/forms';
 
 // pipes
-import { UserCityStatePipe } from '../../pipes/user-city-state.pipe';
+import { CityStatePipe } from '../../pipes/city-state.pipe';
 
 // rxjs
 import { Subscription } from 'rxjs/Subscription';
@@ -24,7 +24,7 @@ import * as any from 'jquery';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-    private cityStatePipe: UserCityStatePipe;
+    private cityStatePipe: CityStatePipe;
 
     private userService: UserService;
     private zipCodeService: ZipCodeService;
@@ -43,7 +43,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       this.zipCodeService = zipCodeService;
 
       this.user = null;
-      this.cityStatePipe = new UserCityStatePipe();
+      this.cityStatePipe = new CityStatePipe();
   }
 
   public onZipKeyUp(): void {
