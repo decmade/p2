@@ -41,9 +41,6 @@ import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent} from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
 
-
-
-
 @NgModule({
   declarations: [
     // pipes
