@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 //import { RouteGuard } from './guards/route.guard';
 
 // components ( for routes )
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FootballComponent } from './components/football/football.component';
+import { AccountComponent } from './components/accounts/accounts.component';
+// import { HttpModule } from '@angular/http/src/http_module';
 
 export const navigationRoutes: Routes = [
     // TOP NAV
@@ -15,6 +18,14 @@ export const navigationRoutes: Routes = [
         data: {
             type: 'top',
             title: 'Home',
+        },
+    },
+    {
+        path: 'account',
+        component: AccountComponent,
+        data: {
+            type: 'top',
+            title: 'Account',
         },
     },
 
@@ -40,6 +51,7 @@ export const navigationRoutes: Routes = [
     exports: [ RouterModule ],
     imports: [
         RouterModule.forRoot( navigationRoutes ),
+        HttpModule
     ],
 })
 

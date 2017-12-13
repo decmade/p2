@@ -80,7 +80,6 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
       ].join(' ');
     }
 
-
     private login(): void {
         if ( this.validateLoginForm(this.form) ) {
             this.authService.login(this.form);

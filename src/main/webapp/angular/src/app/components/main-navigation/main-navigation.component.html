@@ -8,6 +8,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <app-accounts></app-accounts>
+
     <div class="navbar-collapse collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto bd-navbar-nav">
             <li class="nav-item" *ngFor="let route of getRoutes()">
@@ -33,6 +35,8 @@
             {{ getUserDisplayName(user) }}
         </button>
         <div class="dropdown-menu">
+            <a href="/account" class="dropdown-item" (click)="onViewAccount()">View Account</a>
+            <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item" (click)="onLogout()">Sign Out</a>
         </div>
     </div>
