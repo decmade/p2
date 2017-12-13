@@ -24,11 +24,16 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { FootballComponent } from './components/football/football.component';
+import { BaseballComponent } from './components/baseball/baseball.component';
 import { AccountComponent } from './accounts/accounts.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
-
+import { SoccerComponent } from './components/soccer/soccer.component';
+import { HockeyComponent } from './components/hockey/hockey.component';
+import { GolfComponent } from './components/golf/golf.component';
+import { BasketballComponent} from './components/basketball/basketball.component';
+import { TennisComponent } from './components/tennis/tennis.component';
 
 
 
@@ -37,6 +42,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
   declarations: [
     // pipes
     UserDisplayNamePipe,
+    TelephonePipe
 
     // components
     AppComponent,
@@ -49,7 +55,12 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     TransactionTypeComponent,
     UserDetailComponent,
     UserCityStatePipe,
-    TelephonePipe
+    BaseballComponent,
+    SoccerComponent,
+    HockeyComponent,
+    GolfComponent,
+    BasketballComponent,
+    TennisComponent
   ],
   imports: [
     BrowserModule,
