@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 // components ( for routes )
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FootballComponent } from './components/football/football.component';
-// import { AccountComponent } from './components/accounts/accounts.component';
+import { AccountComponent } from './components/accounts/accounts.component';
 import { BaseballComponent } from './components/baseball/baseball.component';
 import { SoccerComponent } from './components/soccer/soccer.component';
 import { HockeyComponent } from './components/hockey/hockey.component';
@@ -25,14 +25,14 @@ export const navigationRoutes: Routes = [
             title: 'Home',
         },
     },
-    // {
-    //     path: 'account',
-    //     component: AccountComponent,
-    //     data: {
-    //         type: 'top',
-    //         title: 'Account',
-    //     },
-    // },
+    {
+        path: 'account',
+        component: AccountComponent,
+        data: {
+            type: 'top',
+            title: 'Account',
+        },
+    },
 
     // SIDE NAV
     {
