@@ -7,9 +7,11 @@ import { Observable } from 'rxjs/Observable';
 
 // entities
 import { User } from '../entities/User';
+import { AlertMessage } from '../entities/AlertMessage';
 
 // services
 import { ApiService } from './api.service';
+import { AlertService } from './alert.service';
 
 
 @Injectable()
@@ -17,14 +19,16 @@ export class UserService {
 
     private http: HttpClient;
     private apiService: ApiService;
+    private alertService: AlertService;
 
     private selectedUserSubject: Subject<User>;
     private savedUserSubject: Subject<User>;
     private api: string;
 
-    constructor(httpClient: HttpClient, apiService: ApiService) {
+    constructor(httpClient: HttpClient, apiService: ApiService, alertService: AlertService) {
         this.http = httpClient;
         this.apiService = apiService;
+        this.alertService = alertService;
 
         this.api = 'users';
         this.selectedUserSubject = new Subject();
@@ -59,6 +63,11 @@ export class UserService {
         this.http.post<User>(url, data, {
             withCredentials: true,
             headers: { 'Content-Type': 'application/json' }
-        }).subscribe( (savedUser) => this.savedUserSubject.next(savedUser) );
+        }).subscribe( (savedUser) => {
+            this.savedUserSubject.next(savedUser);
+            this.alertService.push('user registration successful', AlertMessage.CATEGORY_SUCCESS);
+        }, (error) => {
+            this.alertService.push('user registration failed', AlertMessage.CATEGORY_ERROR);
+        });
     }
 }
