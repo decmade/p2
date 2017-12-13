@@ -8,11 +8,14 @@ import { Subscription } from 'rxjs/Subscription';
 // visual imports
 import * as $ from 'jquery';
 
+
+
 // routes
 // import { navigationRoutes } from '../../app-routing.module';
 
 // services
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 
 // entities
 import { User } from '../../entities/User';
@@ -30,11 +33,16 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
   private user: User;
 
   private currentUserSubscription: Subscription;
-  private authService: AuthenticationService;
 
-  constructor(router: Router, authService: AuthenticationService) {
+  // consumed services
+  private authService: AuthenticationService;
+  private userService: UserService;
+
+  constructor(router: Router, authService: AuthenticationService, userService: UserService) {
       this.router = router;
+
       this.authService = authService;
+      this.userService = userService;
 
       this.form = new LoginForm();
       this.form.elementId = 'login-form';
@@ -73,13 +81,14 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
         element.find('.btn-dark').removeClass('btn-dark').addClass('btn-outline-dark');
     }
 
-    public getUserDisplayName(user: User): string {
-      return [
-        user.firstName,
-        user.lastName,
-      ].join(' ');
+    public onRegister(): void {
+      this.userService.selectNewUser();
+
+<<<<<<< HEAD
+=======
     }
 
+>>>>>>> master
     private login(): void {
         if ( this.validateLoginForm(this.form) ) {
             this.authService.login(this.form);

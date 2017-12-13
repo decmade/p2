@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  targetPrefix: '/bet/',
+  apiPrefix: 'http://localhost:8080/bet',
 };

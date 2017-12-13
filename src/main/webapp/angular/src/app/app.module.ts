@@ -3,8 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// PIPES
+import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
+import { UserCityStatePipe } from './pipes/user-city-state.pipe';
+import { TelephonePipe } from './pipes/telephone.pipe';
+
 // SERVICES
 import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+import { ZipCodeService } from './services/zip-code.service';
+import { ApiService } from './services/api.service';
+import { AlertService } from './services/alert.service';
 
 
 // ROUTING
@@ -12,24 +21,41 @@ import { AppRoutingModule } from './app-routing.module';
 
 // VIEW COMPONENTS
 import { AppComponent } from './app.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { FootballComponent } from './components/football/football.component';
+<<<<<<< HEAD
 
 import { AccountComponent } from './components/accounts/accounts.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TransactionTypeComponent } from './components/transactions/transactiontype/transactiontype.component';
+=======
+import { BaseballComponent } from './components/baseball/baseball.component';
+import { AccountComponent } from './accounts/accounts.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { SoccerComponent } from './components/soccer/soccer.component';
+import { HockeyComponent } from './components/hockey/hockey.component';
+import { GolfComponent } from './components/golf/golf.component';
+import { BasketballComponent} from './components/basketball/basketball.component';
+import { TennisComponent } from './components/tennis/tennis.component';
+
+>>>>>>> master
 
 
 
 @NgModule({
   declarations: [
     // pipes
-
+    UserDisplayNamePipe,
+    TelephonePipe,
 
     // components
     AppComponent,
+    AlertsComponent,
     MainNavigationComponent,
     HomePageComponent,
     SideNavigationComponent,
@@ -40,7 +66,15 @@ import { TransactionTypeComponent } from './components/transactions/transactiont
     AppComponent,
     AccountComponent,
     TransactionsComponent,
-    TransactionTypeComponent
+    TransactionTypeComponent,
+    UserDetailComponent,
+    UserCityStatePipe,
+    BaseballComponent,
+    SoccerComponent,
+    HockeyComponent,
+    GolfComponent,
+    BasketballComponent,
+    TennisComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +84,10 @@ import { TransactionTypeComponent } from './components/transactions/transactiont
   ],
   providers: [
     AuthenticationService,
+    UserService,
+    ZipCodeService,
+    ApiService,
+    AlertService,
   ],
   bootstrap: [AppComponent]
 })
