@@ -14,6 +14,7 @@ import { UserService } from './services/user.service';
 import { ZipCodeService } from './services/zip-code.service';
 import { ApiService } from './services/api.service';
 import { AlertService } from './services/alert.service';
+import { AccountService } from './services/account.service';
 import { GameService } from './services/game.service';
 import { GoogleMapService} from './services/google-map.service';
 
@@ -28,19 +29,18 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { FootballComponent } from './components/football/football.component';
+
 import { BaseballComponent } from './components/baseball/baseball.component';
-import { AccountComponent } from './accounts/accounts.component';
-import { TransactionsComponent } from './transactions/transactions.component';
-import { TransactionTypeComponent } from './transactions/transactiontype/transactiontype.component';
+import { AccountComponent } from './components/accounts/accounts.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { TransactionTypeComponent } from './components/transactions/transactiontype/transactiontype.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { SoccerComponent } from './components/soccer/soccer.component';
 import { HockeyComponent } from './components/hockey/hockey.component';
 import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent} from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
-
-
-
+import { GameDetailComponent } from './components/game-detail/game-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +55,10 @@ import { TennisComponent } from './components/tennis/tennis.component';
     HomePageComponent,
     SideNavigationComponent,
     FootballComponent,
+
+    // pipes
+
+    AppComponent,
     AccountComponent,
     TransactionsComponent,
     TransactionTypeComponent,
@@ -66,6 +70,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
     GolfComponent,
     BasketballComponent,
     TennisComponent,
+    GameDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +84,7 @@ import { TennisComponent } from './components/tennis/tennis.component';
     ZipCodeService,
     ApiService,
     AlertService,
+    AccountService,
     GameService,
     GoogleMapService,
   ],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionType } from '../../entities/TransactionType';
+import { TransactionType } from '../../../entities/TransactionType';
 
 @Component({
   selector: 'app-transaction-type',

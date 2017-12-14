@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
-//import { RouteGuard } from './guards/route.guard';
+// import { RouteGuard } from './guards/route.guard';
 
 // components ( for routes )
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -107,6 +108,7 @@ export const navigationRoutes: Routes = [
     exports: [ RouterModule ],
     imports: [
         RouterModule.forRoot( navigationRoutes ),
+        HttpModule
     ],
 })
 
