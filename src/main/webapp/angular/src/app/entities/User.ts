@@ -1,6 +1,6 @@
 import { UserStatus } from './UserStatus';
 import { UserRole } from './UserRole';
-
+import { Account } from './Account';
 export class User {
     id: Number;
     identity: string;
