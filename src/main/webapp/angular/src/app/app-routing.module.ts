@@ -13,7 +13,7 @@ import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent } from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
 import { FutureComponent } from './components/future/future.component';
-
+import { AboutComponent } from './components/about/about.component';
 export const navigationRoutes: Routes = [
     // TOP NAV
     {
@@ -106,7 +106,16 @@ export const navigationRoutes: Routes = [
         },
        
     },
-
+    {
+        path: 'about',
+        component: AboutComponent,
+        data: {
+            type: 'side',
+            title: 'How to Bet',
+            icon: 'assets/images/question.png',
+        },
+       
+    },
 
     // DEFAULT
     {

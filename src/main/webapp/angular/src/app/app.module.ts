@@ -39,7 +39,7 @@ import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent} from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
 import { FutureComponent } from './components/future/future.component';
-
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -67,7 +67,8 @@ import { FutureComponent } from './components/future/future.component';
     GolfComponent,
     BasketballComponent,
     TennisComponent,
-    FutureComponent
+    FutureComponent,
+    AboutComponent
     
   ],
   imports: [
