@@ -84,7 +84,7 @@ import { GameDetailComponent } from './components/game-detail/game-detail.compon
     ZipCodeService,
     ApiService,
     AlertService,
-    AccountService
+    AccountService,
     GameService,
     GoogleMapService,
   ],

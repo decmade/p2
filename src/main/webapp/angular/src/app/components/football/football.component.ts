@@ -8,6 +8,8 @@ import { GameService } from '../../services/game.service';
 // entites
 import { Game } from '../../entities/Game';
 
+import * as any from 'jquery';
+
 
 @Component({
   selector: 'app-football',
