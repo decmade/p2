@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
+import { Venue } from '../entities/Venue';
+
 @Injectable()
 export class GoogleMapService {
 
@@ -8,7 +10,7 @@ export class GoogleMapService {
 
   public getVenueMapUrl(venue: Venue): string {
       return this.getMapUrl([
-          venue.name.replace('\w', '+'),
+          venue.name,
           venue.address,
           venue.city,
           venue.state,

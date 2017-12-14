@@ -9,7 +9,6 @@ import com.cloudgames.acl.interfaces.AuthenticatorInterface;
 import com.cloudgames.acl.models.Credentials;
 import com.cloudgames.entities.interfaces.UserInterface;
 import com.cloudgames.io.Encryption;
-import com.cloudgames.repositories.interfaces.UserRepositoryInterface;
 import com.cloudgames.services.interfaces.UserServiceInterface;
 
 /**

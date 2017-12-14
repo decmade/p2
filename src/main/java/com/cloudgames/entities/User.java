@@ -1,7 +1,5 @@
 package com.cloudgames.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.UserInterface;
