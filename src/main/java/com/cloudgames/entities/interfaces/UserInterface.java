@@ -56,9 +56,9 @@ public interface UserInterface extends EntityInterface {
 	
 	public void setZip(String zip);
 
-	public LocalDateTime getDob();
+	public String getDob();
 
-	public void setDob(LocalDateTime dob);
+	public void setDob(String dob);
 
 	public String getPhone();
 

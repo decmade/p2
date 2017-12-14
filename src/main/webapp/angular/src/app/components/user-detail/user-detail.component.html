@@ -54,7 +54,7 @@
                 <label for="input-dob" class="col-form-label col-md-2">Birth Date:</label>
 
                 <div class="col-md-8">
-                  <input required #dobInput type="date" class="form-control" id="input-dob" name="input-dob" placeholder="mm/dd/yyyy" />
+                  <input required #dobInput type="date" class="form-control" id="input-dob" name="input-dob" [(ngModel)]="user.dob" placeholder="mm/dd/yyyy" />
                   <div class="invalid-feedback">Please enter you date of birth.</div>
                 </div>
               </div>
@@ -120,7 +120,7 @@
                 <label for="input-password-1" class="col-form-label col-md-3">Password:</label>
 
                 <div class="col-md-7">
-                  <input required type="password" class="form-control" id="input-password-1" name="input-password-1" [(ngModel)]="user.credential" />
+                  <input [required]="user.id === 0" type="password" class="form-control" id="input-password-1" name="input-password-1" [(ngModel)]="password" />
                   <div class="invalid-feedback">Please enter a password.</div>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                 <label for="input-password-2" class="col-form-label col-md-3">Confirm Password:</label>
 
                 <div class="col-md-7">
-                  <input required type="password" class="form-control" id="input-password-2" name="input-password-2" [(ngModel)]="passwordConfirmation" />
+                  <input [required]="user.id === 0" type="password" class="form-control" id="input-password-2" name="input-password-2" [(ngModel)]="passwordConfirmation" />
                   <div class="invalid-feedback">Please confirm your password.</div>
                 </div>
               </div>
@@ -141,7 +141,16 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-        <button type="submit" class="btn btn-success" (click)="onSubmit()">Register</button>
+        <ng-container *ngIf="user?.id === 0; then registerButton; else saveButton"></ng-container>
+
+            <ng-template #registerButton >
+              <button type="submit" class="btn btn-success" (click)="onSubmit()">Register</button>
+            </ng-template>
+
+            <ng-template #saveButton >
+              <button type="submit" class="btn btn-success" (click)="onSubmit()">Update</button>
+            </ng-template>
+        
       </div>
     </div>
   </div>
