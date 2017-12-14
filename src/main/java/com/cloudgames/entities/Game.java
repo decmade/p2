@@ -3,7 +3,6 @@ package com.cloudgames.entities;
 import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.GameInterface;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="games")

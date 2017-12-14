@@ -1,11 +1,11 @@
 export class Venue {
     id: Number;
-    name: String;
-    city: String;
-    state: String;
-    zip: String;
-    address: String;
+    name: string;
+    city: string;
+    state: string;
+    zip: string;
+    address: string;
     capacity: Number;
-    surface: String;
-    roofType: String;
+    surface: string;
+    roofType: string;
 }

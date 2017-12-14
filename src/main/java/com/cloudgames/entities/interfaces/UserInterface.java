@@ -1,7 +1,5 @@
 package com.cloudgames.entities.interfaces;
 
-import java.time.LocalDateTime;
-
 import com.cloudgames.entities.Account;
 import com.cloudgames.entities.UserRole;
 import com.cloudgames.entities.UserStatus;
