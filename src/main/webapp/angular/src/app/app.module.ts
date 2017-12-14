@@ -74,13 +74,10 @@ import { GameDetailComponent } from './components/game-detail/game-detail.compon
     GolfComponent,
     BasketballComponent,
     TennisComponent,
-<<<<<<< HEAD
     FutureComponent,
-    AboutComponent
+    AboutComponent,
     
-=======
     GameDetailComponent,
->>>>>>> 8d146823726445c327b02647d7b88d7ad1958012
   ],
   imports: [
     BrowserModule,
