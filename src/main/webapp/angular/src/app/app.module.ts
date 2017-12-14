@@ -82,12 +82,9 @@ import { TennisComponent } from './components/tennis/tennis.component';
     ZipCodeService,
     ApiService,
     AlertService,
-<<<<<<< HEAD
-    AccountService
-=======
+    AccountService,
     GameService,
     GoogleMapService,
->>>>>>> origin/master
   ],
   bootstrap: [AppComponent]
 })
