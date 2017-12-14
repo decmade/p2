@@ -53,7 +53,7 @@ public class User extends AbstractEntity implements UserInterface {
 	@Column(length=10)
 	private String zip;
 	
-	private LocalDateTime dob;
+	private String dob;
 	
 	@Column(length=10)
 	private String phone;
@@ -192,12 +192,12 @@ public class User extends AbstractEntity implements UserInterface {
 	}
 
 	@Override
-	public LocalDateTime getDob() {
+	public String getDob() {
 		return dob;
 	}
 
 	@Override
-	public void setDob(LocalDateTime dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

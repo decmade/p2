@@ -59,15 +59,38 @@ export class UserService {
     public save(user: User): void {
         const data = JSON.stringify(user);
         const url = this.apiService.getApiUrl(this.api);
+        const isNewUser = this.userIsNew(user);
 
         this.http.post<User>(url, data, {
             withCredentials: true,
             headers: { 'Content-Type': 'application/json' }
         }).subscribe( (savedUser) => {
             this.savedUserSubject.next(savedUser);
-            this.alertService.push('user registration successful', AlertMessage.CATEGORY_SUCCESS);
+
+            if ( isNewUser ) {
+                this.alertService.push('user registration successful', AlertMessage.CATEGORY_SUCCESS);
+            } else {
+                this.alertService.push('profile update successful', AlertMessage.CATEGORY_SUCCESS);
+            }
+            
         }, (error) => {
-            this.alertService.push('user registration failed', AlertMessage.CATEGORY_ERROR);
+            if ( isNewUser) {
+                this.alertService.push('user registration failed', AlertMessage.CATEGORY_ERROR);
+            } else {
+                this.alertService.push('profile update failed', AlertMessage.CATEGORY_ERROR);
+            }
+            console.log(data);
+            console.log(error);
         });
+    }
+
+    private userIsNew (user: User): boolean {
+        switch (true) {
+            case ( user.id === undefined ) :
+            case ( user.id === 0 ) :
+                return true;
+            default :
+                return false;
+        }
     }
 }

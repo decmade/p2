@@ -95,9 +95,13 @@ public class UserService extends AbstractService<UserInterface> implements UserS
 					if ( secret == null ) {
 						secret = this.encryption.generateKey();
 					}
+					
 					user.setCredential( this.encryption.encrypt(currentCredential, secret) );
 					user.setSecret(secret);
 				}
+			} else {
+				user.setCredential(previousCredential);
+				user.setSecret(secret);
 			}
 		} else {
 			message = "saving new User to the repository";			
