@@ -1,0 +1,99 @@
+<div #gameModal class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Game #{{ game?.number }} Odds</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center mb-2">{{ game?.scheduled | date:'MM/dd/yyyy hh:mm a' }}</h4>
+        
+        <h3 class="text-center">{{ game?.homeTeam.name }} ({{ game?.homeTeam.alias }})</h3>
+        <h2 class="text-center">@</h2>
+        <h3 class="text-center">{{ game?.awayTeam.name }} ({{ game?.awayTeam.alias }})</h3>
+        
+        <hr class="my-3" />
+
+        <form #gameForm="ngForm" name="user-form" *ngIf="game" >
+
+            <div class="form-group row">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-4 text-center font-weight-bold">
+                  Home Odds ({{ game.homeTeam.alias }})
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <div class="col-md-4 text-center font-weight-bold">
+                  Away Odds ({{ game.awayTeam.alias }})
+                </div>
+            </div>
+             <!-- SPREADS -->
+              <div class="form-group row">
+                <div class="col-md-1"></div>
+
+                <label for="input-home-spread" class="col-form-label col-md-2">Spread:</label>
+
+                <div class="col-md-2">
+                  <input required type="text" class="form-control text-center" id="input-home-spread" name="input-home-spread" [(ngModel)]="game.homeSpread"/>
+                  <div class="invalid-feedback">Enter home team spread amount.</div>
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <label for="input-away-spread" class="col-form-label col-md-2">Spread:</label>
+
+                <div class="col-md-2">
+                  <input required type="text" class="form-control text-center" id="input-away-spread" name="input-away-spread" [(ngModel)]="game.awaySpread" />
+                  <div class="invalid-feedback">Enter away team spread amount.</div>
+                </div>
+              </div>
+
+              <!-- MONEY LINES -->
+              <div class="form-group row">
+                <div class="col-md-1"></div>
+
+                <label for="input-home-money-line" class="col-form-label col-md-2">Money Line:</label>
+
+                <div class="col-md-2">
+                  <input required type="text" class="form-control text-center" id="input-home-money-line" name="input-home-money-line" [(ngModel)]="game.homeMoneyLine"/>
+                  <div class="invalid-feedback">Enter home team money line amount.</div>
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <label for="input-away-money-line" class="col-form-label col-md-2">Money Line:</label>
+
+                <div class="col-md-2">
+                  <input required type="text" class="form-control text-center" id="input-away-money-line" name="input-away-money-line" [(ngModel)]="game.awayMoneyLine" />
+                  <div class="invalid-feedback">Enter away team money line amount.</div>
+                </div>
+              </div>
+
+              <hr class="my-3" />
+
+              <!-- POINTS -->
+              <div class="form-group row">
+                <div class="col-md-3"></div>
+
+                <label for="input-total-points" class="col-form-label col-md-2">Total Points:</label>  
+                <div class="col-md-2">
+                  <input required type="text" class="form-control text-center" id="input-total-points" name = "input-total-points" [(ngModel)]="game.total" />
+                </div>
+
+                <div class="col-md-3"></div>
+
+              </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
