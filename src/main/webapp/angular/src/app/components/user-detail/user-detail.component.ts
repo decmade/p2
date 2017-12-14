@@ -32,6 +32,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private selectedUsersSubscription: Subscription;
     private savedUsersSubscription: Subscription;
     private user: User;
+    private userClone: User;
+    private password: string;
     private passwordConfirmation: string;
 
     @ViewChild('userModal') modalElement: ElementRef;
@@ -43,7 +45,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       this.zipCodeService = zipCodeService;
 
       this.user = null;
+      this.userClone = new User();
       this.cityStatePipe = new CityStatePipe();
+
+      this.password = '';
+      this.passwordConfirmation = '';
   }
 
   public onZipKeyUp(): void {
@@ -69,9 +75,15 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
       if ( this.validateForm() ) {
         this.user.identity = this.user.email;
+
+        if ( this.password.length > 0 ) {
+            this.user.credential = this.password;
+        }
+
         this.userService.save( this.user );
       } else {
-        this.passwordConfirmation = '';
+          this.password = '';
+          this.passwordConfirmation = '';
       }
   }
 
@@ -79,7 +91,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     const modal = this.modalElement.nativeElement;
     const form = this.userForm.nativeElement;
 
-    this.userService.selectNewUser();
+    this.unparkUser();
+
     $(form).removeClass('was-validated');
     $(modal).modal('hide');
   }
@@ -98,12 +111,18 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       }
   }
 
+  private clearForm(): void {
+    const form = this.userForm.nativeElement;
+
+    form.reset();
+  }
+
   private validateForm(): boolean {
       const form = this.userForm.nativeElement;
 
       switch (true) {
           case ( form.checkValidity() === false ):
-          case ( this.user.credential !== this.passwordConfirmation ) :
+          case ( this.password !== this.passwordConfirmation ) :
               $(form).addClass('was-validated');
               return false;
           default :
@@ -128,8 +147,17 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
       if ( user ) {
         this.user = user;
+        this.parkUser();
         $(this.modalElement.nativeElement).modal('show');
       }
+  }
+
+  private parkUser(): void {
+      Object.assign(this.userClone, this.user);
+  }
+
+  private unparkUser(): void {
+      Object.assign(this.user, this.userClone);
   }
 
   ngOnInit(): void {
