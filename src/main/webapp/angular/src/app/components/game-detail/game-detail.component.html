@@ -10,8 +10,8 @@
       <div class="modal-body">
         <h4 class="text-center mb-2">{{ game?.scheduled | date:'MM/dd/yyyy hh:mm a' }}</h4>
         
-        <h3 class="text-center">{{ game?.homeTeam.name }} ({{ game?.homeTeam.alias }})</h3>
-        <h2 class="text-center">@</h2>
+        <h3 class="text-center font-weight-bold">{{ game?.homeTeam.name }} ({{ game?.homeTeam.alias }})</h3>
+        <h2 class="text-center">- vs -</h2>
         <h3 class="text-center">{{ game?.awayTeam.name }} ({{ game?.awayTeam.alias }})</h3>
         
         <hr class="my-3" />

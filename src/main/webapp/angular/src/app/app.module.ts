@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserDisplayNamePipe } from './pipes/user-display-name.pipe';
 import { CityStatePipe } from './pipes/city-state.pipe';
 import { TelephonePipe } from './pipes/telephone.pipe';
+import { AccountingNumberPipe } from './pipes/accounting-number.pipe';
 
 // SERVICES
 import { AuthenticationService } from './services/authentication.service';
@@ -41,12 +42,15 @@ import { GolfComponent } from './components/golf/golf.component';
 import { BasketballComponent} from './components/basketball/basketball.component';
 import { TennisComponent } from './components/tennis/tennis.component';
 import { GameDetailComponent } from './components/game-detail/game-detail.component';
+import { StyledNumberComponent } from './components/styled-number/styled-number.component';
+
 
 @NgModule({
   declarations: [
     // pipes
     UserDisplayNamePipe,
     TelephonePipe,
+    AccountingNumberPipe,
 
     // components
     AppComponent,
@@ -55,10 +59,6 @@ import { GameDetailComponent } from './components/game-detail/game-detail.compon
     HomePageComponent,
     SideNavigationComponent,
     FootballComponent,
-
-    // pipes
-
-    AppComponent,
     AccountComponent,
     TransactionsComponent,
     TransactionTypeComponent,
@@ -71,6 +71,8 @@ import { GameDetailComponent } from './components/game-detail/game-detail.compon
     BasketballComponent,
     TennisComponent,
     GameDetailComponent,
+    StyledNumberComponent,
+
   ],
   imports: [
     BrowserModule,

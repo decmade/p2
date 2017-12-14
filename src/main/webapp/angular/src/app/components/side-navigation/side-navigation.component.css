@@ -1,11 +1,15 @@
 
+.side-nav {
+    border-top: 2px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
 .side-nav a img {
     max-width: 1.0em;
     display: inline;
 }
 
 .side-nav a, .side-nav a:visited {
-    border-top:1px solid rgb(0, 0, 0);
     border-bottom:1px solid rgb(0, 0, 0);
     color: rgb(200, 200, 200);
     line-height: 3.00em;

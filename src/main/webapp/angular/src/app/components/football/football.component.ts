@@ -4,9 +4,11 @@ import { Subscription } from 'rxjs/Subscription';
 
 // service
 import { GameService } from '../../services/game.service';
+import { GoogleMapService } from '../../services/google-map.service';
 
 // entites
 import { Game } from '../../entities/Game';
+import { Venue } from '../../entities/Venue';
 
 import * as any from 'jquery';
 
@@ -19,12 +21,14 @@ import * as any from 'jquery';
 export class FootballComponent implements OnInit, OnDestroy {
 
     private gameService: GameService;
+    private mapService: GoogleMapService;
     private gameListSubscription: Subscription;
 
     private games: Game[];
 
-    constructor(gameService: GameService) {
+    constructor(gameService: GameService, googleMapService: GoogleMapService ) {
         this.gameService = gameService;
+        this.mapService = googleMapService;
     }
 
     public getScheduledGames(): Game[] {
@@ -33,6 +37,10 @@ export class FootballComponent implements OnInit, OnDestroy {
 
     public onEditClick(game: Game): void {
         this.gameService.setSelectedGame(game);
+    }
+
+    public getMapUrl(venue: Venue): string {
+        return this.mapService.getVenueMapUrl(venue);
     }
 
     private setGames( games: Game[] ) {

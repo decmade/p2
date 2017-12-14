@@ -35,16 +35,20 @@
         <div class="dropdown-menu">
 
             <ng-container *ngIf="user.account">
-                <span class="dropdown-item">
+                <h1 class="dropdown-header font-weight-bold text-success">
                     <span class="fa fa-money mr-1"></span>
                     {{ user.account.balance | currency }}
-                </span>
-                <hr class="my-2" />
+                </h1>
+                <div class="dropdown-divider"></div>
             </ng-container>
 
-            <a href="#" class="dropdown-item" (click)="onProfile()">My Profile</a>
+            <a href="#" class="dropdown-item" (click)="onProfile()">
+                <span class="fa fa-user mr-2"></span>My Profile
+            </a>
 
-            <a href="#" class="dropdown-item" (click)="onLogout()">Sign Out</a>
+            <a href="#" class="dropdown-item" (click)="onLogout()">
+                <span class="fa fa-sign-out mr-2"></span>Sign Out
+            </a>
         </div>
     </div>
 </ng-template>
