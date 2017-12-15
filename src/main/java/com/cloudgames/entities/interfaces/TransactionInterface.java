@@ -1,6 +1,5 @@
 package com.cloudgames.entities.interfaces;
 
-import com.cloudgames.entities.Account;
 import com.cloudgames.entities.TransactionType;
 
 public interface TransactionInterface extends EntityInterface{
@@ -9,11 +8,11 @@ public interface TransactionInterface extends EntityInterface{
 	
 	public void setAmount(double amount);
 	
-	public Account getAcc();
+	public TransactionType getType();
 	
-	public void setAcc(Account acc);
-	
-	public TransactionType getTransactionType();
-	
-	public void setTransactionType(TransactionType transactionType);
+	public void setType(TransactionType transactionType);
+
+	String getCreated();
+
+	void setCreated(String created);
 }

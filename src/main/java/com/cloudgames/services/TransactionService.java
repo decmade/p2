@@ -1,5 +1,7 @@
 package com.cloudgames.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,11 @@ public class TransactionService extends AbstractService<TransactionInterface> im
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TransactionInterface save(TransactionInterface trans) {
 		log.debug("saving transaction wth ID: " + trans.getId() + " to repository");
+		
+		if ( trans.getId() == 0 ) {
+			trans.setCreated( LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) );
+		}
+		
 		this.repository.save(trans);
 		
 		return trans;

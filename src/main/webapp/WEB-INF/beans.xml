@@ -30,7 +30,7 @@
 	
 	<bean id="DatabasePool" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://revature-cluster-1.cluster-cue7hrs2nuxl.us-east-1.rds.amazonaws.com:3306/bet" />
+		<property name="url" value="jdbc:mysql://training-revature.cue7hrs2nuxl.us-east-1.rds.amazonaws.com:3306/bet" />
 		<property name="username" value="sa" />
 		<property name="password" value="hibernate5" />
 	</bean>

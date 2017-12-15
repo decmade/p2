@@ -56,7 +56,7 @@ public class User extends AbstractEntity implements UserInterface {
 	@Column(length=10)
 	private String phone;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="account_id")
 	private Account account;
 	

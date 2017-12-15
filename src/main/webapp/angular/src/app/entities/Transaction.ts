@@ -1,4 +1,8 @@
+import { TransactionType } from './TransactionType';
+
 export class Transaction {
-    id: Number;
-    balance: Number;
+    id: number;
+    amount: number;
+    created: Date;
+    type: TransactionType;
   }

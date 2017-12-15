@@ -5,12 +5,15 @@ import { Subscription } from 'rxjs/Subscription';
 // service
 import { GameService } from '../../services/game.service';
 import { GoogleMapService } from '../../services/google-map.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 // entites
 import { Game } from '../../entities/Game';
 import { Venue } from '../../entities/Venue';
+import { User } from '../../entities/User';
 
 import * as any from 'jquery';
+
 
 
 @Component({
@@ -22,13 +25,18 @@ export class FootballComponent implements OnInit, OnDestroy {
 
     private gameService: GameService;
     private mapService: GoogleMapService;
+    private authService: AuthenticationService;
+
     private gameListSubscription: Subscription;
+    private userSubscription: Subscription;
 
     private games: Game[];
+    private user: User;
 
-    constructor(gameService: GameService, googleMapService: GoogleMapService ) {
+    constructor(gameService: GameService, googleMapService: GoogleMapService, authService: AuthenticationService ) {
         this.gameService = gameService;
         this.mapService = googleMapService;
+        this.authService = authService;
     }
 
     public getScheduledGames(): Game[] {
@@ -65,10 +73,15 @@ export class FootballComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.gameListSubscription = this.gameService.getGameList()
             .subscribe( (games) => this.setGames(games) );
+        
+        this.userSubscription = this.authService.getCurrentUser()
+            .subscribe( (user) => this.user = user );
     }
 
     ngOnDestroy(): void {
         this.gameListSubscription.unsubscribe();
+
+        this.userSubscription.unsubscribe();
     }
 
 }

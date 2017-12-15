@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppRoutingModule } from '../../app-routing.module';
 
+
 @Component({
   selector: 'app-side-navigation',
   templateUrl: './side-navigation.component.html',
@@ -8,13 +9,14 @@ import { AppRoutingModule } from '../../app-routing.module';
 })
 
 export class SideNavigationComponent implements OnInit {
+  private routingModule: AppRoutingModule;
 
-  constructor() {
-
+  constructor(routingModule: AppRoutingModule) {
+    this.routingModule = routingModule;
   }
 
   public getRoutes() {
-      return AppRoutingModule.getSideNavigation();
+      return this.routingModule.getSideNavigation();
   }
 
   ngOnInit() {

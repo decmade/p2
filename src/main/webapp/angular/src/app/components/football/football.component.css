@@ -2,3 +2,8 @@
     background-color: rgba( 255, 255, 255, 0.75);
     color: rgb(30, 39, 55);
 }
+
+.display-4 img {
+    max-height: 1.00em;
+    max-width: 1.00em;
+}

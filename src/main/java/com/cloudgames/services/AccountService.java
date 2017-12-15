@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.cloudgames.entities.User;
 import com.cloudgames.entities.interfaces.AccountInterface;
+import com.cloudgames.entities.interfaces.TransactionInterface;
 import com.cloudgames.repositories.interfaces.AccountRepositoryInterface;
+import com.cloudgames.repositories.interfaces.TransactionRepositoryInterface;
 import com.cloudgames.services.interfaces.AccountServiceInterface;
 
 @Service("account-service")
@@ -46,6 +48,7 @@ public class AccountService extends AbstractService<AccountInterface> implements
 	@Transactional(propagation = Propagation.REQUIRED)
 	public AccountInterface save(AccountInterface acc) {
 		log.debug("saving account wth ID: " + acc.getId() + " to repository");
+	
 		this.repository.save(acc);
 		
 		return acc;

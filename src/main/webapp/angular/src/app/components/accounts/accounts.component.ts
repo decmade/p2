@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Http, Response } from '@angular/http';
-import { BehaviorSubject } from 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
 
+// rxjs
+import { Subscription } from 'rxjs/Subscription';
+
+// entities
 import { Account } from '../../entities/Account';
+import { Transaction } from '../../entities/Transaction';
 import { User } from '../../entities/User';
 
-import { Subscription } from 'rxjs/Subscription';
-import { AuthenticationService } from '../../services/authentication.service';
+// service
 import { AccountService } from '../../services/account.service';
 
 @Component({
@@ -16,29 +16,34 @@ import { AccountService } from '../../services/account.service';
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.css']
 })
+
 export class AccountComponent implements OnInit, OnDestroy {
 
-  currentUserSubscription: Subscription;
-  user: User;
-  userAcc: Account;
-  private authService: AuthenticationService;
-  private accService: AccountService;
+  private currentAccountSubscription: Subscription;
 
-  constructor(authService: AuthenticationService, accService: AccountService) {
-    this.authService = authService;
-    this.accService = accService;
+  private user: User;
+  private account: Account;
+
+  private accountService: AccountService;
+
+
+  constructor(accService: AccountService ) {
+    this.accountService = accService;
   }
+
+  public getAmountClass(transaction: Transaction): any {
+      return {
+        'text-success': ( transaction.type.id === 1),
+        'text-danger' : ( transaction.type.id === 2),
+      };
+  }
+
   ngOnInit(): void {
-    this.currentUserSubscription = this.authService.getCurrentUser().subscribe( (user) => this.user = user );
+    this.currentAccountSubscription = this.accountService.getCurrentAccount()
+      .subscribe( (account) => this.account = account );
   }
 
-  viewAccountBalance(): Number {
-    this.accService.viewBalance(this.user);
-    this.userAcc = this.user.account;
-    return this.userAcc.balance;
+  ngOnDestroy(): void {
+    this.currentAccountSubscription.unsubscribe();
   }
-
-ngOnDestroy(): void {
-  this.currentUserSubscription.unsubscribe();
-}
 }

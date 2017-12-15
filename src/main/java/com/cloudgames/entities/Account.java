@@ -1,8 +1,8 @@
 package com.cloudgames.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 
 import com.cloudgames.entities.interfaces.AccountInterface;
 
@@ -10,19 +10,13 @@ import com.cloudgames.entities.interfaces.AccountInterface;
 @Table(name="account")
 public class Account extends AbstractEntity implements AccountInterface {
 
-	@Column(unique = false, nullable = false, precision = 12, scale = 2)
+	@Column(nullable = false, precision = 12, scale = 2)
 	private double balance;
 	
-	public Account() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Account(double balance) {
-		super();
-		this.balance = balance;
-	}
-
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "account_id")
+	private List<Transaction> transactions;
+	
 	@Override
 	public double getBalance() {
 		return balance;
@@ -32,6 +26,18 @@ public class Account extends AbstractEntity implements AccountInterface {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+
+	@Override
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	@Override
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
+	
 }
 	
 	

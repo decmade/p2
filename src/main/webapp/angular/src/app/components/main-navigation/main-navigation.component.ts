@@ -11,9 +11,11 @@ import * as $ from 'jquery';
 // services
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
+import { RoutePermissionService } from '../../services/route-permission.service';
 
 // entities
 import { User } from '../../entities/User';
+
 
 @Component({
   selector: 'app-main-navigation',
@@ -31,25 +33,29 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
   // consumed services
   private authService: AuthenticationService;
   private userService: UserService;
+  private routePermService: RoutePermissionService;
+  private routingModule: AppRoutingModule;
 
-  constructor(router: Router, authService: AuthenticationService, userService: UserService ) {
+  private routes: Routes;
+
+  constructor(
+        router: Router, 
+        authService: AuthenticationService, 
+        userService: UserService, 
+        routePermService: RoutePermissionService,
+        routingModule: AppRoutingModule 
+    ) {
       this.router = router;
 
       this.authService = authService;
       this.userService = userService;
+      this.routePermService = routePermService;
+      this.routingModule = routingModule;
 
       this.form = new LoginForm();
       this.form.elementId = 'login-form';
       this.user = null;
   }
-
-  /*
-    * I can make the navigation bar dynamic based
-    * on policies here
-    */
-    public getRoutes(): Routes {
-        return AppRoutingModule.getTopNavigation();
-    }
 
     public onLogin(): void {
         this.login();
@@ -109,6 +115,14 @@ export class MainNavigationComponent implements OnInit, OnDestroy {
         }
 
         return true;
+    }
+
+    private setUser(user: User): void {
+        this.user = user;
+    }
+
+    private getRoutes(): Routes {
+        return this.routingModule.getTopNavigation();
     }
 
     ngOnInit() {

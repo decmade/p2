@@ -18,6 +18,7 @@ import { AlertService } from './services/alert.service';
 import { AccountService } from './services/account.service';
 import { GameService } from './services/game.service';
 import { GoogleMapService} from './services/google-map.service';
+import { RoutePermissionService } from './services/route-permission.service';
 
 
 // ROUTING
@@ -43,11 +44,11 @@ import { BasketballComponent} from './components/basketball/basketball.component
 import { TennisComponent } from './components/tennis/tennis.component';
 import { FutureComponent } from './components/future/future.component';
 import { AboutComponent } from './components/about/about.component';
-
-
 import { GameDetailComponent } from './components/game-detail/game-detail.component';
 import { StyledNumberComponent } from './components/styled-number/styled-number.component';
 
+// guards
+import { RouteGuard } from './guards/route.guard';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,6 @@ import { StyledNumberComponent } from './components/styled-number/styled-number.
     TennisComponent,
     FutureComponent,
     AboutComponent,
-    
     GameDetailComponent,
     StyledNumberComponent,
 
@@ -84,8 +84,8 @@ import { StyledNumberComponent } from './components/styled-number/styled-number.
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     AuthenticationService,
@@ -96,6 +96,9 @@ import { StyledNumberComponent } from './components/styled-number/styled-number.
     AccountService,
     GameService,
     GoogleMapService,
+    RouteGuard,
+    RoutePermissionService,
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })

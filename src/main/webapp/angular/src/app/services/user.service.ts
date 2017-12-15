@@ -8,10 +8,13 @@ import { Observable } from 'rxjs/Observable';
 // entities
 import { User } from '../entities/User';
 import { AlertMessage } from '../entities/AlertMessage';
+import { Account } from '../entities/Account';
 
 // services
 import { ApiService } from './api.service';
 import { AlertService } from './alert.service';
+import { Transaction } from '../entities/Transaction';
+
 
 
 @Injectable()
@@ -57,9 +60,15 @@ export class UserService {
     }
 
     public save(user: User): void {
-        const data = JSON.stringify(user);
+        let data: string;
         const url = this.apiService.getApiUrl(this.api);
         const isNewUser = this.userIsNew(user);
+
+        if ( isNewUser ) {
+            user.account = this.generateAccount();
+        }
+
+        data = JSON.stringify(user);
 
         this.http.post<User>(url, data, {
             withCredentials: true,
@@ -68,7 +77,7 @@ export class UserService {
             this.savedUserSubject.next(savedUser);
 
             if ( isNewUser ) {
-                this.alertService.push('user registration successful', AlertMessage.CATEGORY_SUCCESS);
+               this.alertService.push('user registration successful', AlertMessage.CATEGORY_SUCCESS);
             } else {
                 this.alertService.push('profile update successful', AlertMessage.CATEGORY_SUCCESS);
             }
@@ -93,4 +102,24 @@ export class UserService {
                 return false;
         }
     }
+
+    private generateAccount(): Account {
+        return {
+            id: 0,
+            balance: 200,
+            transactions: [
+                {
+                    id: 0,
+                    created: new Date(),
+                    type: {
+                        id: 1,
+                        description: 'Credit',
+                    },
+                    amount: 200,
+                },
+            ],
+        };
+    }
+
+    
 }

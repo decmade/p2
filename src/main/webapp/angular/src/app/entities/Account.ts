@@ -1,4 +1,7 @@
+import { Transaction } from './Transaction';
+
 export class Account {
-    id: Number;
-    balance: Number;
+    id: number;
+    balance: number;
+    transactions: Transaction[];
   }

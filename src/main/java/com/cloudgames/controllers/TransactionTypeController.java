@@ -16,8 +16,8 @@ import com.cloudgames.entities.TransactionType;
 import com.cloudgames.entities.interfaces.TransactionTypeInterface;
 import com.cloudgames.services.interfaces.TransactionTypeServiceInterface;
 
-@RestController("transactiontype-controller")
-@RequestMapping("transactiontype")
+@RestController("transactiontypes-controller")
+@RequestMapping("transactiontypes")
 public class TransactionTypeController extends AbstractController<TransactionTypeInterface, TransactionType> {
 
 	@Autowired
